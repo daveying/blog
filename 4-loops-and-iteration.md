@@ -64,3 +64,94 @@ do {
 3
 */
 ```
+
+## `while`语句
+
+只要其`condition`语句被判定为`true`，`while`语句会一直对其语句块中的语句循环执行，直到`condition`被判定为`false`，
+然后再接着执行`while`语句之后的语句。`while`循环如下所示：
+```js
+while (condition) {
+    statements;
+}
+```
+以一个例子说明：
+```js
+var n = 0;
+var x = 0;
+while (n < 3) {
+    n++;
+    x += n;
+}
+console.log(x);
+/*输出 (x = 1 + 2 + 3)
+6
+*/
+```
+使用循环的时候，要注意防止出现死循环，也就是`condition`会一直判定为`true`，循环永远也不能执行完毕。
+
+## Labeled statement
+
+`label`可以使得我们为一条语句设置一个名称，从而可以在程序的其他地方来引用被label的语句。比如你可以用`label`
+来标示一个循环语句，然后与`break`语句或者`continue`语句配合来实现对特定循环的中断或者继续执行。`labe`语句的形式
+如下：
+```js
+label:
+    statement
+```
+`label`可以是任何符合JavaScript命名规则的标识符(保留字除外)。你可以用`label`标识任何语句。例如：
+```js
+markLoop:
+while (theMark == true) {
+    doSomething();
+}
+```
+
+## `break`语句
+
+`break`语句可以用来中断一个循环的执行、或者`switch`语句的执行。在JavaScript中，其还可以与`label`语句配合使用。
+- 当`break`不与`label`进行配合，`break`将中断包含其自身的最里层的循环或`switch`，然后执行紧接着循环或`switch`的语句。
+- 当与`label`配合使用，`break`将中断被`label`标识的语句。
+
+`break`语句的格式如下：
+```js
+break [label];
+```
+例如：
+```js
+for (let i = 0; i < a.length; i++) {
+    if (a[i] == theValue) {
+        break; //break一旦执行，将中断该for语句的执行
+    }
+}
+```
+又例如：
+```js
+var x = 0;
+var z = 0;
+labelCancelLoops: while (true) {
+    console.log('Outer loops: ' + x);
+    x += 1;
+    z = 1;
+    while (true) {
+        console.log('Inner loops: ' + z);
+        z += 1;
+        if (z === 10 && x === 10) {
+            break labelCancelLoops;  //如果此语句执行，将直接中断最外层while循环
+        } else if (z === 10) {
+            break; //如果此语句执行，将中断内层whil循环
+        }
+    }
+}
+```
+
+## `continue`语句
+
+
+
+
+
+
+
+
+
+
