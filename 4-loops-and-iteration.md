@@ -146,11 +146,147 @@ labelCancelLoops: while (true) {
 
 ## `continue`语句
 
+`continue`语句可以用来重启一个`while`，`do-while`，`for`或者`label`语句
 
+- 当`continue`单独使用是，`continue`作用的是最里层离`continue`语句最近的循环。`continue`语句将
+使得循环体中在其之后的语句得不到执行而直接开始另一个迭代。`continue`与`break`不同，其不中止循环的执行
+而只是跳过后面的语句继续执行，在`while`循环中，会跳回到循环条件判定，而在`for`循环中，会跳到
+`incrementExpression`。
 
+- 当与`label`共用时，`continue`作用的循环是由`label`标识的循环。
 
+例如：
+```js
+var i = 0;
+var n = 0;
+while (i < 5) {
+    i++;
+    if (i == 3) {
+        continue;
+    }
+    n += i; // n = 1 + 2 + 4 +5 = 12
+}
+console.log(n); // => 12
+```
+又例如：
+```js
+var i = 0;
+var j = 8;
+checkiandj:
+while (i < 4) {
+    console.log('i is ' + i);
+    i += 1;
+    checkj:
+    while (j > 4) {
+        console.log(j);
+        j -= 1;
+        if ((j % 2) == 0) {
+            continue checkj; //如果该语句执行，将跳过checkj循环体后面的语句，执行下一轮checkj循环
+            //continue checkiandj; //如果该语句执行，将跳过checkiandj循环体后面的语句。执行下一轮checkiandj循环
+        }
+        console.log(j + ' is odd.');
+    }
+    console.log('i = ' + i);
+    console.log('j = ' + j);
+}
+```
 
+## `for...in`循环
 
+`for...in`循环会遍历一个对象的所有可枚举的属性名称。其语句形式如下所示：
+```js
+for (variable in object) {
+    statements
+}
+```
+例子：
+```js
+function dump_props(obj, obj_name) {
+    var result = '';
+    for (var i in obj) {
+        result += obj_name + '.' + i + ' = ' + obj[i] + '\n';
+    }
+    return result;
+}
+
+var car = {
+    make: 'Ford',
+    model: 'Mustang'
+}
+
+var result = dump_props(car, 'car');
+console.log(result);
+/* 输出
+car.make = Ford
+car.model = Mustang
+*/
+```
+
+**提醒**：虽然看起来可以用`for...in`来迭代`Array`，但是它除了反馈数字索引外还有
+可能返回你自定义的属性名称。因此还是使用传统的`for`循环来迭代`Array`要好。
+```js
+var arr = [1, -1, 2, 6];
+for (var i in arr) {
+    console.log(i, arr[i]);
+}
+
+arr.name = 'number_array';
+console.log('After add a custom property')
+for (var i in arr) {
+    console.log(i, arr[i]);
+}
+/* 输出
+0 1
+1 -1
+2 2
+3 6
+After add a custom property
+0 1
+1 -1
+2 2
+3 6
+name number_array
+*/
+```
+由上例所示，当在`Array`中加入自定义的属性时，用`for...in`语句也是可以访问到那个属性的，
+这在大多数情况下会产生意料之外的结果。
+
+## `for...of`循环
+
+**提醒**：该特性属于ECMAScript 2015(ES6)规范
+
+`for...of`将会对可迭代对象（包括`Array`，`Map`，`Set`，`arguments`等等）的每一个属性值进行
+遍历。其语句形式为：
+```js
+for (variable of object) {
+    statement
+}
+```
+接下来的例子将显示`for...of`语句和`for...in`语句的区别。`for...in`语句遍历的是属性名称，而
+`for...of`遍历的是属性值。
+```js
+let arr = [3, 5, 7];
+arr.foo = 'hello';
+
+for (let i in arr) {
+    console.log(i); // => 0 1 2 foo
+}
+
+for (let i of arr) {
+    console.log(i); // => 3 5 7
+}
+
+//当对一个对象进行遍历时，会报错
+var car = {
+    make: 'Ford',
+    model: 'Mustang'
+}
+
+for (let i of car) {
+    console.log(i);
+}
+// Uncaught TypeError: undefined is not a function
+```
 
 
 
