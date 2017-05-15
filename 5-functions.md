@@ -5,7 +5,7 @@
 > [2] JavaScript Reference: [Standard build-in objects / Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)  
 > [3] JavaScript Reference: [Functions / Default parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters)  
 > [4] JavaScript Reference: [Functions / Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)  
->
+> [5] JavaScript Reference: [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 ## 定义函数
 
@@ -631,9 +631,66 @@ params => ({foo: bar})
 (param1 = 1, param2, ...rest) => { statements }
 ```
 
+在箭头函数引入之前, 每一个新函数都会定义其自己的`this`值
+- 当函数作为构造函数时, `this`指向新构造的对象; 
+- 当在strict模式下进行函数调用时, `this`指向`undefined`, 在非strict模式下进行函数调用时, `this`指向`window`;
+- 当函数是一个对象的方法时, `this`指向调用时的**上下文对象**.
 
+详细的`this`的值请参考[this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
 
+```js
+function Person() {
+  // The Person() constructor defines `this` as an instance of itself.
+  this.age = 0;
 
+  setInterval(function growUp() {
+    // In non-strict mode, the growUp() function defines `this` 
+    // as the global object, which is different from the `this`
+    // defined by the Person() constructor.
+    this.age++;
+  }, 1000);
+}
+
+var p = new Person();
+
+console.log(p.age); // p.age的值将一直为0
+```
+为了解决这个问题, 通常的解决方案是通过一个中间变量:
+```js
+function Person() {
+  var that = this;
+  that.age = 0;
+
+  setInterval(function growUp() {
+    // The callback refers to the `that` variable of which
+    // the value is the expected object.
+    that.age++;
+  }, 1000);
+}
+```
+`that`代表了`Person`函数的`this`, 因此达到正确修改`ag`的值的目的.
+
+对于箭头函数, 它不会创建其自身的`this`环境(context), 所以在箭头函数中的`this`代表了包含箭头函数的上下文中的`this`
+```js
+function Person(){
+  this.age = 0;
+
+  setInterval(() => {
+    this.age++; // |this| properly refers to the person object
+  }, 1000);
+}
+
+var p = new Person();
+console.log(p.age); //p.age将随着时间不断改变
+```
+当箭头函数设置为strict模式, `this`将不会被设置为`undefined`
+```js
+var f = () => { 'use strict'; return this; };
+f() === window; // => true
+```
+而其他的strict规则都将遵循. 
+
+更多的关于箭头函数的资料请参考[5].
 
 
 
