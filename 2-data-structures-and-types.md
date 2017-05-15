@@ -256,7 +256,7 @@ var name = 'Bob', time = 'today';
 ```
 以下是JavaScript的特殊字符
 
-|字符       |含义           |
+|**字符**   |**含义**       |
 |:----------|:--------------|
 |\0         |Null byte      |
 |\b	        |Backspace      |
