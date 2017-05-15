@@ -9,8 +9,8 @@ JavaScript可以识别以下7种不同类型的值：
 
 - 六种原型(Primitives)数据类型：原型数据类型是指不是对象并且没有方法的类型。
   - Boolean布尔值，`true`和`false`
-  - null，一个表面`null`值的特殊关键字。其在逻辑运算上下文中为`false`，而在数值计算上下文中为`0`。
-JavaScript是大小写敏感的，因此null与Null，NULL或其他变量完全不同。
+  - null，一个表明`null`值的特殊关键字。其在逻辑运算上下文中为`false`，而在数值计算上下文中为`0`。
+JavaScript是大小写敏感的，因此`null`与`Null`，`NULL`或其他变量完全不同。
   - undefined，变量未定义时的属性，其在逻辑运算上下文中为`false`，而在数值计算上下文中为`NaN`。
   - Number，表示数字，例如：`42`或者`3.14`。
   - String，表示字符串，例如：`'howdy'`。
@@ -18,7 +18,7 @@ JavaScript是大小写敏感的，因此null与Null，NULL或其他变量完全�
 - Object对象。Object是一种既有数据又有操作数据的方法的数据类型。
 
 `Objects`和`functions`是JavaScript的其他两个基本要素，你可以将`objects`看做命名了的数据的容器，
-而`functions`可以看成是你应用要执行的一些流程。
+而`functions`可以看成是你需要执行的一些流程。
 
 ## 数据类型的转换
 
@@ -250,26 +250,41 @@ var name = 'Bob', time = 'today';
 
 #### 在字符串中使用特殊字符
 
-除了常规字符之外，你开可以在字符串中使用特殊字符：
+除了常规字符之外，你还可以在字符串中使用特殊字符：
 ```js
 'one line \n another line'
 ```
 以下是JavaScript的特殊字符
 |字符       |含义           |
+
 |:----------|:--------------|
+
 |\0         |Null byte      |
+
 |\b	        |Backspace      |
+
 |\f         |Form feed      |
+
 |\n	        |New line       |
+
 |\r	        |Carriage return|
+
 |\t	        |Tab            |
+
 |\v	        |Vertical tab   |
+
 |\'	        |Apostrophe or single quote|
+
 |\"	        |Double quote   |
+
 |\\	        |Backslash character|
+
 |\XXX       |The character with the Latin-1 encoding specified by up to three octal digits XXX between 0 and 377. For example, \251 is the octal sequence for the copyright symbol.|
+
 |\xXX	    |The character with the Latin-1 encoding specified by the two hexadecimal digits XX between 00 and FF. For example, \xA9 is the hexadecimal sequence for the copyright symbol.|
+
 |\uXXXX     |The Unicode character specified by the four hexadecimal digits XXXX. For example, \u00A9 is the Unicode sequence for the copyright symbol. See Unicode escape sequences.|
+
 |\u{XXXXX}	|Unicode code point escapes. For example, \u{2F804} is the same as the simple Unicode escapes \uD87E\uDC04.|
 
 #### 转义字符

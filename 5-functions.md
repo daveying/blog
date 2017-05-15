@@ -510,6 +510,129 @@ setBackgroundColor(someDiv, 'blue');    // color set to 'blue'
 的默认参数赋值给该参数。因此虽然传递了参数，只要该参数仍然是`undefined`，在进行默认参数赋值阶段，还是会将默认
 参数赋值给这个参数。
 
+默认参数是在运行时动态取值的，因此你可以通过一个函数的返回值对参数进行默认值设置：
+```js
+function callSomething(thing = something()) {
+    return thing;
+}
+
+function something() {
+    return 'sth';
+}
+
+callSomething(); // => 'sth'
+```
+默认参数也可以作为后面的默认参数：
+```js
+function singularAutoPlural(singular, plural = singular + 's', rallyingCry = plural + ' ATTACK!!') {
+    return [singular, plural, rallyingCry];
+}
+
+singularAutoPlural('Gecko'); // => ['Gecko', 'Geckos', 'Geckos ATTACK!!']
+
+singularAutoPlural('Fox', 'Foxes'); // => ['Fox', 'Foxes', 'Foxes ATTACK!!']
+
+singularAutoPlural('Deer', 'Deer', 'Deer peaceably and respectfully petition the government for positive change.');
+```
+
+下面是一个比较复杂一点的例子：
+```js
+function go() {
+  return ':P';
+}
+
+function withDefaults(a, b = 5, c = b, d = go(), e = this, 
+                      f = arguments, g = this.value) {
+  return [a, b, c, d, e, f, g];
+}
+
+function withoutDefaults(a, b, c, d, e, f, g) {
+  switch (arguments.length) {
+    case 0:
+      a;
+    case 1:
+      b = 5;
+    case 2:
+      c = b;
+    case 3:
+      d = go();
+    case 4:
+      e = this;
+    case 5:
+      f = arguments;
+    case 6:
+      g = this.value;
+    default:
+  }
+  return [a, b, c, d, e, f, g];
+}
+
+withDefaults.call({value: '=^_^='});
+// [undefined, 5, 5, ":P", {value:"=^_^="}, arguments, "=^_^="]
+
+
+withoutDefaults.call({value: '=^_^='});
+// [undefined, 5, 5, ":P", {value:"=^_^="}, arguments, "=^_^="]
+```
+该例子中，在调用`withDefaults.call({value: '=^_^='})`时，将函数中的`this`设置为`{value: '=^_^='}`，而`arguments.length`等于0.
+因此`a`为`undefined`因为没有默认参数，而`b`为默认参数`5`，`c`为默认参数`b = 5`，`d`为函数`go()`返回值`':P'`，
+`e`为`this = {value: '=^_^='}`,`f`为`arguments`，其`length`值为`0`，而`g`则为`this.value = '=^_^='`。
+
+不同与C++，默认参数还可以这么给：
+```js
+function f(x = 1, y) {
+    return [x, y];
+}
+
+f(); // => [1, undefined]
+f(2); // => [2, undefined]
+```
+只是实参与形参还是一一对应。
+
+### `rest`参数
+
+`rest`参数可以使得定义的函数可以接收一个不定长度的参数列表, 其语法形式如下所示:
+```js
+function f(a, b, ...theArgs) {
+    // ...
+}
+```
+如此定义之后`theArgs`会接收多出来的参数, `theArgs`为一个数组. 例如:
+```js
+function multiply(multiplier, ...theArgs) {
+    return theArgs.map(x => multiplier * x);
+}
+
+var arr = multiply(2, 1, 2, 3);
+console.log(arr); // => [2, 4, 6]
+```
+`arguments`参数包含了所有的实参, 而`rest`只包含没有指定名字的实参. `arguments`不是一个数组, 
+只是类似数组, 而`rest`参数是一个真正的数组.
+
+## 箭头函数(Arrow functions)
+
+箭头函数的语法与下所示:
+```js
+(param1, param2, ..., paramN) => { statements }
+(param1, param2, ..., paramN) => expression
+//下面的等价于(param1, param2, ..., paramN) => { return expression; }
+
+//当只有一个形式参数时, 以下两条语句是等价的
+(singleParam) => { statements }
+singleParam => { statements }
+
+//当函数没有形参, 则需要采用如下形式
+() => { statements }
+
+//以下形式将返回一个对象字面量, 对象字面量外部的括号是不可省略的
+params => ({foo: bar})
+
+//可以在箭头函数里面使用rest以及默认参数
+(param1 = 1, param2, ...rest) => { statements }
+```
+
+
+
 
 
 

@@ -5,9 +5,9 @@
 
 ## 三种声明
 
-- `var`声明一个变量，可以选择将其初始化为一个值
-- `let`声明一个块作用域的局部变量(block scope local variable)，可选择将其初始化为一个值
-- `const`声明一个只读常亮
+- `var`声明一个变量，可以在声明时进行初始化
+- `let`声明一个块作用域的局部变量(block scope local variable)，可以在声明时进行初始化
+- `const`声明一个只读常量
 
 ## 变量声明的三种方式
 
@@ -124,13 +124,13 @@ baz = function () {
 
 ## 全局变量
 
-全局变量其实global object的一个property。在浏览器端，全局对象（global object）是`window`，所以你可以通过
+全局变量其实是global object的一个property。在浏览器端，全局对象（global object）是`window`，所以你可以通过
 `window.variable`的形式访问全局变量。
 
 > Consequently, you can access global variables declared in one window or frame from another window or 
 > frame by specifying the window or frame name. For example, if a variable called phoneNumber is 
 > declared in a document, you can refer to this variable from an iframe as parent.phoneNumber.
->
+> 
 > -- From reference [1]
 
 ## 常量
@@ -174,20 +174,4 @@ MY_OBJECT = {'Key': 'otherValue'}; //TypeError: Assignment to constant variable
 ```
 以上可以看出，`MY_OBJECT`更像是一个指针，指针所储存的地址不可改变，即不能重新赋值指向另外一个对象，
 但是`MY_OBJECT`所指向的内存空间的内容是可以改变的。（这点有点像Python）
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
