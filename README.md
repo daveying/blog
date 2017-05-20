@@ -10,6 +10,7 @@
 4. [循环与迭代](4-loops-and-iteration.md)
 5. [函数](5-functions.md)
 6. [表达式与运算符](6-expressions-and-operators.md)
+7. [数字和日期](7-numbers-and-dates.md)
 
 ## 拓展阅读
 
