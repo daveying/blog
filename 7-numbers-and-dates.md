@@ -104,6 +104,30 @@ var notANum = Number.NaN;
 |Number.isNaN()         |确定一个数是否为NaN. 这个比全局的`isNaN()`要更加鲁棒   |
 |Number.isSafeInteger() |确定一个数字是否是安全整数                 |
 
+`Number.prototype`的方法
+
+这些方法是供由`new`生成的`Number`对象使用的, 或者对数字字面量使用.
+
+|方法           |描述                                       |
+|:---           |:---                                       |
+|toExponential()|返回数字的指数形式字符串                   |
+|toFixed()      |返回数字的小数形式, 可以指定小数点后保留的位数 |
+|toPrecision()  |返回数字精确的小数形式                         |
+
+```js
+var num = new Number(123.45678);
+num.toExponential();        // => "1.2345678e+2"
+num.toFixed();              // => "123"
+num.toFixed(1);             // => "123.4"
+num.toFixed(2);             // => "123.46". 四舍五入
+num.toPrecision();          // => "123.45678"
+
+(123.45678).toFixed(3);     // => "123.457"
+(0xff).toFixed(2);          // => "255.00"
+```
+
+## `Math`对象
+
 
 
 
