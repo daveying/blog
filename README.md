@@ -1,6 +1,6 @@
 # JavaScript学习笔记
 
-本学习笔记主要是在学习[MDN指南](https://developer.mozilla.org/en-US/docs/Learn/JavaScript)时做的笔记。
+这个主要是在学习[MDN指南](https://developer.mozilla.org/en-US/docs/Learn/JavaScript)时做的笔记。
 
 ## 目录
 
