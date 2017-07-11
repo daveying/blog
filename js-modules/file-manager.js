@@ -3,7 +3,6 @@ const fs = require('fs');
 const klaw = require('klaw');
 const path = require('path');
 
-
 var FileManager = function () {
     this.structure = undefined;
     this.mainContent = '';
@@ -18,10 +17,10 @@ function formList(dirObj, ordered) {
     let type = 'ul';
     if (ordered === undefined) type = 'ol';
 
-    var htmlStr = `<${type}>`;
+    var htmlStr = `<${type}>${dirObj.treePath}`;
     let lenDir = dirObj.dirs.length;
     for (let i = 0; i < lenDir; i++) {
-        htmlStr += formHtmlNode('li', dirObj.dirs[i].path, '', formList(dirObj.dirs[i], ordered));
+        htmlStr += formHtmlNode('li', dirObj.dirs[i].treePath, '', formList(dirObj.dirs[i], ordered));
     }
     let lenFiles = dirObj.files.length;
     for (let i = 0; i < lenFiles; i++) {
@@ -35,6 +34,7 @@ function walkThrough(path) {
     var files = fs.readdirSync(path, 'utf8');
     var lenFiles = files.length;
     var tree = {
+        treePath: path,
         dirs: [],
         files: []
     };
