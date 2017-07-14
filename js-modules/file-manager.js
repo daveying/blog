@@ -1,13 +1,13 @@
 const fse = require('fs-extra');
 const fs = require('fs');
 const klaw = require('klaw');
-const path = require('path');
+const pth = require('path');
 
 var FileManager = function () {
     this.structure = undefined;
     this.mainContent = '';
 };
-const baseDir = path.resolve(__dirname, '../md-src');
+const baseDir = pth.resolve(__dirname, '../md-src');
 
 function formHtmlNode(type, id, calss, content) {
     return `<${type} id='${id}' class='${calss}'>${content}</${type}>`;
@@ -24,26 +24,27 @@ function formList(dirObj, ordered) {
     }
     let lenFiles = dirObj.files.length;
     for (let i = 0; i < lenFiles; i++) {
-        htmlStr += formHtmlNode('li', dirObj.files[i].path, '', dirObj.files[i].path);
+        htmlStr += formHtmlNode('li', dirObj.files[i].path, '', pth.basename(dirObj.files[i].path));
     }
     htmlStr += `</${type}>`;
     return htmlStr;
 }
 
-function walkThrough(path) {
-    var files = fs.readdirSync(path, 'utf8');
+function walkThrough(targetPath) {
+    var files = fs.readdirSync(targetPath, 'utf8');
     var lenFiles = files.length;
     var tree = {
-        treePath: path,
+        treePath: targetPath,
         dirs: [],
         files: []
     };
     for (let i = 0; i < lenFiles; i++) {
-        let stat = fs.statSync(path + '/' + files[i]); // FIXME
+        let filePath = pth.join(targetPath, files[i]);
+        let stat = fs.statSync(filePath);
         if (stat.isDirectory()) {
-            tree.dirs.push(walkThrough(path + '/' + files[i]));
+            tree.dirs.push(walkThrough(filePath));
         } else {
-            tree.files.push({path: path + '/' + files[i], fsstat: stat});
+            tree.files.push({path: filePath, fsstat: stat});
         }
     }
     return tree;
