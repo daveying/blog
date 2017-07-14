@@ -180,10 +180,161 @@ path.parse('C:\\path\\dir\\file.txt');
 
 ### path.isAbsolute(path)
 
+- `path` \<string>
+- Return: \<boolean>
 
+该函数用于判断给定的路径是否是绝对路径。 如果给定的路径字符串长度为0，将返回`false`。
 
+对于POSIX平台：
+```js
+path.isAbsolute('/foo/bar'); // true
+path.isAbsolute('/baz/..'); // true
+path.isAbsolute('qux/'); // false
+path.isAbsolute('.'); // false
+```
+对于window平台：
+```js
+path.isAbsolute('//server');    // true
+path.isAbsolute('\\\\server');  // true
+path.isAbsolute('C:/foo/..');   // true
+path.isAbsolute('C:\\foo\\..'); // true
+path.isAbsolute('bar\\baz');    // false
+path.isAbsolute('bar/baz');     // false
+path.isAbsolute('.');           // false
+```
 
+## 用于生成特定路径字符串的函数
 
+### path.format(pathObject)
+- `pathObject`: \<Object>
+    - `dir`: \<string>
+    - `root`: \<string>
+    - `base`: \<string>
+    - `name`: \<string>
+    - `ext`: \<string>
+- 返回：\<string>
 
+给定一个对象，根据该对象提供的信息生成一个路径字符串。
 
+`pathObject`对象中提供的信息是有冗余的，当相互之间发生冲突的时候，是有优先级的：
 
+- 当`pathObject.dir`提供了的时候，`pathObject.root`中的信息将被忽略。
+- 当`pathObject.base`提供了的时候，`pathObject.name`和`pathObject.ext`将被忽略。
+
+例如：
+```js
+// If `dir`, `root` and `base` are provided,
+// `${dir}${path.sep}${base}`
+// will be returned. `root` is ignored.
+path.format({
+  root: '/ignored',
+  dir: '/home/user/dir',
+  base: 'file.txt'
+});
+// Returns: '/home/user/dir/file.txt'
+
+// `root` will be used if `dir` is not specified.
+// If only `root` is provided or `dir` is equal to `root` then the
+// platform separator will not be included. `ext` will be ignored.
+path.format({
+  root: '/',
+  base: 'file.txt',
+  ext: 'ignored'
+});
+// Returns: '/file.txt'
+
+// `name` + `ext` will be used if `base` is not specified.
+path.format({
+  root: '/',
+  name: 'file',
+  ext: '.txt'
+});
+// Returns: '/file.txt'
+
+// On windows
+path.format({
+  dir: 'C:\\path\\dir',
+  base: 'file.txt'
+});
+// Returns: 'C:\\path\\dir\\file.txt'
+```
+### path.resolve([...paths])
+
+- `...path`: \<string>　一系列的路径或路径片段
+- 返回：\<string>
+
+该函数将一些了路径组合为一个绝对路径字符串。
+
+函数将从给定的最右端的字符串开始处理，直到生成一个绝对路径后停止。例如：
+```js
+path.resolve('/foo', '/bar', 'baze'); // 返回：'/bar/baze'
+//　从右往左，与'/bar'进行组合后就形成了绝对路径，因此不会再与第一个参数组合
+```
+
+当所有给定的路径都组合完了，还是没有获得绝对路径，则当前路径将被使用（即程序运行的路径）。
+
+参数中的空字符串将被忽略，若没有参数传递进入函数，则当前程序运行路径将被返回。
+
+```js
+path.resolve('/foo/bar', './baz');
+// Returns: '/foo/bar/baz'
+
+path.resolve('/foo/bar', '/tmp/file/');
+// Returns: '/tmp/file'
+
+path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif');
+// if the current working directory is /home/myself/node,
+// this returns '/home/myself/node/wwwroot/static_files/gif/image.gif'
+```
+
+### path.normalize(path)
+
+- `path` \<string>
+- 返回：\<string>
+
+`path.normalize()`对给定的字符串进行归一化处理，去除多余的`path.sep`，并且解析`'..'`以及`'.'`。
+
+```js
+path.normalize('/foo/bar//baz/asdf/quux/..');
+// Returns: '/foo/bar/baz/asdf'
+```
+```js
+path.normalize('C:\\temp\\\\foo\\bar\\..\\');
+// Returns: 'C:\\temp\\foo\\'
+```
+在Windows下即支持`\`也支持`/`，因此：
+```js
+path.win32.normalize('C:////temp\\\\/\\/\\/foo/bar');
+// Returns: 'C:\\temp\\foo\\bar'
+```
+
+### path.join([...paths])
+- `...paths` \<string>　一系列路径片段
+- 返回：　\<string>
+
+该函数用`path.sep`将各个片段连起来，然后调用`path.normalize()`将多余的`path.sep`去除，并且解析字符串中的`'..'`以及`'.'`。
+
+长度为０的字符串将被忽略，若没有参数传入，将返回`'.'`。
+```js
+path.join('/foo', 'bar', 'baz/asdf', 'quux', '..');
+// Returns: '/foo/bar/baz/asdf'
+
+path.join('foo', {}, 'bar');
+// throws 'TypeError: Path must be a string. Received {}'
+```
+
+### path.relative(from, to)
+
+- `from` \<string>
+- `to` \<string>
+- 返回：\<string>
+
+该函数返回从`from`到`to`的相对路径，即在`from`路径下使用`cd returnedStr`就可以切换到`to`路径。函数具体的实现过程是分别通过`path.resolve()`函数将两个路径转换为绝对路径（因此有可能包含当前工作路径），然后在进行比较。当比较结束后在同一个路径，则返回空字符串，如果其中一个参数为空字符串，则会使用当前路径（`path.resolve('')`的结果）。
+
+```js
+path.relative('/data/orandea/test/aaa', '/data/orandea/impl/bbb');
+// Returns: '../../impl/bbb'
+
+path.relative('C:\\orandea\\test\\aaa', 'C:\\orandea\\impl\\bbb');
+// Returns: '..\\..\\impl\\bbb'
+```
