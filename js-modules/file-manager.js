@@ -1,6 +1,5 @@
 const fse = require('fs-extra');
 const fs = require('fs');
-const klaw = require('klaw');
 const pth = require('path');
 
 var FileManager = function () {
@@ -14,19 +13,26 @@ function formHtmlNode(type, id, calss, content) {
 }
 
 function formList(dirObj, ordered) {
-    let type = 'ul';
-    if (ordered === undefined) type = 'ol';
+    let listType = 'ol';
+    if (ordered === undefined) listType = 'ul';
+    var htmlStr = `<${listType}>${formDir(dirObj, ordered)}<${listType}>`;
+    return htmlStr;
+}
 
-    var htmlStr = `<${type}>${dirObj.treePath}`;
+function formDir(dirObj, ordered) {
+    let listType = 'ol';
+    if (ordered === undefined) listType = 'ul';
+
+    var htmlStr = `<li id='${pth.relative(baseDir, dirObj.treePath)}' class='mdsrc-folder'>${pth.basename(dirObj.treePath)}<${listType}>`;
     let lenDir = dirObj.dirs.length;
     for (let i = 0; i < lenDir; i++) {
-        htmlStr += formHtmlNode('li', dirObj.dirs[i].treePath, '', formList(dirObj.dirs[i], ordered));
+        htmlStr += formDir(dirObj.dirs[i], ordered);
     }
     let lenFiles = dirObj.files.length;
     for (let i = 0; i < lenFiles; i++) {
-        htmlStr += formHtmlNode('li', dirObj.files[i].path, '', pth.basename(dirObj.files[i].path));
+        htmlStr += formHtmlNode('li', pth.relative(baseDir, dirObj.files[i].path), 'mdsrc-file', pth.basename(dirObj.files[i].path));
     }
-    htmlStr += `</${type}>`;
+    htmlStr += `</${listType}></li>`;
     return htmlStr;
 }
 
