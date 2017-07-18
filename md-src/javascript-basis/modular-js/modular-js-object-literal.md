@@ -1,5 +1,7 @@
 # JavaScript模块化编程
 
+**Reference**
+> [1] JavaScript Guide: [Grammar and types](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Grammar_and_types)
 
 
 不管是前端还是后端，模块化编程思想对于JavaScript开发来说都是最基本而且也非常重要的。本笔记记录几种典型的模块化编程的Pattern。
