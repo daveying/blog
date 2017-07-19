@@ -19,7 +19,7 @@
 
 先给出最终的完整代码以及运行结果：
 
-<iframe width="100%" height="300" src="//jsfiddle.net/david_da/1a7j0oug/5/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+<iframe width="100%" height="300" src="//jsfiddle.net/david_da/1a7j0oug/6/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 现在来具体分析。该模块所要管理的数据其实就是人名列表，对于每个人名，在HTML`#people-list`中对应一个`li`元素。当人名列表发生变化时，重新生成对应于新列表的`ul`。改变人名列表的方式有两个，一种通过点击Add Person添加一个人名，另一种是通过点击人名框中的`x`删除对应的人名。与该模块相关的DOM资源有输入框`#text-input`、按钮`#add-button`以及人名框列表`#people-list`。这些DOM资源在模块初始化的时候通过jQuery获取。
 
