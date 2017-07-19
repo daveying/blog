@@ -2,7 +2,8 @@
 
 **Reference**
 > [1] Learning JavaScript Design Patterns: [The Module Pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript)  
-> [2] Modular Javascript: [A video by LearnCode.academy](https://www.youtube.com/watch?v=m-NYyst_tiY&index=2&list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f)
+> [2] Modular Javascript: [A video by LearnCode.academy](https://www.youtube.com/watch?v=m-NYyst_tiY&index=2&list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f)  
+> [3] 源代码: [github.com/daveying/modular-js](https://github.com/daveying/modular-js)
 
 
 不管是前端还是后端，模块化编程思想对于JavaScript开发来说都是最基本而且也非常重要的。本笔记记录几种典型的模块化编程的Pattern。
