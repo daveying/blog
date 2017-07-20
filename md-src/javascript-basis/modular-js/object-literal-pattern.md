@@ -1,4 +1,4 @@
-# JavaScript模块化编程
+# JavaScript模块化编程 -- Object literal pattern
 
 **Reference**
 > [1] Learning JavaScript Design Patterns: [The Module Pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript)  
