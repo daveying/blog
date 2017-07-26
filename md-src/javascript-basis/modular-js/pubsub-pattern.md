@@ -21,3 +21,44 @@
 
 <iframe width="100%" height="300" src="//jsfiddle.net/david_da/pvy1mh0w/1/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
+一个简单的`pubsub`模块如下所示。`pubsub`是publisher和subscriber的简称，字面意思就是发布-订阅模式。在具体实践中，Publisher只负责发布消息，不管其他模块会对这个消息做如何处理，Subscriber只负责对消息做出相应的反应即可。这样其实就实现了各个模块之间的解耦。发布-订阅模式也被成为`events`模式，两则没有本质的区别，只是publisher被视为事件的触发者，而subscriber被视为事件的响应者。
+
+```js
+var events = (function () {
+    var events = {};
+    function on(eventName, fn) {
+        events[eventName] = events[eventName] || [];
+        events[eventName].push(fn);
+    };
+
+    function off(eventName, fn) {
+        if (events[eventName]) {
+            var lenE = events[eventName].length;
+            for (var i = 0; i < lenE; i++) {
+                if (events[eventName][i] === fn) {
+                    events[eventName].splice(i, 1)
+                    break;
+                }
+            }
+        }
+    };
+    function emit(eventName, data) {
+        if (events[eventName]) {
+            events[eventName].forEach(function(fn) {
+                fn(data);
+            });
+        }
+    }
+    return {
+        on: on,
+        off: off,
+        emit: emit
+    }
+})();
+```
+
+在这个简单的`pubsub`或者说`events`模块中，有一个事件列表，该表中存储注册的事件以及对应于该事件的处理函数。调用函数`on`将注册到一个特定的事件上，比如在本例`stats`模块就注册到了`peopleChange`事件，注册时需要提供一个事件处理函数，这个函数会在`peopleChang`被触发时得到执行。调用`off`函数会取消原本注册到特定事件的事件处理函数。而`emit`函数则用来触发特定事件，如`people`模块，一旦人名列表中个数发生改变则触发`peopleChange`事件，使得注册到该事件上的所有事件处理函数得到执行。通过这种方式各个模块可以实现解耦协作。
+
+
+
+
