@@ -45,17 +45,19 @@
     </v-toolbar>
     <v-content>
       <v-container fluid mx-0>
-        <router-view></router-view>
         <v-layout>
-          <v-flex xs12>
-            <div class="comments">
-              <vue-disqus shortname="xingpeng-blog" :identifier="pageId" url="http://md.xp-da.com"></vue-disqus>
-            </div>
+          <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
+            <router-view></router-view>
           </v-flex>
         </v-layout>
-        <v-divider></v-divider>
         <v-layout>
-          <v-flex xs12 class="grey lighten-5 text-xs-center">
+          <v-flex xs12 sm10 md8 offset-sm1 offset-md2 class="grey lighten-5 text-xs-center">
+            <v-divider></v-divider>
+            Contact me at following sites
+          </v-flex>
+        </v-layout>
+        <v-layout>
+          <v-flex xs12 sm10 md8 offset-sm1 offset-md2 class="grey lighten-5 text-xs-center">
             <v-btn
               v-for="icon in footerIcons"
               :key="icon"
@@ -64,15 +66,20 @@
             >
               <v-icon size="24px">{{ icon }}</v-icon>
             </v-btn>
+            <v-divider></v-divider>
           </v-flex>
         </v-layout>
         <v-layout>
-          <v-flex xs12 class="grey lighten-5 text-xs-center">
-            Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum.
+          <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
+            <div class="comments">
+              <vue-disqus shortname="xingpeng-blog" :identifier="pageId" url="http://md.xp-da.com"></vue-disqus>
+            </div>
           </v-flex>
         </v-layout>
         <v-layout>
-          <v-flex xs12 class="grey lighten-5 text-xs-center">
+          <v-flex xs12 sm10 md8 offset-sm1 offset-md2 class="grey lighten-5 text-xs-center">
+            <v-divider></v-divider>
+            <br>
             &copy; 2018 — <strong>Xingpeng (David) Da</strong>
           </v-flex>
         </v-layout>
