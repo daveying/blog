@@ -46,6 +46,13 @@
     <v-content>
       <v-container fluid mx-0>
         <router-view></router-view>
+        <v-layout>
+          <v-flex xs12>
+            <div class="comments">
+              <vue-disqus shortname="xingpeng-blog" :identifier="pageId" url="http://md.xp-da.com"></vue-disqus>
+            </div>
+          </v-flex>
+        </v-layout>
         <v-divider></v-divider>
         <v-layout>
           <v-flex xs12 class="grey lighten-5 text-xs-center">
@@ -79,7 +86,8 @@ export default {
   data () {
     return {
       sideNav: false,
-      footerIcons: ['add_alert', 'error', 'error_outline', 'warning', 'airplay']
+      footerIcons: ['add_alert', 'error', 'error_outline', 'warning', 'airplay'],
+      pageId: '123'
     }
   },
   methods: {
