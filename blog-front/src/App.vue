@@ -53,7 +53,7 @@
               v-for="icon in footerIcons"
               :key="icon"
               icon
-              class="mx-3 white--text"
+              class="mx-3"
             >
               <v-icon size="24px">{{ icon }}</v-icon>
             </v-btn>
@@ -66,7 +66,7 @@
         </v-layout>
         <v-layout>
           <v-flex xs12 class="grey lighten-5 text-xs-center">
-            &copy;2018 — <strong>Xingpeng Da</strong>
+            &copy; 2018 — <strong>Xingpeng (David) Da</strong>
           </v-flex>
         </v-layout>
       </v-container>
@@ -79,7 +79,7 @@ export default {
   data () {
     return {
       sideNav: false,
-      footerIcons: ['fab fa-facebook', 'fab fa-twitter', 'fab fa-google-plus', 'fab fa-linkedin', 'fab fa-instagram']
+      footerIcons: ['add_alert', 'error', 'error_outline', 'warning', 'airplay']
     }
   },
   methods: {
@@ -92,8 +92,8 @@ export default {
       let menuItems = [
         { icon: 'home', title: '首页', link: '/' },
         { icon: 'library_books', title: '所有文章', link: '/blogs' },
-        { icon: 'folder_shared', title: '读书', link: '/reading' },
-        { icon: 'face', title: '关于', link: '/about' }
+        { icon: 'widgets', title: '其他应用', link: '/apps' },
+        { icon: 'account_circle', title: '关于', link: '/about' }
       ]
       if (this.userIsAuthenticated) {
         menuItems = [
