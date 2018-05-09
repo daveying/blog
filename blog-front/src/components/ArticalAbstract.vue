@@ -18,13 +18,5 @@
 <script>
 export default {
   props: ['title', 'createdDate', 'viewCount', 'tags']
-  // data () {
-  //   return {
-  //     title: '第一篇文章',
-  //     createdDate: new Date(),
-  //     viewCount: 1234,
-  //     tags: ['HTML', 'WebGL', 'THREE']
-  //   }
-  // }
 }
 </script>
