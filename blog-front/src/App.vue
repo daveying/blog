@@ -50,33 +50,15 @@
             <router-view></router-view>
           </v-flex>
         </v-layout>
-        <v-layout>
-          <v-flex xs12 sm10 md8 offset-sm1 offset-md2 class="grey lighten-5 text-xs-center">
-            <v-divider></v-divider>
-            Contact me at following sites
+        <v-layout row wrap>
+          <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
+            <social-network-list></social-network-list>
           </v-flex>
-        </v-layout>
-        <v-layout>
-          <v-flex xs12 sm10 md8 offset-sm1 offset-md2 class="grey lighten-5 text-xs-center">
-            <v-btn
-              v-for="icon in footerIcons"
-              :key="icon"
-              icon
-              class="mx-3"
-            >
-              <v-icon size="24px">{{ icon }}</v-icon>
-            </v-btn>
-            <v-divider></v-divider>
-          </v-flex>
-        </v-layout>
-        <v-layout>
           <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
             <div class="comments">
               <vue-disqus shortname="xingpeng-blog" :identifier="pageId" url="http://md.xp-da.com"></vue-disqus>
             </div>
           </v-flex>
-        </v-layout>
-        <v-layout>
           <v-flex xs12 sm10 md8 offset-sm1 offset-md2 class="grey lighten-5 text-xs-center">
             <v-divider></v-divider>
             <br>
@@ -93,7 +75,6 @@ export default {
   data () {
     return {
       sideNav: false,
-      footerIcons: ['add_alert', 'error', 'error_outline', 'warning', 'airplay'],
       pageId: '123'
     }
   },

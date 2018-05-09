@@ -1,16 +1,19 @@
 <template>
-  <v-container fluid mx-0 px-0>
-    <v-layout v-for="blog in blogs" :key="blog.id">
-      <v-flex xs12>
-        <ArticalAbstract
-          :title="blog.title"
-          :createdDate="blog.createdDate"
-          :viewCount="blog.viewCount"
-          :tags="blog.tags"
-        ></ArticalAbstract>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <v-card flat>
+    <v-container class="my-0" fluid style="min-height: 0;" grid-list-xs>
+      <v-layout row wrap>
+        <v-flex v-for="blog in blogs" :key="blog.id" xs12>
+          <ArticalAbstract
+            :title="blog.title"
+            :createdDate="blog.createdDate"
+            :viewCount="blog.viewCount"
+            :tags="blog.tags"
+          ></ArticalAbstract>
+          <v-divider></v-divider>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-card>
 </template>
 
 <script>

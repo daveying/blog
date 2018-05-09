@@ -8,10 +8,13 @@ import router from './router'
 import { store } from './store'
 import '../node_modules/material-design-icons-iconfont/dist/material-design-icons.css'
 import 'vuetify/dist/vuetify.min.css'
+import SocialNetworkList from '@/components/SocialNetworkList.vue'
 
 Vue.config.productionTip = false
 Vue.use(Vuetify)
 Vue.use(VueDisqus)
+
+Vue.component('social-network-list', SocialNetworkList)
 
 /* eslint-disable no-new */
 new Vue({

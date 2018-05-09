@@ -1,24 +1,18 @@
 <template>
-  <v-container fluid mx-0 px-0>
-    <v-card>
+  <v-card flat>
+    <v-container class="px-3 py-2">
       <v-layout row wrap>
         <v-flex xs12>
           <h2>{{ title }}</h2>
-        </v-flex>
-      </v-layout>
-      <v-layout row>
-        <v-flex xs12>
-          创建时间: {{ createdDate }}, 浏览量: {{ viewCount }}次
-          <v-chip small outline v-for="tag in tags" :key="tag">{{ tag }}</v-chip>
-        </v-flex>
-      </v-layout>
-      <v-layout row>
-        <v-flex xs12>
+          <p>
+            创建时间: {{ createdDate }}, 浏览量: {{ viewCount }}次
+            <v-chip small outline v-for="tag in tags" :key="tag">{{ tag }}</v-chip>
+          </p>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius molestias exercitationem dolores, a totam molestiae dolorem eligendi nesciunt pariatur aperiam voluptatum! Quaerat soluta minima, quidem quasi sapiente id vero porro?</p>
         </v-flex>
       </v-layout>
-    </v-card>
-  </v-container>
+    </v-container>
+  </v-card>
 </template>
 
 <script>
