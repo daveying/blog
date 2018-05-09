@@ -8,8 +8,8 @@
       </v-layout>
       <v-layout row>
         <v-flex xs12>
-          创建时间:{{ createdDate }}, 浏览量: {{ viewCount }}次
-          <v-chip v-for="tag in tags" :key="tag">{{ tag }}</v-chip>
+          创建时间: {{ createdDate }}, 浏览量: {{ viewCount }}次
+          <v-chip small outline v-for="tag in tags" :key="tag">{{ tag }}</v-chip>
         </v-flex>
       </v-layout>
       <v-layout row>
