@@ -1,5 +1,5 @@
 <template>
-  <v-card flat>
+  <v-card flat class="grey lighten-5">
     <v-container class="my-0" fluid style="min-height: 0;" grid-list-xs>
       <v-layout row wrap>
         <v-flex v-for="blog in blogs" :key="blog.id" xs12>
@@ -9,7 +9,6 @@
             :viewCount="blog.viewCount"
             :tags="blog.tags"
           ></ArticalAbstract>
-          <v-divider></v-divider>
         </v-flex>
       </v-layout>
     </v-container>

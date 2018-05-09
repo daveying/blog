@@ -1,5 +1,5 @@
 <template>
-  <v-card flat>
+  <v-card>
     <v-container class="px-3 py-2">
       <v-layout row wrap>
         <v-flex xs12>
