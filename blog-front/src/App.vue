@@ -68,8 +68,7 @@
 export default {
   data () {
     return {
-      sideNav: false,
-      pageId: '123'
+      sideNav: false
     }
   },
   methods: {
