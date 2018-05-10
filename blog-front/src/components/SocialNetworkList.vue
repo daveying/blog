@@ -12,7 +12,8 @@
           icon
           class="mx-3"
         >
-          <v-icon size="24px">{{ icon }}</v-icon>
+          <!-- <v-icon size="24px">{{ icon }}</v-icon> -->
+          <i :class="`mdi mdi-${icon} mdi-36px`"></i>
         </v-btn>
         <v-divider></v-divider>
       </v-flex>
@@ -24,7 +25,7 @@
 export default {
   data () {
     return {
-      footerIcons: ['add_alert', 'error', 'error_outline', 'warning', 'airplay']
+      footerIcons: ['github-circle', 'twitter-circle', 'google-plus', 'facebook', 'airplay']
     }
   }
 }
