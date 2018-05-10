@@ -4,7 +4,7 @@
       <v-layout row wrap>
         <v-flex xs12 md8>
           <v-layout row wrap>
-            <v-flex v-for="blog in blogs" :key="blog.id" xs12 my-1>
+            <v-flex v-for="blog in blogs" :key="blog.id" xs12>
               <v-card>
                 <v-container class="px-3 py-2">
                   <v-layout row wrap>
