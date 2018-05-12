@@ -6,15 +6,16 @@
         Contact me at following sites
       </v-flex>
       <v-flex xs12 class="grey lighten-5 text-xs-center">
-        <v-btn
-          v-for="icon in footerIcons"
-          :key="icon"
-          icon
-          class="mx-3"
+        <v-tooltip
+          bottom
+          v-for="item in socialNetworks"
+          :key="item.iconName"
         >
-          <!-- <v-icon size="24px">{{ icon }}</v-icon> -->
-          <i :class="`mdi mdi-${icon} mdi-24px`"></i>
-        </v-btn>
+          <v-btn icon slot="activator" class="mx-3">
+            <i :class="`mdi mdi-${item.iconName} mdi-24px`"></i>
+          </v-btn>
+          <span>{{ item.tooltip }}</span>
+        </v-tooltip>
         <v-divider></v-divider>
       </v-flex>
     </v-layout>
@@ -25,7 +26,34 @@
 export default {
   data () {
     return {
-      footerIcons: ['github-circle', 'linkedin', 'google-plus', 'twitter-circle', 'facebook']
+      footerIcons: ['github-face', 'linkedin', 'facebook', 'twitter', 'google-plus'],
+      socialNetworks: [
+        {
+          iconName: 'github-face',
+          url: 'https://github.com/daveying',
+          tooltip: 'github'
+        },
+        {
+          iconName: 'linkedin',
+          url: 'www.linkedin.com/in/xingpengda',
+          tooltip: 'linkedin'
+        },
+        {
+          iconName: 'facebook',
+          url: '',
+          tooltip: 'facebook'
+        },
+        {
+          iconName: 'twitter',
+          url: '',
+          tooltip: 'twitter'
+        },
+        {
+          iconName: 'google-plus',
+          url: '',
+          tooltip: 'google+'
+        }
+      ]
     }
   }
 }
