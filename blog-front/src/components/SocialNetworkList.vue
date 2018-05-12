@@ -11,7 +11,14 @@
           v-for="item in socialNetworks"
           :key="item.iconName"
         >
-          <v-btn icon slot="activator" class="mx-3">
+          <v-btn
+            icon
+            slot="activator"
+            class="mx-3"
+            :href="item.url"
+            target="_blank"
+            exact
+          >
             <i :class="`mdi mdi-${item.iconName} mdi-24px`"></i>
           </v-btn>
           <span>{{ item.tooltip }}</span>
@@ -35,7 +42,7 @@ export default {
         },
         {
           iconName: 'linkedin',
-          url: 'www.linkedin.com/in/xingpengda',
+          url: 'https://www.linkedin.com/in/xingpengda',
           tooltip: 'linkedin'
         },
         {
@@ -54,6 +61,11 @@ export default {
           tooltip: 'google+'
         }
       ]
+    }
+  },
+  methods: {
+    achorClicked () {
+      console.log('achorClicked')
     }
   }
 }
