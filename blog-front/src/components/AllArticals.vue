@@ -20,7 +20,7 @@
         </v-flex>
       </v-layout>
       <v-layout row wrap py-4 class="text-xs-center">
-        <v-flex xs8 offset-xs2>
+        <v-flex xs12>
           <v-pagination circle :length="15" v-model="pageIdx"></v-pagination>
         </v-flex>
       </v-layout>

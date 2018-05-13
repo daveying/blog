@@ -21,8 +21,8 @@
               </v-card>
             </v-flex>
           </v-layout>
-          <v-layout row wrap py-4 class="text-xs-center">
-            <v-flex xs8 offset-xs2>
+          <v-layout row py-4 class="text-xs-center">
+            <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
               <v-pagination :length="15" v-model="pageIdx"></v-pagination>
             </v-flex>
           </v-layout>
