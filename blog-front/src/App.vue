@@ -51,16 +51,16 @@
           </v-flex>
         </v-layout>
       </v-container>
+      <v-container fluid class="ml-0">
+        <v-layout>
+          <v-flex xs12 class="grey lighten-5 text-xs-center">
+            <!-- <v-divider></v-divider> -->
+            <br>
+            &copy; 2018 — <strong>Xingpeng (David) Da</strong>
+          </v-flex>
+        </v-layout>
+      </v-container>
     </v-content>
-    <v-container fluid class="ml-0">
-      <v-layout>
-        <v-flex xs12 class="grey lighten-5 text-xs-center">
-          <v-divider></v-divider>
-          <br>
-          &copy; 2018 — <strong>Xingpeng (David) Da</strong>
-        </v-flex>
-      </v-layout>
-    </v-container>
   </v-app>
 </template>
 
