@@ -46,10 +46,22 @@
     <v-content>
       <v-container fluid mx-0>
         <v-layout>
-          <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
+          <v-flex xs12 md10 lg8 offset-md1 offset-lg2>
             <router-view></router-view>
           </v-flex>
         </v-layout>
+        <v-btn
+          color="primary"
+          dark
+          fixed
+          bottom
+          right
+          fab
+          v-show="floatBtn"
+          @click="onFloatBtnClicked()"
+        >
+          <v-icon>keyboard_arrow_up</v-icon>
+        </v-btn>
       </v-container>
       <v-container fluid class="ml-0">
         <v-layout>
@@ -68,7 +80,8 @@
 export default {
   data () {
     return {
-      sideNav: false
+      sideNav: false,
+      floatBtn: true
     }
   },
   methods: {

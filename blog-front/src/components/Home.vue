@@ -28,15 +28,6 @@
           </v-layout>
         </v-flex>
         <v-flex xs12 md4>
-          <v-card class="mb-2">
-            <v-container>
-              <h3 class="mb-2">关于作者</h3>
-              <v-divider></v-divider>
-              <v-layout wrap class="mt-2">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, nostrum! Nam necessitatibus at nobis optio facere qui quaerat quae non dicta eaque, et doloremque voluptatibus eum quod adipisci, praesentium ducimus.</p>
-              </v-layout>
-            </v-container>
-          </v-card>
           <v-card>
             <v-container>
               <h3 class="mb-2">标签列表</h3>
@@ -52,6 +43,15 @@
                   <a @click="onTagClicked(tag)" class="tag-link">{{ tag.name }}</a>
                   <span class="ml-1">{{ tag.count }}</span>
                 </v-chip>
+              </v-layout>
+            </v-container>
+          </v-card>
+          <v-card class="mt-2">
+            <v-container>
+              <h3 class="mb-2">关于作者</h3>
+              <v-divider></v-divider>
+              <v-layout wrap class="mt-2">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, nostrum! Nam necessitatibus at nobis optio facere qui quaerat quae non dicta eaque, et doloremque voluptatibus eum quod adipisci, praesentium ducimus.</p>
               </v-layout>
             </v-container>
           </v-card>
