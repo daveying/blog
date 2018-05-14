@@ -29,7 +29,22 @@
         </v-flex>
         <v-flex xs12 md4>
           <v-card>
-            <v-card-title>标签</v-card-title>
+            <v-container>
+              <h3 class="mb-2">标签列表</h3>
+              <v-divider></v-divider>
+              <v-layout wrap class="mt-2">
+                <v-chip
+                  small
+                  outline
+                  label
+                  v-for="tag in tags"
+                  :key="tag.name"
+                >
+                  <a class="tag-link">{{ tag.name }}</a>
+                  <span class="ml-1">{{ tag.count }}</span>
+                </v-chip>
+              </v-layout>
+            </v-container>
           </v-card>
         </v-flex>
       </v-layout>
@@ -53,6 +68,16 @@ export default {
   computed: {
     blogs () {
       return this.$store.getters.blogs
+    },
+    tags () {
+      let tags = this.$store.getters.tags
+      let tagArr = []
+      for (let t in tags) {
+        let tag = {name: t}
+        tag.count = t.length
+        tagArr.push(tag)
+      }
+      return tagArr
     }
   },
   methods: {
