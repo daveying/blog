@@ -80,16 +80,36 @@
 export default {
   data () {
     return {
-      sideNav: false,
-      floatBtn: true
+      sideNav: false
     }
+  },
+  created () {
+    console.log('created')
+    let oldCb = window.onscroll
+    window.onscroll = function () {
+      if (oldCb) {
+        oldCb()
+      }
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        this.$store.dispatch('setGoTopBtnShow', true)
+      } else {
+        this.$store.dispatch('setGoTopBtnShow', false)
+      }
+    }.bind(this)
   },
   methods: {
     onClicked () {
 
+    },
+    onFloatBtnClicked () {
+      document.body.scrollTop = 0 // For Safari
+      document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
     }
   },
   computed: {
+    floatBtn () {
+      return this.$store.getters.goTopBtnShow
+    },
     menuItems () {
       let menuItems = [
         { icon: 'home', title: '首页', link: '/' },

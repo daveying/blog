@@ -16,6 +16,7 @@ export default new Router({
     },
     {
       path: '/blog/:id',
+      props: true,
       name: 'Artical',
       component: Artical
     },

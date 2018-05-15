@@ -4,54 +4,15 @@
       <v-layout row wrap>
         <v-flex xs12 md8>
           <v-layout row wrap>
-            <v-flex v-for="blog in blogs" :key="blog.id" xs12>
-              <v-card>
-                <v-container class="px-3 py-2">
-                  <v-layout row wrap>
-                    <v-flex xs12>
-                      <h2 @click="onBlogClicked(blog)"><a class="blog-link">{{ blog.title }}</a></h2>
-                      <p>
-                        发布时间: {{ blog.createdDate }}, 浏览量: {{ blog.viewCount }}次
-                        <v-chip @click="onTagClicked(tag)" small outline v-for="tag in blog.tags" :key="tag"><a class="tag-link">{{ tag }}</a></v-chip>
-                      </p>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius molestias exercitationem dolores, a totam molestiae dolorem eligendi nesciunt pariatur aperiam voluptatum! Quaerat soluta minima, quidem quasi sapiente id vero porro? <a @click="onBlogClicked(blog)" class="blog-link">[继续阅读...]</a></p>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </v-card>
-            </v-flex>
-          </v-layout>
-          <v-layout row py-4 class="text-xs-center">
-            <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
-              <v-pagination :length="15" v-model="pageIdx"></v-pagination>
-            </v-flex>
+            {{ blog.md }}
           </v-layout>
         </v-flex>
         <v-flex xs12 md4>
           <v-card>
             <v-container>
-              <h3 class="mb-2">标签列表</h3>
+              <h3 class="mb-2">目录</h3>
               <v-divider></v-divider>
               <v-layout wrap class="mt-2">
-                <v-chip
-                  small
-                  outline
-                  label
-                  v-for="tag in tags"
-                  :key="tag.name"
-                >
-                  <a @click="onTagClicked(tag)" class="tag-link">{{ tag.name }}</a>
-                  <span class="ml-1">{{ tag.count }}</span>
-                </v-chip>
-              </v-layout>
-            </v-container>
-          </v-card>
-          <v-card class="mt-2">
-            <v-container>
-              <h3 class="mb-2">关于作者</h3>
-              <v-divider></v-divider>
-              <v-layout wrap class="mt-2">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, nostrum! Nam necessitatibus at nobis optio facere qui quaerat quae non dicta eaque, et doloremque voluptatibus eum quod adipisci, praesentium ducimus.</p>
               </v-layout>
             </v-container>
           </v-card>
@@ -62,31 +23,22 @@
       <v-flex xs12>
         <social-network-list></social-network-list>
       </v-flex>
+      <v-flex xs12>
+        <div class="comments">
+        <vue-disqus shortname="xingpeng-blog" :identifier="id" url="http://md.xp-da.com"></vue-disqus>
+        </div>
+    </v-flex>
     </v-layout>
   </v-card>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      pageIdx: 1,
-      pageId: '123'
-    }
-  },
+  props: ['id'],
   computed: {
-    blogs () {
-      return this.$store.getters.blogs
-    },
-    tags () {
-      let tags = this.$store.getters.tags
-      let tagArr = []
-      for (let t in tags) {
-        let tag = {name: t}
-        tag.count = t.length
-        tagArr.push(tag)
-      }
-      return tagArr
+    blog () {
+      console.log(this.id)
+      return this.$store.getters.blogs.find(blog => blog.id === this.id)
     }
   },
   methods: {
@@ -96,7 +48,7 @@ export default {
     },
     onBlogClicked (blog) {
       console.log('clicked ' + blog.title)
-      this.$router.push(`/blogs/${blog.id}`)
+      this.$router.push(`/blog/${blog.id}`)
     }
   }
 }

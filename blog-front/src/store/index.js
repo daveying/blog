@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     blogs: [],
-    tags: {}
+    tags: {},
+    goTopBtnShow: false
   },
   mutations: {
     createBlog (state, payload) {
@@ -17,9 +18,15 @@ export const store = new Vuex.Store({
     },
     setTags (state, payload) {
       state.tags = payload
+    },
+    setGoTopBtnShow (state, payload) {
+      state.goTopBtnShow = payload
     }
   },
   actions: {
+    setGoTopBtnShow ({commit}, payload) {
+      commit('setGoTopBtnShow', payload)
+    },
     createBlog ({commit}, payload) {
       commit('createBlog', payload)
     },
@@ -101,6 +108,9 @@ export const store = new Vuex.Store({
     },
     tags (state) {
       return state.tags
+    },
+    goTopBtnShow (state) {
+      return state.goTopBtnShow
     }
   }
 })
