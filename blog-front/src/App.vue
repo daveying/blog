@@ -99,15 +99,18 @@ export default {
       ]
       if (this.userIsAuthenticated) {
         menuItems = [
-          { icon: 'supervisor_account', title: 'View Meetups', link: '/meetups' },
-          { icon: 'room', title: 'Organize Meetup', link: '/meetup/new' },
-          { icon: 'person', title: 'Profile', link: '/profile' }
+          { icon: 'home', title: '首页', link: '/' },
+          { icon: 'library_books', title: '所有文章', link: '/blogs' },
+          { icon: 'widgets', title: '其他应用', link: '/apps' },
+          { icon: 'account_circle', title: '关于', link: '/about' },
+          { icon: 'create', title: '写博客', link: '/create' }
         ]
       }
       return menuItems
     },
     userIsAuthenticated () {
-      return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+      return true
+      // return this.$store.getters.user !== null && this.$store.getters.user !== undefined
     }
   },
   name: 'App'

@@ -96,7 +96,7 @@ export default {
     },
     onBlogClicked (blog) {
       console.log('clicked ' + blog.title)
-      this.$router.push(`/blog/${blog.id}`)
+      this.$router.push(`/blogs/${blog.id}`)
     }
   }
 }
