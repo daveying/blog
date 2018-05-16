@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@mdi/font": "^2.3.54",
+    "markdown-it": "^8.4.1",
     "material-design-icons-iconfont": "^3.0.3",
     "stylus-loader": "^3.0.2",
     "vue": "^2.5.2",
