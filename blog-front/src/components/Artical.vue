@@ -49,7 +49,25 @@
 
 <script>
 import VueMarkdown from 'vue-markdown'
-var md = require('markdown-it')()
+var hljs = require('highlight.js')
+
+var languageOverrides = {
+  js: 'javascript',
+  html: 'xml'
+}
+var md = require('markdown-it')({
+  html: true,
+  linkify: false,
+  highlight: function (code, lang) {
+    if (languageOverrides[lang]) lang = languageOverrides[lang]
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, code).value
+      } catch (e) {}
+    }
+    return ''
+  }
+})
 
 export default {
   props: ['id'],
