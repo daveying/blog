@@ -41,7 +41,25 @@ export const store = new Vuex.Store({
           tags: ['HTML', 'THREE'],
           imageUrl: '',
           abstract: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fugiat blanditiis quo quam. Dolores possimus, mollitia minus, impedit quasi provident commodi alias ab repellat assumenda quia harum placeat nisi corrupti.',
-          md: '# 在Ubuntu为特定用户安装全局NodeJS包\n\n在Ubuntu上通过NPM以全局方式安装NodeJS包时经常出现与路径访问权限的问题'
+          md: '## 三种声明\n\n' +
+          '- `var`声明一个变量，可以在声明时进行初始化\n' +
+          '- `let`声明一个块作用域的局部变量(block scope local variable)，可以在声明时进行初始化\n' +
+          '- `const`声明一个只读常量\n\n' +
+          '## 变量声明的三种方式\n\n' +
+          '- 使用关键词`var`。例如`var x = 3;`，这个语法可以声明局部变量或者全局变量\n' +
+          '- 直接赋值。例如`x = 4;`，这样会声明一个全局变量，但是在`use strict`模式下会产生一个`ReferenceError`。不推荐使用。\n' +
+          '- 使用关键词`let`。例如`let y = 23;`。这个语法可以用来声明块作用域的局部变量\n\n' +
+          '## 变量求值\n\n' +
+          '用`var`或`let`声明的但是未赋值的变量，其值会被设定为`undefined`。但是`var`和`let`关键词有一点点区别：\n\n' +
+          '```javascript\n' +
+          'console.log(x);\n' +
+          'var x; //代码输出undefined\n' +
+          '```\n' +
+          '而\n' +
+          '```javascript\n' +
+          'console.log(y); //出现ReferenceError: y is not defined\n' +
+          'let y; \n' +
+          '```'
         },
         {
           id: 'blog02',

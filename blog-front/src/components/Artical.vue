@@ -14,7 +14,11 @@
                         发布时间: {{ blog.createdDate }}, 浏览量: {{ blog.viewCount }}次
                         <v-chip @click="onTagClicked(tag)" small outline v-for="tag in blog.tags" :key="tag"><a class="tag-link">{{ tag }}</a></v-chip>
                       </p>
-                      <p>{{blog.md}}</p>
+                    </v-flex>
+                    <v-flex xs12>
+                      <v-card-text>
+                        <vue-markdown>{{ blog.md }}</vue-markdown>
+                      </v-card-text>
                     </v-flex>
                   </v-layout>
                 </v-container>
@@ -48,6 +52,8 @@
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
+
 export default {
   props: ['id'],
   computed: {
@@ -65,7 +71,8 @@ export default {
       console.log('clicked ' + blog.title)
       this.$router.push(`/blog/${blog.id}`)
     }
-  }
+  },
+  components: { VueMarkdown }
 }
 </script>
 
