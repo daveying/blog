@@ -14,7 +14,7 @@
                         发布时间: {{ blog.createdDate }}, 浏览量: {{ blog.viewCount }}次
                         <v-chip @click="onTagClicked(tag)" small outline v-for="tag in blog.tags" :key="tag"><a class="tag-link">{{ tag }}</a></v-chip>
                       </p>
-                      <v-card-text v-html="html"></v-card-text>
+                      <vue-markdown>{{blog.md}}</vue-markdown>
                     </v-flex>
                   </v-layout>
                 </v-container>
