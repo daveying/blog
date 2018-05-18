@@ -5,7 +5,7 @@
         <v-flex xs12 md8>
           <v-layout row wrap>
             <v-flex xs12>
-              <v-card>
+              <div>
                 <v-container class="px-3 py-2">
                   <v-layout row wrap>
                     <v-flex xs12>
@@ -14,11 +14,13 @@
                         发布时间: {{ blog.createdDate }}, 浏览量: {{ blog.viewCount }}次
                         <v-chip @click="onTagClicked(tag)" small outline v-for="tag in blog.tags" :key="tag"><a class="tag-link">{{ tag }}</a></v-chip>
                       </p>
-                      <vue-markdown>{{blog.md}}</vue-markdown>
+                      <div>
+                        <vue-markdown>{{blog.md}}</vue-markdown>
+                      </div>
                     </v-flex>
                   </v-layout>
                 </v-container>
-              </v-card>
+              </div>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -49,25 +51,6 @@
 
 <script>
 import VueMarkdown from 'vue-markdown'
-var hljs = require('highlight.js')
-
-var languageOverrides = {
-  js: 'javascript',
-  html: 'xml'
-}
-var md = require('markdown-it')({
-  html: true,
-  linkify: false,
-  highlight: function (code, lang) {
-    if (languageOverrides[lang]) lang = languageOverrides[lang]
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(lang, code).value
-      } catch (e) {}
-    }
-    return ''
-  }
-})
 
 export default {
   props: ['id'],
@@ -75,9 +58,6 @@ export default {
     blog () {
       console.log(this.id)
       return this.$store.getters.blogs.find(blog => blog.id === this.id)
-    },
-    html () {
-      return md.render(this.blog.md)
     }
   },
   methods: {
