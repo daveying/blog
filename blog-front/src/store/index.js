@@ -59,7 +59,8 @@ export const store = new Vuex.Store({
           '```javascript\n' +
           'console.log(y); //出现ReferenceError: y is not defined\n' +
           'let y; \n' +
-          '```'
+          '```\n' +
+          '$\\sqrt{3x-1}+(1+x)^2$\n'
         },
         {
           id: 'blog02',

@@ -15,7 +15,7 @@
                         <v-chip @click="onTagClicked(tag)" small outline v-for="tag in blog.tags" :key="tag"><a class="tag-link">{{ tag }}</a></v-chip>
                       </p>
                       <div>
-                        <vue-markdown>{{blog.md}}</vue-markdown>
+                        <markdown :md="blog.md"></markdown>
                       </div>
                     </v-flex>
                   </v-layout>
@@ -50,8 +50,6 @@
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown'
-
 export default {
   props: ['id'],
   computed: {
@@ -69,8 +67,7 @@ export default {
       console.log('clicked ' + blog.title)
       this.$router.push(`/blog/${blog.id}`)
     }
-  },
-  components: { VueMarkdown }
+  }
 }
 </script>
 
