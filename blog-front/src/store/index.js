@@ -50,7 +50,7 @@ export const store = new Vuex.Store({
           '- 直接赋值。例如`x = 4;`，这样会声明一个全局变量，但是在`use strict`模式下会产生一个`ReferenceError`。不推荐使用。\n' +
           '- 使用关键词`let`。例如`let y = 23;`。这个语法可以用来声明块作用域的局部变量\n\n' +
           '## 变量求值\n\n' +
-          '用`var`或`let`声明的但是未赋值的变量，其值会被设定为`undefined`。但是`var`和`let`关键词有一点点区别：\n\n' +
+          '用`var`或this`let关键`声明的但是未赋值的变量，其值会被设定为`undefined`。但是`var`和`let`关键词有一点点区别：\n\n' +
           '```javascript\n' +
           'console.log(x);\n' +
           'var x; //代码输出undefined\n' +
@@ -60,7 +60,8 @@ export const store = new Vuex.Store({
           'console.log(y); //出现ReferenceError: y is not defined\n' +
           'let y; \n' +
           '```\n' +
-          '$\\sqrt{3x-1}+(1+x)^2$\n'
+          '这是inline公式$\\sqrt{3x-1}+(1+x)^2$\n' +
+          '这是block公式\n$$\\sqrt{3x-1}+(1+x)^2$$\n'
         },
         {
           id: 'blog02',
