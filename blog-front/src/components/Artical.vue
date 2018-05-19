@@ -5,11 +5,11 @@
         <v-flex xs12 md8>
           <v-layout row wrap>
             <v-flex xs12>
-              <div>
+              <v-card>
                 <v-container class="px-3 py-2">
                   <v-layout row wrap>
                     <v-flex xs12>
-                      <h2 @click="onBlogClicked(blog)"><a class="blog-link">{{ blog.title }}</a></h2>
+                      <!-- <h2 @click="onBlogClicked(blog)"><a class="blog-link">{{ blog.title }}</a></h2> -->
                       <p>
                         发布时间: {{ blog.createdDate }}, 浏览量: {{ blog.viewCount }}次
                         <v-chip @click="onTagClicked(tag)" small outline v-for="tag in blog.tags" :key="tag"><a class="tag-link">{{ tag }}</a></v-chip>
@@ -20,7 +20,7 @@
                     </v-flex>
                   </v-layout>
                 </v-container>
-              </div>
+              </v-card>
             </v-flex>
           </v-layout>
         </v-flex>
