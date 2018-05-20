@@ -1,24 +1,29 @@
 <template>
   <div>
-    <vue-markdown class="markdown-body" :prerender="prerender" :postrender="postrender">{{ md }}</vue-markdown>
+    <vue-markdown
+      class="markdown-body"
+      @rendered="rendered()"
+      :toc="true"
+      :toc-rendered="tocRendered"
+    >{{ md }}</vue-markdown>
   </div>
 </template>
 
 <script>
 import VueMarkdown from 'vue-markdown'
+import Prism from 'prismjs'
 export default {
   props: ['md'],
   methods: {
-    prerender (mdSource) {
-      console.log('perrender', mdSource)
-      return mdSource
+    tocRendered (tocHtml) {
+      console.log(tocHtml)
     },
-    postrender (htmlData) {
-      console.log('postrender', htmlData)
-      return htmlData
+    rendered () {
+      // wait for DOM generation
+      setTimeout(() => Prism.highlightAll(), 30)
     }
   },
-  components: { VueMarkdown }
+  components: { VueMarkdown, Prism }
 }
 </script>
 
