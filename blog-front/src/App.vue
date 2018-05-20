@@ -144,3 +144,13 @@ export default {
   name: 'App'
 }
 </script>
+
+<style>
+:target:before {
+  display: block;
+  content: " ";
+  margin-top: -75px;
+  height: 75px;
+  visibility: hidden;
+}
+</style>
