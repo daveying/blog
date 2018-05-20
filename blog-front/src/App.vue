@@ -57,8 +57,8 @@
           bottom
           right
           fab
-          v-show="floatBtn"
-          @click="onFloatBtnClicked()"
+          v-show="goTopBtn"
+          @click="ongoTopBtnClicked()"
         >
           <v-icon>keyboard_arrow_up</v-icon>
         </v-btn>
@@ -90,6 +90,7 @@ export default {
       if (oldCb) {
         oldCb()
       }
+      this.$store.dispatch('setScrollTop', document.body.scrollTop || document.documentElement.scrollTop)
       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         this.$store.dispatch('setGoTopBtnShow', true)
       } else {
@@ -98,16 +99,23 @@ export default {
     }.bind(this)
   },
   methods: {
-    onClicked () {
-
-    },
-    onFloatBtnClicked () {
-      document.body.scrollTop = 0 // For Safari
-      document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
+    onClicked () {},
+    ongoTopBtnClicked () {
+      let itvId = setInterval(moveTop, 5)
+      function moveTop () {
+        let top = document.documentElement.scrollTop || document.body.scrollTop
+        top -= 20
+        if (top < 0) {
+          top = 0
+          clearInterval(itvId)
+        }
+        document.documentElement.scrollTop = top
+        document.body.scrollTop = top
+      }
     }
   },
   computed: {
-    floatBtn () {
+    goTopBtn () {
       return this.$store.getters.goTopBtnShow
     },
     menuItems () {

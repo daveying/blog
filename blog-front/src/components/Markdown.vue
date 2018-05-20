@@ -43,6 +43,7 @@ export default {
 
 .markdown-body pre code {
   font-weight: normal;
+  font-size: 1.2em;
 }
 
 .markdown-body pre code::before,
