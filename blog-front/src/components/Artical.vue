@@ -58,7 +58,12 @@ export default {
       return this.$store.getters.blogs.find(blog => blog.id === this.id)
     },
     contentTop () {
-      return this.$store.getters.scrollTop
+      return 0
+      // if (this.$vuetify.breakpoint.xsOnly) {
+      //   return 0
+      // } else {
+      //   return this.$store.getters.scrollTop
+      // }
     }
   },
   methods: {

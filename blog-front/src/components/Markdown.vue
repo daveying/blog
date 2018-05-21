@@ -4,7 +4,7 @@
       class="markdown-body"
       @rendered="rendered()"
       :toc="true"
-      :toc-rendered="tocRendered"
+      @toc-rendered="tocRendered()"
     >{{ md }}</vue-markdown>
   </div>
 </template>
@@ -55,4 +55,11 @@ export default {
 .markdown-body pre code::after {
   content: none;
 }
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+  color: #1f4777;
+}
+
 </style>
