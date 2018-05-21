@@ -40,8 +40,9 @@
                   label
                   v-for="tag in tags"
                   :key="tag.name"
+                  @click="onTagClicked(tag)"
                 >
-                  <a @click="onTagClicked(tag)" class="tag-link">{{ tag.name }}</a>
+                  <a class="tag-link">{{ tag.name }}</a>
                   <span class="ml-1">{{ tag.count }}</span>
                 </v-chip>
               </v-layout>

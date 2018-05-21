@@ -1,27 +1,37 @@
 <template>
   <v-card flat class="grey lighten-5">
-    <v-container class="my-0" fluid style="min-height: 0;" grid-list-xs>
+    <v-container class="my-0" fluid style="min-height: 0;" grid-list-lg>
       <v-layout row wrap>
-        <v-flex v-for="blog in blogs" :key="blog.id" xs12>
+        <v-flex xs12>
           <v-card>
-            <v-container class="px-3 py-2">
-              <v-layout row wrap>
-                <v-flex xs12>
-                  <h2>{{ blog.title }}</h2>
-                  <p>
-                    创建时间: {{ blog.createdDate }}, 浏览量: {{ blog.viewCount }}次
-                    <v-chip small outline v-for="tag in blog.tags" :key="tag">{{ tag }}</v-chip>
-                  </p>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius molestias exercitationem dolores, a totam molestiae dolorem eligendi nesciunt pariatur aperiam voluptatum! Quaerat soluta minima, quidem quasi sapiente id vero porro?</p>
-                </v-flex>
+            <v-container>
+              <h2>所有标签</h2>
+              <v-divider></v-divider>
+              <v-layout wrap class="mt-2">
+                <v-chip
+                  small
+                  outline
+                  label
+                  v-for="tag in tags"
+                  :key="tag.name"
+                  @click="onTagClicked(tag)"
+                >
+                  <a class="tag-link">{{ tag.name }}</a>
+                  <span class="ml-1">{{ tag.count }}</span>
+                </v-chip>
               </v-layout>
             </v-container>
           </v-card>
         </v-flex>
       </v-layout>
-      <v-layout row wrap py-4 class="text-xs-center">
+      <v-layout>
         <v-flex xs12>
-          <v-pagination circle :length="15" v-model="pageIdx"></v-pagination>
+          <v-card>
+            <v-container>
+              <h2>文章列表 - {{ tag }}</h2>
+              <v-divider></v-divider>
+            </v-container>
+          </v-card>
         </v-flex>
       </v-layout>
       <v-layout row wrap>
@@ -49,6 +59,16 @@ export default {
   computed: {
     blogs () {
       return this.$store.getters.blogs
+    },
+    tags () {
+      let tags = this.$store.getters.tags
+      let tagArr = []
+      for (let t in tags) {
+        let tag = {name: t}
+        tag.count = t.length
+        tagArr.push(tag)
+      }
+      return tagArr
     }
   }
 }
