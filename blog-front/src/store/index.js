@@ -113,16 +113,17 @@ export const store = new Vuex.Store({
       ]
       commit('setBlogs', blogs)
       let tags = {
-        'HTML': [0, 1, 3, 9],
-        'CSS': [2, 3, 8, 9],
-        'WebGL': [0, 1, 2],
-        'THREE': [4, 5],
-        'HTTP/S': [6, 7, 8],
-        'ASP.NET core': [3, 7, 10],
-        'NodeJs': [2, 9, 11],
-        'VueJs': [1, 3, 7],
-        'Vuetify': [1, 3, 7],
-        'OpenGL': [0, 1, 2, 4, 5]
+        'All': {count: 3, blogs: []},
+        'HTML': {count: 2, blogs: []},
+        'CSS': {count: 5, blogs: []},
+        'WebGL': {count: 3, blogs: []},
+        'THREE': {count: 7, blogs: []},
+        'HTTP/S': {count: 12, blogs: []},
+        'ASP.NET core': {count: 6, blogs: []},
+        'NodeJs': {count: 13, blogs: []},
+        'VueJs': {count: 23, blogs: []},
+        'Vuetify': {count: 4, blogs: []},
+        'OpenGL': {count: 8, blogs: []}
       }
       commit('setTags', tags)
     }
@@ -130,7 +131,7 @@ export const store = new Vuex.Store({
   getters: {
     blogs (state) {
       return state.blogs.sort((blogA, blogB) => {
-        return blogA.createdDate > blogB.createdDate
+        return blogA.createdDate < blogB.createdDate
       })
     },
     tags (state) {

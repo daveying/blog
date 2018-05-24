@@ -121,14 +121,14 @@ export default {
     menuItems () {
       let menuItems = [
         { icon: 'home', title: '首页', link: '/' },
-        { icon: 'library_books', title: '所有文章', link: '/blogs' },
+        { icon: 'library_books', title: '所有文章', link: '/blogs/all' },
         { icon: 'widgets', title: '其他应用', link: '/apps' },
         { icon: 'account_circle', title: '关于', link: '/about' }
       ]
       if (this.userIsAuthenticated) {
         menuItems = [
           { icon: 'home', title: '首页', link: '/' },
-          { icon: 'library_books', title: '所有文章', link: '/blogs' },
+          { icon: 'library_books', title: '所有文章', link: '/blogs/all' },
           { icon: 'widgets', title: '其他应用', link: '/apps' },
           { icon: 'account_circle', title: '关于', link: '/about' },
           { icon: 'create', title: '写博客', link: '/create' }

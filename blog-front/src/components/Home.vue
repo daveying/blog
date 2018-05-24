@@ -85,7 +85,7 @@ export default {
       let tagArr = []
       for (let t in tags) {
         let tag = {name: t}
-        tag.count = t.length
+        tag.count = tags[t].count
         tagArr.push(tag)
       }
       return tagArr
@@ -94,7 +94,7 @@ export default {
   methods: {
     onTagClicked (tag) {
       console.log('clicked ' + tag)
-      this.$router.push('/blogs')
+      this.$router.push('/blogs/' + tag)
     },
     onBlogClicked (blog) {
       console.log('clicked ' + blog.title)

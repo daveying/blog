@@ -28,7 +28,7 @@
         <v-flex xs12>
           <v-card>
             <v-container>
-              <h2>文章列表 - {{ tag }}</h2>
+              <h2>文章列表 - {{ this.tag }}</h2>
               <v-divider></v-divider>
               <v-layout
                 v-for="month in monthArr"
@@ -58,6 +58,7 @@
 
 <script>
 export default {
+  props: ['tag'],
   data () {
     return {
       pageIdx: 1,
