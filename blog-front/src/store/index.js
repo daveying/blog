@@ -43,7 +43,7 @@ export const store = new Vuex.Store({
         {
           id: 'blog01',
           title: '第一篇博客',
-          createdDate: '2018-05-01',
+          createdDate: new Date(2018, 4, 1),
           viewCount: 1231,
           tags: ['HTML', 'THREE'],
           imageUrl: '',
@@ -73,7 +73,7 @@ export const store = new Vuex.Store({
         {
           id: 'blog02',
           title: '第二篇博客',
-          createdDate: '2018-05-02',
+          createdDate: new Date(2018, 5, 1),
           viewCount: 1232,
           tags: ['HTML', 'WebGL', 'Network programming'],
           imageUrl: '',
@@ -83,7 +83,7 @@ export const store = new Vuex.Store({
         {
           id: 'blog03',
           title: '第三篇博客',
-          createdDate: '2018-05-03',
+          createdDate: new Date(2018, 5, 3),
           viewCount: 1232,
           tags: ['HTML', 'WebGL', 'Network programming'],
           imageUrl: '',
@@ -93,7 +93,7 @@ export const store = new Vuex.Store({
         {
           id: 'blog04',
           title: '第四篇博客',
-          createdDate: '2018-05-04',
+          createdDate: new Date(2018, 5, 4),
           viewCount: 122,
           tags: ['HTML', 'WebGL', 'Network programming'],
           imageUrl: '',
@@ -103,7 +103,7 @@ export const store = new Vuex.Store({
         {
           id: 'blog05',
           title: '第五篇博客',
-          createdDate: '2018-05-05',
+          createdDate: new Date(2018, 5, 5),
           viewCount: 122,
           tags: ['HTML', 'WebGL', 'Network programming'],
           imageUrl: '',

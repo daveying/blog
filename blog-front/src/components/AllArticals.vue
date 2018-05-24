@@ -30,6 +30,19 @@
             <v-container>
               <h2>文章列表 - {{ tag }}</h2>
               <v-divider></v-divider>
+              <v-layout
+                v-for="month in monthArr"
+                :key="month"
+                row
+                wrap
+              >
+                <h3>{{ month.year }}年{{ month.month }}月</h3>
+                <ul>
+                  <li v-for="item in month.items" :key="item">
+                    <a :href="item.url">{{ item.title }}</a>
+                  </li>
+                </ul>
+              </v-layout>
             </v-container>
           </v-card>
         </v-flex>
@@ -37,11 +50,6 @@
       <v-layout row wrap>
         <v-flex xs12>
           <social-network-list></social-network-list>
-        </v-flex>
-        <v-flex xs12>
-          <div class="comments">
-            <vue-disqus shortname="xingpeng-blog" :identifier="pageId" url="http://md.xp-da.com"></vue-disqus>
-          </div>
         </v-flex>
       </v-layout>
     </v-container>
@@ -53,16 +61,28 @@ export default {
   data () {
     return {
       pageIdx: 1,
-      pageId: '123'
+      selectedBlogs: this.$store.getters.blogs
     }
   },
   computed: {
-    blogs () {
-      return this.$store.getters.blogs
+    mounthArr () {
+      return [
+        {
+          month: this.selectedBlogs[0].createdDate.month,
+          year: this.selectedBlogs[0].createdDate.year,
+          items: [this.selectedBlogs[0]]
+        }
+      ]
+      // for (let i = 1, l = this.selectedBlogs.length; i < l; i++) {
+      //   let month = {}
+      // }
     },
     tags () {
       let tags = this.$store.getters.tags
       let tagArr = []
+      let all = {name: '所有文章'}
+      all.count = this.$store.getters.blogs.length
+      tagArr.push(all)
       for (let t in tags) {
         let tag = {name: t}
         tag.count = t.length

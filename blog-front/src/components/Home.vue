@@ -11,7 +11,7 @@
                     <v-flex xs12>
                       <h2 @click="onBlogClicked(blog)"><a class="blog-link">{{ blog.title }}</a></h2>
                       <p>
-                        发布时间: {{ blog.createdDate }}, 浏览量: {{ blog.viewCount }}次
+                        发布时间: {{ blog.createdDate.getFullYear() }}年{{ blog.createdDate.getMonth() + 1 }}月{{ blog.createdDate.getDate() }}日, 浏览量: {{ blog.viewCount }}次
                         <v-chip @click="onTagClicked(tag)" small outline v-for="tag in blog.tags" :key="tag"><a class="tag-link">{{ tag }}</a></v-chip>
                       </p>
                       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic, non? Ducimus officiis ex velit dignissimos magni aut, et ullam ab voluptatum reprehenderit commodi perferendis quae harum laudantium fuga expedita assumenda.</p>
