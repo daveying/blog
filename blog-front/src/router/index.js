@@ -21,7 +21,7 @@ export default new Router({
       component: Artical
     },
     {
-      path: '/blogs/:tag',
+      path: '/blogs/:tag64',
       props: true,
       name: 'AllArticals',
       component: AllArticals

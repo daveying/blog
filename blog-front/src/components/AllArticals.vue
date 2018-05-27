@@ -8,17 +8,21 @@
               <h2>所有标签</h2>
               <v-divider></v-divider>
               <v-layout wrap class="mt-2">
-                <v-chip
-                  small
-                  outline
-                  label
+                <span
                   v-for="tag in tags"
                   :key="tag.name"
-                  @click="onTagClicked(tag)"
                 >
-                  <a class="tag-link">{{ tag.name === 'All' ? '所有文章' : tag.name }}</a>
-                  <span class="ml-1">{{ tag.count }}</span>
-                </v-chip>
+                  <v-chip
+                    small
+                    outline
+                    label
+                    :color="tag.color"
+                    @click="onTagClicked(tag.name)"
+                  >
+                    <a class="tag-link">{{ tag.name === 'all' ? '所有文章' : tag.name }}</a>
+                    <span class="ml-1">{{ tag.count }}</span>
+                  </v-chip>
+                </span>
               </v-layout>
             </v-container>
           </v-card>
@@ -28,7 +32,7 @@
         <v-flex xs12>
           <v-card>
             <v-container>
-              <h2>文章列表 - {{ this.tag }}</h2>
+              <h2>文章列表 - {{ this.tag === 'all' ? '所有文章' : this.tag }}</h2>
               <v-divider></v-divider>
               <v-layout
                 v-for="month in monthArr"
@@ -57,12 +61,14 @@
 </template>
 
 <script>
+var Base64 = require('js-base64').Base64
+
 export default {
-  props: ['tag'],
+  props: ['tag64'],
   data () {
     return {
       pageIdx: 1,
-      selectedBlogs: this.$store.getters.blogs
+      selectedBlogs: this.$store.getters.tags['all']
     }
   },
   computed: {
@@ -78,6 +84,9 @@ export default {
       //   let month = {}
       // }
     },
+    tag () {
+      return Base64.decode(this.tag64)
+    },
     tags () {
       let tags = this.$store.getters.tags
       let tagArr = []
@@ -87,6 +96,12 @@ export default {
         tagArr.push(tag)
       }
       return tagArr
+    }
+  },
+  methods: {
+    onTagClicked (tag) {
+      let tag64 = Base64.encode(tag)
+      this.$router.push('/blogs/' + tag64)
     }
   }
 }

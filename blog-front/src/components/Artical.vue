@@ -50,6 +50,8 @@
 </template>
 
 <script>
+var Base64 = require('js-base64').Base64
+
 export default {
   props: ['id'],
   computed: {
@@ -60,8 +62,8 @@ export default {
   },
   methods: {
     onTagClicked (tag) {
-      console.log('clicked ' + tag)
-      this.$router.push('/blogs')
+      let tag64 = Base64.encode(tag)
+      this.$router.push('/blogs/' + tag64)
     },
     onBlogClicked (blog) {
       console.log('clicked ' + blog.title)

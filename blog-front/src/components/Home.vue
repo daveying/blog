@@ -40,9 +40,9 @@
                   label
                   v-for="tag in tags"
                   :key="tag.name"
-                  @click="onTagClicked(tag)"
+                  @click="onTagClicked(tag.name)"
                 >
-                  <a class="tag-link">{{ tag.name }}</a>
+                  <a class="tag-link">{{ tag.name === 'all' ? '所有文章' : tag.name }}</a>
                   <span class="ml-1">{{ tag.count }}</span>
                 </v-chip>
               </v-layout>
@@ -69,6 +69,8 @@
 </template>
 
 <script>
+var Base64 = require('js-base64').Base64
+
 export default {
   data () {
     return {
@@ -93,8 +95,8 @@ export default {
   },
   methods: {
     onTagClicked (tag) {
-      console.log('clicked ' + tag)
-      this.$router.push('/blogs/' + tag)
+      let tag64 = Base64.encode(tag)
+      this.$router.push('/blogs/' + tag64)
     },
     onBlogClicked (blog) {
       console.log('clicked ' + blog.title)

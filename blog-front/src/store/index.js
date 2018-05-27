@@ -68,7 +68,7 @@ export const store = new Vuex.Store({
           title: '第二篇博客',
           createdDate: new Date(2018, 5, 1),
           viewCount: 1232,
-          tags: ['HTML', 'WebGL', 'Network programming'],
+          tags: ['HTML', 'WebGL', 'Network programming', 'HTTP/S'],
           imageUrl: '',
           abstract: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fugiat blanditiis quo quam. Dolores possimus, mollitia minus, impedit quasi provident commodi alias ab repellat assumenda quia harum placeat nisi corrupti.',
           md: '# 在Ubuntu为特定用户安装全局NodeJS包\n\n在Ubuntu上通过NPM以全局方式安装NodeJS包时经常出现与路径访问权限的问题'
@@ -88,7 +88,7 @@ export const store = new Vuex.Store({
           title: '第四篇博客',
           createdDate: new Date(2018, 5, 4),
           viewCount: 122,
-          tags: ['HTML', 'WebGL', 'Network programming'],
+          tags: ['HTML', 'WebGL', 'Network programming', 'HTTP/S'],
           imageUrl: '',
           abstract: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fugiat blanditiis quo quam. Dolores possimus, mollitia minus, impedit quasi provident commodi alias ab repellat assumenda quia harum placeat nisi corrupti.',
           md: '# 在Ubuntu为特定用户安装全局NodeJS包\n\n在Ubuntu上通过NPM以全局方式安装NodeJS包时经常出现与路径访问权限的问题'
@@ -98,34 +98,46 @@ export const store = new Vuex.Store({
           title: '第五篇博客',
           createdDate: new Date(2018, 5, 5),
           viewCount: 122,
-          tags: ['HTML', 'WebGL', 'Network programming'],
+          tags: ['HTML', 'WebGL', 'Network programming', 'HTTP/S'],
           imageUrl: '',
           abstract: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fugiat blanditiis quo quam. Dolores possimus, mollitia minus, impedit quasi provident commodi alias ab repellat assumenda quia harum placeat nisi corrupti.',
           md: '# 在Ubuntu为特定用户安装全局NodeJS包\n\n在Ubuntu上通过NPM以全局方式安装NodeJS包时经常出现与路径访问权限的问题'
         }
       ]
-      commit('setBlogs', blogs)
-      let tags = {
-        'All': {count: 3, blogs: []},
-        'HTML': {count: 2, blogs: []},
-        'CSS': {count: 5, blogs: []},
-        'WebGL': {count: 3, blogs: []},
-        'THREE': {count: 7, blogs: []},
-        'HTTP/S': {count: 12, blogs: []},
-        'ASP.NET core': {count: 6, blogs: []},
-        'NodeJs': {count: 13, blogs: []},
-        'VueJs': {count: 23, blogs: []},
-        'Vuetify': {count: 4, blogs: []},
-        'OpenGL': {count: 8, blogs: []}
+      let sortedBlogs = blogs.sort((blogA, blogB) => {
+        return blogA.createdDate < blogB.createdDate
+      })
+      commit('setBlogs', sortedBlogs)
+      let tags = {}
+      tags['all'] = {count: sortedBlogs.length, blogs: sortedBlogs}
+      for (let i = 0, il = sortedBlogs.length; i < il; i++) {
+        for (let j = 0, jl = sortedBlogs[i].tags.length; j < jl; j++) {
+          if (!tags[sortedBlogs[i].tags[j]]) {
+            tags[sortedBlogs[i].tags[j]] = {count: 0, blogs: []}
+          }
+          tags[sortedBlogs[i].tags[j]].count++
+          tags[sortedBlogs[i].tags[j]].blogs.push(sortedBlogs[i])
+        }
       }
+      // let tags = {
+      //   'All': {count: 3, blogs: []},
+      //   'HTML': {count: 2, blogs: []},
+      //   'CSS': {count: 5, blogs: []},
+      //   'WebGL': {count: 3, blogs: []},
+      //   'THREE': {count: 7, blogs: []},
+      //   'HTTP/S': {count: 12, blogs: []},
+      //   'ASP.NET core': {count: 6, blogs: []},
+      //   'NodeJs': {count: 13, blogs: []},
+      //   'VueJs': {count: 23, blogs: []},
+      //   'Vuetify': {count: 4, blogs: []},
+      //   'OpenGL': {count: 8, blogs: []}
+      // }
       commit('setTags', tags)
     }
   },
   getters: {
     blogs (state) {
-      return state.blogs.sort((blogA, blogB) => {
-        return blogA.createdDate < blogB.createdDate
-      })
+      return state.blogs
     },
     tags (state) {
       return state.tags
