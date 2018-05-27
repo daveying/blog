@@ -99,7 +99,6 @@ export default {
       this.$router.push('/blogs/' + tag64)
     },
     onBlogClicked (blog) {
-      console.log('clicked ' + blog.title)
       this.$router.push(`/blog/${blog.id}`)
     }
   }

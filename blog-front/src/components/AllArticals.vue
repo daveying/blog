@@ -36,16 +36,20 @@
               <v-divider></v-divider>
               <v-layout
                 v-for="month in monthArr"
-                :key="month"
+                :key="month.key"
                 row
                 wrap
               >
-                <h3>{{ month.year }}年{{ month.month }}月</h3>
-                <ul>
-                  <li v-for="item in month.items" :key="item">
-                    <a :href="item.url">{{ item.title }}</a>
-                  </li>
-                </ul>
+                <v-flex xs12>
+                  <h3>{{ month.year }}年{{ month.month + 1 }}月</h3>
+                </v-flex>
+                <v-flex xs12>
+                  <ul>
+                    <li v-for="item in month.items" :key="item.id">
+                      <h3 @click="onBlogClicked(item)">{{ item.title }}</h3>
+                    </li>
+                  </ul>
+                </v-flex>
               </v-layout>
             </v-container>
           </v-card>
@@ -67,25 +71,40 @@ export default {
   props: ['tag64'],
   data () {
     return {
-      pageIdx: 1,
-      selectedBlogs: this.$store.getters.tags['all']
+      pageIdx: 1
     }
   },
   computed: {
-    mounthArr () {
-      return [
-        {
-          month: this.selectedBlogs[0].createdDate.month,
-          year: this.selectedBlogs[0].createdDate.year,
-          items: [this.selectedBlogs[0]]
-        }
-      ]
-      // for (let i = 1, l = this.selectedBlogs.length; i < l; i++) {
-      //   let month = {}
-      // }
-    },
     tag () {
       return Base64.decode(this.tag64)
+    },
+    monthArr () {
+      let selectedBlogs = this.$store.getters.tags[this.tag].blogs
+      if (!selectedBlogs[0]) {
+        return []
+      }
+      let arr = [
+        {
+          month: selectedBlogs[0].createdDate.getMonth(),
+          year: selectedBlogs[0].createdDate.getFullYear(),
+          items: [selectedBlogs[0]],
+          key: 0
+        }
+      ]
+      let arrLen = 1
+      for (let i = 1, l = selectedBlogs.length; i < l; i++) {
+        if (selectedBlogs[i].createdDate.getFullYear() === arr[arrLen - 1].year && selectedBlogs[i].createdDate.getMonth() === arr[arrLen - 1].month) {
+          arr[arrLen - 1].items.push(selectedBlogs[i])
+        } else {
+          arr.push({
+            month: selectedBlogs[i].createdDate.getMonth(),
+            year: selectedBlogs[i].createdDate.getFullYear(),
+            items: [selectedBlogs[i]],
+            key: arrLen++
+          })
+        }
+      }
+      return arr
     },
     tags () {
       let tags = this.$store.getters.tags
@@ -102,6 +121,9 @@ export default {
     onTagClicked (tag) {
       let tag64 = Base64.encode(tag)
       this.$router.push('/blogs/' + tag64)
+    },
+    onBlogClicked (blog) {
+      this.$router.push(`/blog/${blog.id}`)
     }
   }
 }

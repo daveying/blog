@@ -84,7 +84,6 @@ export default {
     }
   },
   created () {
-    console.log('created')
     let oldCb = window.onscroll
     window.onscroll = function () {
       if (oldCb) {
