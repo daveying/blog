@@ -19,6 +19,10 @@ Vue.use(VueDisqus)
 Vue.component('social-network-list', SocialNetworkList)
 Vue.component('markdown', Markdown)
 
+router.beforeEach(function (to, from, next) {
+  window.scrollTo(0, 0)
+  next()
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -47,7 +47,7 @@
       <v-container fluid mx-0>
         <v-layout>
           <v-flex xs12 md10 lg8 offset-md1 offset-lg2>
-            <router-view @change="onChange()"></router-view>
+            <router-view></router-view>
           </v-flex>
         </v-layout>
         <v-btn
@@ -111,9 +111,6 @@ export default {
         document.documentElement.scrollTop = top
         document.body.scrollTop = top
       }
-    },
-    onChange () {
-      console.log('router-view change')
     }
   },
   computed: {

@@ -2,7 +2,7 @@
   <v-card flat class="grey lighten-5">
     <v-container class="my-0" fluid style="min-height: 0;" grid-list-md>
       <v-layout row wrap>
-        <v-flex xs12 md8>
+        <v-flex xs12 md9>
           <v-layout row wrap>
             <v-flex xs12>
               <v-card>
@@ -24,7 +24,7 @@
             </v-flex>
           </v-layout>
         </v-flex>
-        <v-flex xs12 md4>
+        <v-flex xs12 md3>
           <v-card>
             <v-container>
               <h3 class="mb-2">目录</h3>
