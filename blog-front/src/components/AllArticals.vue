@@ -16,7 +16,7 @@
                   :key="tag.name"
                   @click="onTagClicked(tag)"
                 >
-                  <a class="tag-link">{{ tag.name }}</a>
+                  <a class="tag-link">{{ tag.name === 'All' ? '所有文章' : tag.name }}</a>
                   <span class="ml-1">{{ tag.count }}</span>
                 </v-chip>
               </v-layout>
@@ -81,9 +81,6 @@ export default {
     tags () {
       let tags = this.$store.getters.tags
       let tagArr = []
-      let all = {name: '所有文章'}
-      all.count = this.$store.getters.blogs.length
-      tagArr.push(all)
       for (let t in tags) {
         let tag = {name: t}
         tag.count = t.length
