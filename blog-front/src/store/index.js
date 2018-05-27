@@ -7,8 +7,7 @@ export const store = new Vuex.Store({
   state: {
     blogs: [],
     tags: {},
-    goTopBtnShow: false,
-    scrollTop: 0
+    goTopBtnShow: false
   },
   mutations: {
     createBlog (state, payload) {
@@ -22,17 +21,11 @@ export const store = new Vuex.Store({
     },
     setGoTopBtnShow (state, payload) {
       state.goTopBtnShow = payload
-    },
-    setScrollTop (state, payload) {
-      state.scrollTop = payload
     }
   },
   actions: {
     setGoTopBtnShow ({commit}, payload) {
       commit('setGoTopBtnShow', payload)
-    },
-    setScrollTop ({commit}, payload) {
-      commit('setScrollTop', payload)
     },
     createBlog ({commit}, payload) {
       commit('createBlog', payload)
@@ -139,9 +132,6 @@ export const store = new Vuex.Store({
     },
     goTopBtnShow (state) {
       return state.goTopBtnShow
-    },
-    scrollTop (state) {
-      return state.scrollTop
     }
   }
 })

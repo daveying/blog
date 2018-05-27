@@ -90,7 +90,6 @@ export default {
       if (oldCb) {
         oldCb()
       }
-      this.$store.dispatch('setScrollTop', document.body.scrollTop || document.documentElement.scrollTop)
       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         this.$store.dispatch('setGoTopBtnShow', true)
       } else {

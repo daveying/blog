@@ -25,7 +25,7 @@
           </v-layout>
         </v-flex>
         <v-flex xs12 md4>
-          <v-card :style="`margin:${contentTop}px 0px 0px 0px;`">
+          <v-card>
             <v-container>
               <h3 class="mb-2">目录</h3>
               <v-divider></v-divider>
@@ -56,14 +56,6 @@ export default {
     blog () {
       console.log(this.id)
       return this.$store.getters.blogs.find(blog => blog.id === this.id)
-    },
-    contentTop () {
-      return 0
-      // if (this.$vuetify.breakpoint.xsOnly) {
-      //   return 0
-      // } else {
-      //   return this.$store.getters.scrollTop
-      // }
     }
   },
   methods: {
