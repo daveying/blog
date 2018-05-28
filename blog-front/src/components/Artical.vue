@@ -9,6 +9,7 @@
                 <v-container class="px-3 py-2">
                   <v-layout row wrap>
                     <v-flex xs12>
+                      <h1 class="blog-title">{{ blog.title }}</h1>
                       <p>
                         发布时间: {{ blog.createdDate.getFullYear() }}年{{ blog.createdDate.getMonth() + 1 }}月{{ blog.createdDate.getDate() }}日, 浏览量: {{ blog.viewCount }}次
                         <v-chip @click="onTagClicked(tag)" small outline v-for="tag in blog.tags" :key="tag"><a class="tag-link">{{ tag }}</a></v-chip>
@@ -74,10 +75,9 @@ export default {
 .tag-link:hover {
   color: #0074cd;
 }
+.tag-link,
+.blog-title,
 .blog-link {
-  color: #1f4777;
-}
-.tag-link {
   color: #1f4777;
 }
 </style>

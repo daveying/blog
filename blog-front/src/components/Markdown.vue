@@ -4,7 +4,8 @@
       class="markdown-body"
       @rendered="rendered()"
       :toc="true"
-      @toc-rendered="tocRendered()"
+      toc-id="toc"
+      @toc-rendered="tocRendered"
     >{{ md }}</vue-markdown>
   </div>
 </template>
@@ -16,6 +17,7 @@ export default {
   props: ['md'],
   methods: {
     tocRendered (tocHtml) {
+      console.log('toc generated')
       console.log(tocHtml)
     },
     rendered () {
