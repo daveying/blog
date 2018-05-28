@@ -35,7 +35,7 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <v-layout row wrap>
+    <v-layout row wrap px-2>
       <v-flex xs12>
         <social-network-list></social-network-list>
       </v-flex>

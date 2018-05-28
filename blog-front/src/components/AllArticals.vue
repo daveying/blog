@@ -1,11 +1,11 @@
 <template>
   <v-card flat class="grey lighten-5">
-    <v-container class="my-0" fluid style="min-height: 0;" grid-list-lg>
+    <v-container class="my-0 px-2" fluid style="min-height: 0;" grid-list-lg>
       <v-layout row wrap>
         <v-flex xs12>
           <v-card>
             <v-container>
-              <h2>所有标签</h2>
+              <h2 class="text--primary">所有标签</h2>
               <v-divider></v-divider>
               <v-layout wrap class="mt-2">
                 <span
@@ -31,8 +31,8 @@
       <v-layout>
         <v-flex xs12>
           <v-card>
-            <v-container>
-              <h2>文章列表 - {{ this.tag === 'all' ? '所有文章' : this.tag }}</h2>
+            <v-container px-3>
+              <h2 class="text--primary">文章列表 - {{ this.tag === 'all' ? '所有文章' : this.tag }}</h2>
               <v-divider></v-divider>
               <v-layout
                 v-for="month in monthArr"
@@ -41,14 +41,33 @@
                 wrap
               >
                 <v-flex xs12>
-                  <h3>{{ month.year }}年{{ month.month + 1 }}月</h3>
-                </v-flex>
-                <v-flex xs12>
-                  <ul>
-                    <li v-for="item in month.items" :key="item.id">
-                      <h3 @click="onBlogClicked(item)">{{ item.title }}</h3>
-                    </li>
-                  </ul>
+                  <v-list two-line>
+                    <h2 class="text--secondary">{{ month.year }}年{{ month.month + 1 }}月</h2>
+                    <v-divider></v-divider>
+                    <div
+                      v-for="(item, index) in month.items"
+                      :key="item.id"
+                    >
+                      <v-list-tile
+                        ripple
+                        @click="onBlogClicked(item)"
+                      >
+                        <v-list-tile-content>
+                          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                          <v-list-tile-sub-title>
+                            <span v-for="(tag, tagIdx) in item.tags" :key="tag">
+                              {{ tag }}
+                              <span v-if="tagIdx + 1 < item.tags.length" :key="tagIdx"> | </span>
+                            </span>
+                          </v-list-tile-sub-title>
+                        </v-list-tile-content>
+                        <v-list-tile-action>
+                          <v-list-tile-action-text>浏览{{ item.viewCount }}次</v-list-tile-action-text>
+                        </v-list-tile-action>
+                      </v-list-tile>
+                      <v-divider v-if="index + 1 < month.items.length" :key="index"></v-divider>
+                    </div>
+                  </v-list>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -111,7 +130,7 @@ export default {
       let tagArr = []
       for (let t in tags) {
         let tag = {name: t}
-        tag.count = t.length
+        tag.count = tags[t].count
         tagArr.push(tag)
       }
       return tagArr

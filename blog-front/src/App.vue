@@ -44,7 +44,7 @@
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
-      <v-container fluid mx-0>
+      <v-container fluid mx-0 px-0>
         <v-layout>
           <v-flex xs12 md10 lg8 offset-md1 offset-lg2>
             <router-view></router-view>
