@@ -15,15 +15,20 @@ import VueMarkdown from 'vue-markdown'
 import Prism from 'prismjs'
 export default {
   props: ['md'],
+  data () {
+    return {
+      tocHtml: ''
+    }
+  },
   methods: {
     tocRendered (tocHtml) {
-      console.log('toc generated')
-      console.log(tocHtml)
+      this.tocHtml = tocHtml
       this.$store.dispatch('setToc', tocHtml)
     },
     rendered () {
       // wait for DOM generation
       setTimeout(() => Prism.highlightAll(), 30)
+      this.$store.dispatch('setToc', this.tocHtml)
     }
   },
   components: { VueMarkdown, Prism }

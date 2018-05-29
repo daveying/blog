@@ -24,7 +24,7 @@
             </v-flex>
           </v-layout>
         </v-flex>
-        <v-flex xs12 md3>
+        <v-flex v-if="toc" xs12 md3>
           <v-card>
             <v-container>
               <h3 class="mb-2">目录</h3>
