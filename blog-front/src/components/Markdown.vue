@@ -19,6 +19,7 @@ export default {
     tocRendered (tocHtml) {
       console.log('toc generated')
       console.log(tocHtml)
+      this.$store.dispatch('setToc', tocHtml)
     },
     rendered () {
       // wait for DOM generation

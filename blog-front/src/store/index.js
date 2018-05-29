@@ -7,7 +7,8 @@ export const store = new Vuex.Store({
   state: {
     blogs: [],
     tags: {},
-    goTopBtnShow: false
+    goTopBtnShow: false,
+    toc: ''
   },
   mutations: {
     createBlog (state, payload) {
@@ -21,6 +22,9 @@ export const store = new Vuex.Store({
     },
     setGoTopBtnShow (state, payload) {
       state.goTopBtnShow = payload
+    },
+    setToc (state, payload) {
+      state.toc = payload
     }
   },
   actions: {
@@ -133,6 +137,9 @@ export const store = new Vuex.Store({
       //   'OpenGL': {count: 8, blogs: []}
       // }
       commit('setTags', tags)
+    },
+    setToc ({commit}, payload) {
+      commit('setToc', payload)
     }
   },
   getters: {
@@ -144,6 +151,9 @@ export const store = new Vuex.Store({
     },
     goTopBtnShow (state) {
       return state.goTopBtnShow
+    },
+    toc (state) {
+      return state.toc
     }
   }
 })

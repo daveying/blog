@@ -30,6 +30,7 @@
               <h3 class="mb-2">目录</h3>
               <v-divider></v-divider>
               <v-layout wrap class="mt-2">
+                <v-flex xs12 v-html="toc"></v-flex>
               </v-layout>
             </v-container>
           </v-card>
@@ -57,6 +58,9 @@ export default {
   computed: {
     blog () {
       return this.$store.getters.blogs.find(blog => blog.id === this.id)
+    },
+    toc () {
+      return this.$store.getters.toc
     }
   },
   methods: {
