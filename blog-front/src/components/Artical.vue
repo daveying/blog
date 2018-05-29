@@ -2,35 +2,20 @@
   <v-card flat class="grey lighten-5">
     <v-container class="my-0" fluid style="min-height: 0;" grid-list-md>
       <v-layout row wrap>
-        <v-flex xs12 md9>
-          <v-layout row wrap>
-            <v-flex xs12>
-              <v-card>
-                <v-container class="px-3 py-2">
-                  <v-layout row wrap>
-                    <v-flex xs12>
-                      <h1 class="blog-title">{{ blog.title }}</h1>
-                      <p>
-                        发布时间: {{ blog.createdDate.getFullYear() }}年{{ blog.createdDate.getMonth() + 1 }}月{{ blog.createdDate.getDate() }}日, 浏览量: {{ blog.viewCount }}次
-                        <v-chip @click="onTagClicked(tag)" small outline v-for="tag in blog.tags" :key="tag"><a class="tag-link">{{ tag }}</a></v-chip>
-                      </p>
-                      <div>
-                        <markdown :md="blog.md"></markdown>
-                      </div>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </v-flex>
-        <v-flex v-if="toc" xs12 md3>
+        <v-flex xs12>
           <v-card>
-            <v-container>
-              <h3 class="mb-2">目录</h3>
-              <v-divider></v-divider>
-              <v-layout wrap class="mt-2">
-                <v-flex xs12 v-html="toc"></v-flex>
+            <v-container class="px-3 py-2">
+              <v-layout row wrap>
+                <v-flex xs12>
+                  <h1 class="blog-title">{{ blog.title }}</h1>
+                  <p>
+                    发布时间: {{ blog.createdDate.getFullYear() }}年{{ blog.createdDate.getMonth() + 1 }}月{{ blog.createdDate.getDate() }}日, 浏览量: {{ blog.viewCount }}次
+                    <v-chip @click="onTagClicked(tag)" small outline v-for="tag in blog.tags" :key="tag"><a class="tag-link">{{ tag }}</a></v-chip>
+                  </p>
+                  <div>
+                    <markdown :md="blog.md"></markdown>
+                  </div>
+                </v-flex>
               </v-layout>
             </v-container>
           </v-card>

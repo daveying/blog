@@ -50,7 +50,7 @@
             <router-view></router-view>
           </v-flex>
         </v-layout>
-        <v-btn
+        <!-- <v-btn
           color="primary"
           dark
           fixed
@@ -61,7 +61,7 @@
           @click="ongoTopBtnClicked()"
         >
           <v-icon>keyboard_arrow_up</v-icon>
-        </v-btn>
+        </v-btn> -->
       </v-container>
       <v-container fluid class="ml-0">
         <v-layout>
@@ -72,6 +72,52 @@
           </v-flex>
         </v-layout>
       </v-container>
+      <v-speed-dial
+        absolute
+        fixed
+        v-model="fab"
+        bottom
+        left
+        :direction="'top'"
+        :open-on-hover="false"
+        :transition="transition"
+      >
+        <v-btn
+          slot="activator"
+          v-model="fab"
+          color="blue darken-2"
+          dark
+          fab
+        >
+          <v-icon>add</v-icon>
+          <v-icon>close</v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          dark
+          small
+          color="green"
+          @click="ongoTopBtnClicked()"
+        >
+          <v-icon>keyboard_arrow_up</v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          dark
+          small
+          color="indigo"
+        >
+          <v-icon>add</v-icon>
+        </v-btn>
+        <v-btn
+          fab
+          dark
+          small
+          color="red"
+        >
+          <v-icon>delete</v-icon>
+        </v-btn>
+      </v-speed-dial>
     </v-content>
   </v-app>
 </template>
@@ -80,7 +126,12 @@
 export default {
   data () {
     return {
-      sideNav: false
+      sideNav: false,
+      direction: 'top',
+      fab: false,
+      fling: false,
+      tabs: null,
+      transition: 'slide-y-reverse-transition'
     }
   },
   created () {
@@ -113,6 +164,14 @@ export default {
     }
   },
   computed: {
+    activeFab () {
+      switch (this.tabs) {
+        case 'one': return { 'class': 'purple', icon: 'account_circle' }
+        case 'two': return { 'class': 'red', icon: 'edit' }
+        case 'three': return { 'class': 'green', icon: 'keyboard_arrow_up' }
+        default: return {}
+      }
+    },
     goTopBtn () {
       return this.$store.getters.goTopBtnShow
     },
