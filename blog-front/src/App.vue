@@ -50,6 +50,51 @@
             <router-view></router-view>
           </v-flex>
         </v-layout>
+        <v-speed-dial
+          fixed
+          v-model="fab"
+          bottom
+          right
+          :direction="'top'"
+          :open-on-hover="false"
+          :transition="transition"
+        >
+          <v-btn
+            slot="activator"
+            v-model="fab"
+            color="blue darken-2"
+            dark
+            fab
+          >
+            <v-icon>menu</v-icon>
+            <v-icon>close</v-icon>
+          </v-btn>
+          <v-btn
+            fab
+            dark
+            small
+            color="green"
+            @click="ongoTopBtnClicked()"
+          >
+            <v-icon>keyboard_arrow_up</v-icon>
+          </v-btn>
+          <v-btn
+            fab
+            dark
+            small
+            color="indigo"
+          >
+            <v-icon>add</v-icon>
+          </v-btn>
+          <v-btn
+            fab
+            dark
+            small
+            color="red"
+          >
+            <v-icon>delete</v-icon>
+          </v-btn>
+        </v-speed-dial>
         <!-- <v-btn
           color="primary"
           dark
@@ -72,52 +117,6 @@
           </v-flex>
         </v-layout>
       </v-container>
-      <v-speed-dial
-        absolute
-        fixed
-        v-model="fab"
-        bottom
-        left
-        :direction="'top'"
-        :open-on-hover="false"
-        :transition="transition"
-      >
-        <v-btn
-          slot="activator"
-          v-model="fab"
-          color="blue darken-2"
-          dark
-          fab
-        >
-          <v-icon>add</v-icon>
-          <v-icon>close</v-icon>
-        </v-btn>
-        <v-btn
-          fab
-          dark
-          small
-          color="green"
-          @click="ongoTopBtnClicked()"
-        >
-          <v-icon>keyboard_arrow_up</v-icon>
-        </v-btn>
-        <v-btn
-          fab
-          dark
-          small
-          color="indigo"
-        >
-          <v-icon>add</v-icon>
-        </v-btn>
-        <v-btn
-          fab
-          dark
-          small
-          color="red"
-        >
-          <v-icon>delete</v-icon>
-        </v-btn>
-      </v-speed-dial>
     </v-content>
   </v-app>
 </template>
