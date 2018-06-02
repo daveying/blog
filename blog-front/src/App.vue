@@ -66,7 +66,7 @@
             dark
             fab
           >
-            <v-icon>menu</v-icon>
+            <v-icon>mdi-tune</v-icon>
             <v-icon>close</v-icon>
           </v-btn>
           <v-btn
@@ -84,7 +84,7 @@
             small
             color="indigo"
           >
-            <v-icon>add</v-icon>
+            <v-icon>menu</v-icon>
           </v-btn>
           <v-btn
             fab
@@ -92,7 +92,7 @@
             small
             color="red"
           >
-            <v-icon>delete</v-icon>
+            <v-icon>mdi-thumb-up</v-icon>
           </v-btn>
         </v-speed-dial>
         <!-- <v-btn
