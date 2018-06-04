@@ -20,17 +20,46 @@
             </v-container>
           </v-card>
           <v-menu
+            :close-on-content-click="false"
             v-model="showMenu"
             :position-x="x"
             :position-y="y"
             offset-y
             absolute
           >
-            <v-list>
-              <v-list-tile v-for="(item, index) in items" :key="index" @click="void 0">
-                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-              </v-list-tile>
-            </v-list>
+            <v-card>
+              <v-list>
+                <v-list-tile>
+                  <v-list-tile-content>
+                    <v-list-tile-title>{{ blog.title }}</v-list-tile-title>
+                    <v-list-tile-sub-title>
+                      <span v-for="(tag, tagIdx) in blog.tags" :key="tag">
+                        {{ tag }}
+                        <span v-if="tagIdx + 1 < blog.tags.length" :key="tagIdx"> | </span>
+                      </span>
+                    </v-list-tile-sub-title>
+                  </v-list-tile-content>
+                  <v-list-tile-action>
+                    <v-btn
+                      :class="fav ? 'red--text' : ''"
+                      icon
+                      @click="fav = !fav"
+                    >
+                      <v-icon>favorite</v-icon>
+                    </v-btn>
+                  </v-list-tile-action>
+                </v-list-tile>
+              </v-list>
+              <v-divider></v-divider>
+              <v-list>
+                <v-list-tile>
+                  <v-list-tile-title>Enable messages</v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile>
+                  <v-list-tile-title>Enable hints</v-list-tile-title>
+                </v-list-tile>
+              </v-list>
+            </v-card>
           </v-menu>
         </v-flex>
       </v-layout>
@@ -57,12 +86,7 @@ export default {
     showMenu: false,
     x: 0,
     y: 0,
-    items: [
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me' },
-      { title: 'Click Me 2' }
-    ]
+    fav: false
   }),
   computed: {
     blog () {
