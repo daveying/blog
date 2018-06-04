@@ -66,7 +66,7 @@
             dark
             fab
           >
-            <v-icon>mdi-tune</v-icon>
+            <v-icon>menu</v-icon>
             <v-icon>close</v-icon>
           </v-btn>
           <v-btn
@@ -83,30 +83,22 @@
             dark
             small
             color="indigo"
+            to="/"
           >
-            <v-icon>menu</v-icon>
+            <v-icon>home</v-icon>
           </v-btn>
           <v-btn
             fab
             dark
             small
             color="red"
+            to="/blogs/YWxs"
           >
-            <v-icon>mdi-thumb-up</v-icon>
+            <v-icon>library_books</v-icon>
           </v-btn>
         </v-speed-dial>
-        <!-- <v-btn
-          color="primary"
-          dark
-          fixed
-          bottom
-          right
-          fab
-          v-show="goTopBtn"
-          @click="ongoTopBtnClicked()"
-        >
-          <v-icon>keyboard_arrow_up</v-icon>
-        </v-btn> -->
+        <v-card>
+        </v-card>
       </v-container>
       <v-container fluid class="ml-0">
         <v-layout>
@@ -129,7 +121,6 @@ export default {
       direction: 'top',
       fab: false,
       fling: false,
-      tabs: null,
       transition: 'slide-y-reverse-transition'
     }
   },
@@ -163,14 +154,6 @@ export default {
     }
   },
   computed: {
-    activeFab () {
-      switch (this.tabs) {
-        case 'one': return { 'class': 'purple', icon: 'account_circle' }
-        case 'two': return { 'class': 'red', icon: 'edit' }
-        case 'three': return { 'class': 'green', icon: 'keyboard_arrow_up' }
-        default: return {}
-      }
-    },
     goTopBtn () {
       return this.$store.getters.goTopBtnShow
     },
