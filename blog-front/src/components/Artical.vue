@@ -3,7 +3,7 @@
     <v-container class="my-0" fluid style="min-height: 0;" grid-list-md>
       <v-layout row wrap>
         <v-flex xs12>
-          <v-card>
+          <v-card @contextmenu="show">
             <v-container class="px-3 py-2">
               <v-layout row wrap>
                 <v-flex xs12>
@@ -19,6 +19,19 @@
               </v-layout>
             </v-container>
           </v-card>
+          <v-menu
+            v-model="showMenu"
+            :position-x="x"
+            :position-y="y"
+            offset-y
+            absolute
+          >
+            <v-list>
+              <v-list-tile v-for="(item, index) in items" :key="index" @click="void 0">
+                <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+              </v-list-tile>
+            </v-list>
+          </v-menu>
         </v-flex>
       </v-layout>
     </v-container>
@@ -40,6 +53,17 @@ var Base64 = require('js-base64').Base64
 
 export default {
   props: ['id'],
+  data: () => ({
+    showMenu: false,
+    x: 0,
+    y: 0,
+    items: [
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me' },
+      { title: 'Click Me 2' }
+    ]
+  }),
   computed: {
     blog () {
       return this.$store.getters.blogs.find(blog => blog.id === this.id)
@@ -52,6 +76,15 @@ export default {
     onTagClicked (tag) {
       let tag64 = Base64.encode(tag)
       this.$router.push('/blogs/' + tag64)
+    },
+    show (e) {
+      e.preventDefault()
+      this.showMenu = false
+      this.x = e.clientX
+      this.y = e.clientY
+      this.$nextTick(() => {
+        this.showMenu = true
+      })
     }
   }
 }
