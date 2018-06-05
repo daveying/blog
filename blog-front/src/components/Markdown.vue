@@ -4,7 +4,7 @@
       class="markdown-body"
       @rendered="rendered()"
       :toc="true"
-      toc-id="toc"
+      :toc-last-level="3"
       @toc-rendered="tocRendered"
     >{{ md }}</vue-markdown>
   </div>

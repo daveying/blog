@@ -94,6 +94,7 @@ export default {
       return this.$store.getters.blogs.find(blog => blog.id === this.id)
     },
     toc () {
+      console.log(this.$store.getters.toc)
       return this.$store.getters.toc
     }
   },

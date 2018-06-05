@@ -53,7 +53,7 @@ export const store = new Vuex.Store({
           '- 使用关键词`var`。例如`var x = 3;`，这个语法可以声明局部变量或者全局变量\n' +
           '- 直接赋值。例如`x = 4;`，这样会声明一个全局变量，但是在`use strict`模式下会产生一个`ReferenceError`。不推荐使用。\n' +
           '- 使用关键词`let`。例如`let y = 23;`。这个语法可以用来声明块作用域的局部变量\n\n' +
-          '## 变量求值\n\n' +
+          '### 变量求值\n\n' +
           '用`var`或this`let关键`声明的但是未赋值的变量，其值会被设定为`undefined`。但是`var`和`let`关键词有一点点区别：\n\n' +
           '```javascript\n' +
           'console.log(x);\n' +
@@ -123,19 +123,6 @@ export const store = new Vuex.Store({
           tags[sortedBlogs[i].tags[j]].blogs.push(sortedBlogs[i])
         }
       }
-      // let tags = {
-      //   'All': {count: 3, blogs: []},
-      //   'HTML': {count: 2, blogs: []},
-      //   'CSS': {count: 5, blogs: []},
-      //   'WebGL': {count: 3, blogs: []},
-      //   'THREE': {count: 7, blogs: []},
-      //   'HTTP/S': {count: 12, blogs: []},
-      //   'ASP.NET core': {count: 6, blogs: []},
-      //   'NodeJs': {count: 13, blogs: []},
-      //   'VueJs': {count: 23, blogs: []},
-      //   'Vuetify': {count: 4, blogs: []},
-      //   'OpenGL': {count: 8, blogs: []}
-      // }
       commit('setTags', tags)
     },
     setToc ({commit}, payload) {
