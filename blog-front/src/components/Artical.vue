@@ -58,6 +58,7 @@
                 <v-list-tile>
                   <v-list-tile-title>Enable hints</v-list-tile-title>
                 </v-list-tile>
+                <div v-html="this.toc"></div>
               </v-list>
             </v-card>
           </v-menu>
