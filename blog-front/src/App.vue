@@ -97,8 +97,6 @@
             <v-icon>library_books</v-icon>
           </v-btn>
         </v-speed-dial>
-        <v-card>
-        </v-card>
       </v-container>
       <v-container fluid class="ml-0">
         <v-layout>

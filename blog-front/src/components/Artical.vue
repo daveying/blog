@@ -26,7 +26,6 @@
             :position-y="y"
             offset-y
             absolute
-            transition="none"
           >
             <v-card>
               <v-list>
@@ -77,6 +76,16 @@
           </v-menu>
         </v-flex>
       </v-layout>
+      <v-snackbar
+        :timeout="timeout"
+        left
+        bottom
+        vertical
+        v-model="hintShow"
+      >
+        在文章阅读页面点击右键可以查看文章目录
+        <v-btn flat color="pink" @click.native="hideHint()">Close</v-btn>
+      </v-snackbar>
     </v-container>
     <v-layout row wrap px-2>
       <v-flex xs12>
@@ -121,11 +130,15 @@ export default {
     x: 0,
     y: 0,
     fav: false,
-    toc: null
+    toc: null,
+    timeout: 6000
   }),
   computed: {
     blog () {
       return this.$store.getters.blogs.find(blog => blog.id === this.id)
+    },
+    hintShow () {
+      return this.$store.getters.hintShow
     }
   },
   methods: {
@@ -134,6 +147,9 @@ export default {
       this.$router.push('/blogs/' + tag64)
     },
     show (e) {
+      if (!this.$store.getters.toc) {
+        return
+      }
       e.preventDefault()
       var tocQuery = document.getElementById('toc-query')
       tocQuery.innerHTML = this.$store.getters.toc
@@ -152,6 +168,9 @@ export default {
       setTimeout(() => {
         this.showMenu = false
       }, 10)
+    },
+    hideHint () {
+      this.$store.dispatch('setHintShow', false)
     }
   }
 }

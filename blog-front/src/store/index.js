@@ -8,7 +8,8 @@ export const store = new Vuex.Store({
     blogs: [],
     tags: {},
     goTopBtnShow: false,
-    toc: ''
+    toc: '',
+    hintShow: true
   },
   mutations: {
     createBlog (state, payload) {
@@ -25,11 +26,17 @@ export const store = new Vuex.Store({
     },
     setToc (state, payload) {
       state.toc = payload
+    },
+    setHintShow (state, payload) {
+      state.hintShow = payload
     }
   },
   actions: {
     setGoTopBtnShow ({commit}, payload) {
       commit('setGoTopBtnShow', payload)
+    },
+    setHintShow ({commit}, payload) {
+      commit('setHintShow', payload)
     },
     createBlog ({commit}, payload) {
       commit('createBlog', payload)
@@ -143,6 +150,9 @@ export const store = new Vuex.Store({
     },
     toc (state) {
       return state.toc
+    },
+    hintShow (state) {
+      return state.hintShow
     }
   }
 })
