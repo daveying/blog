@@ -52,13 +52,14 @@
               </v-list>
               <v-divider></v-divider>
               <v-list>
-                <v-list-tile>
-                  <v-list-tile-title>Enable messages</v-list-tile-title>
+                <v-list-tile
+                  v-for="heading in toc"
+                  :key="heading.hash"
+                >
+                  <v-list-tile-title>
+                    <a :href="heading.hash">{{ heading.heading }}</a>
+                  </v-list-tile-title>
                 </v-list-tile>
-                <v-list-tile>
-                  <v-list-tile-title>Enable hints</v-list-tile-title>
-                </v-list-tile>
-                <div v-html="this.toc"></div>
               </v-list>
             </v-card>
           </v-menu>
@@ -75,11 +76,31 @@
         </div>
     </v-flex>
     </v-layout>
+    <div id="toc-query" style="display:none">
+    </div>
   </v-card>
 </template>
 
 <script>
 var Base64 = require('js-base64').Base64
+
+function readTocObj (tocRoot, tocObj) {
+  var children = tocRoot.children
+  for (let i = 0, l = children.length; i < l; i++) {
+    let aElement = children[i].getElementsByTagName('a')[0]
+    let obj = {
+      heading: aElement.innerText,
+      hash: aElement.hash
+    }
+    let ulElement = children[i].getElementsByTagName('ul')[0]
+    if (ulElement) {
+      obj.subHeadings = {}
+      readTocObj(ulElement, obj.subHeadings)
+    }
+
+    tocObj[aElement.hash] = obj
+  }
+}
 
 export default {
   props: ['id'],
@@ -87,15 +108,12 @@ export default {
     showMenu: false,
     x: 0,
     y: 0,
-    fav: false
+    fav: false,
+    toc: null
   }),
   computed: {
     blog () {
       return this.$store.getters.blogs.find(blog => blog.id === this.id)
-    },
-    toc () {
-      console.log(this.$store.getters.toc)
-      return this.$store.getters.toc
     }
   },
   methods: {
@@ -105,6 +123,12 @@ export default {
     },
     show (e) {
       e.preventDefault()
+      var tocQuery = document.getElementById('toc-query')
+      tocQuery.innerHTML = this.$store.getters.toc
+      var tocRoot = tocQuery.getElementsByTagName('ul')[0]
+      var tocObj = {}
+      readTocObj(tocRoot, tocObj)
+      this.toc = tocObj
       this.showMenu = false
       this.x = e.clientX
       this.y = e.clientY
