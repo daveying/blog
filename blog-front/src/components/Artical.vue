@@ -26,6 +26,7 @@
             :position-y="y"
             offset-y
             absolute
+            transition="none"
           >
             <v-card>
               <v-list>
@@ -52,14 +53,25 @@
               </v-list>
               <v-divider></v-divider>
               <v-list>
-                <v-list-tile
-                  v-for="heading in toc"
-                  :key="heading.hash"
+                <div
+                  v-for="(item, idx) in toc"
+                  :key="item.hash"
                 >
-                  <v-list-tile-title>
-                    <a :href="heading.hash">{{ heading.heading }}</a>
-                  </v-list-tile-title>
-                </v-list-tile>
+                  <v-list-tile
+                    :href="item.hash"
+                    @click="hideMenu()"
+                  >
+                    <v-list-tile-title>{{ idx + 1 }}. {{ item.heading }}</v-list-tile-title>
+                  </v-list-tile>
+                  <v-list-tile
+                    v-for="(subItem, subIdx) in item.subHeadings"
+                    :key="subItem.hash"
+                    :href="subItem.hash"
+                    @click="hideMenu()"
+                  >
+                    <v-list-tile-sub-title>{{ idx + 1}}.{{ subIdx + 1 }}. {{ subItem.heading }}</v-list-tile-sub-title>
+                  </v-list-tile>
+                </div>
               </v-list>
             </v-card>
           </v-menu>
@@ -84,7 +96,7 @@
 <script>
 var Base64 = require('js-base64').Base64
 
-function readTocObj (tocRoot, tocObj) {
+function readTocObj (tocRoot, tocArr) {
   var children = tocRoot.children
   for (let i = 0, l = children.length; i < l; i++) {
     let aElement = children[i].getElementsByTagName('a')[0]
@@ -94,11 +106,11 @@ function readTocObj (tocRoot, tocObj) {
     }
     let ulElement = children[i].getElementsByTagName('ul')[0]
     if (ulElement) {
-      obj.subHeadings = {}
+      obj.subHeadings = []
       readTocObj(ulElement, obj.subHeadings)
     }
 
-    tocObj[aElement.hash] = obj
+    tocArr.push(obj)
   }
 }
 
@@ -126,15 +138,20 @@ export default {
       var tocQuery = document.getElementById('toc-query')
       tocQuery.innerHTML = this.$store.getters.toc
       var tocRoot = tocQuery.getElementsByTagName('ul')[0]
-      var tocObj = {}
-      readTocObj(tocRoot, tocObj)
-      this.toc = tocObj
+      var tocArr = []
+      readTocObj(tocRoot, tocArr)
+      this.toc = tocArr
       this.showMenu = false
       this.x = e.clientX
       this.y = e.clientY
       this.$nextTick(() => {
         this.showMenu = true
       })
+    },
+    hideMenu () {
+      setTimeout(() => {
+        this.showMenu = false
+      }, 10)
     }
   }
 }
