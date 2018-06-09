@@ -80,8 +80,8 @@
         :timeout="timeout"
         left
         bottom
-        vertical
-        v-model="hintShow"
+        v-model="this.hintShow"
+        color="success"
       >
         在文章阅读页面点击右键可以查看文章目录
         <v-btn flat color="pink" @click.native="hideHint()">Close</v-btn>
@@ -131,14 +131,19 @@ export default {
     y: 0,
     fav: false,
     toc: null,
-    timeout: 6000
+    timeout: 6000,
+    hintShow: false
   }),
   computed: {
     blog () {
       return this.$store.getters.blogs.find(blog => blog.id === this.id)
-    },
-    hintShow () {
-      return this.$store.getters.hintShow
+    }
+  },
+  created () {
+    if (this.$store.getters.hintShow === true) {
+      setTimeout(() => {
+        this.hintShow = true
+      }, 100)
     }
   },
   methods: {
@@ -170,6 +175,7 @@ export default {
       }, 10)
     },
     hideHint () {
+      this.hintShow = false
       this.$store.dispatch('setHintShow', false)
     }
   }
