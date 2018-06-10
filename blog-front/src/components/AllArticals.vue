@@ -1,6 +1,6 @@
 <template>
   <v-card flat class="grey lighten-5">
-    <v-container class="my-0 px-2" fluid style="min-height: 0;" grid-list-lg>
+    <v-container class="my-0 px-2" fluid style="min-height: 0;" grid-list-md>
       <v-layout row wrap>
         <v-flex xs12>
           <v-card>
@@ -42,8 +42,7 @@
               >
                 <v-flex xs12>
                   <v-list two-line>
-                    <h2 class="text--secondary">{{ month.year }}年{{ month.month + 1 }}月</h2>
-                    <v-divider></v-divider>
+                    <h3 class="text--secondary">{{ month.year }}年{{ month.month + 1 }}月</h3>
                     <div
                       v-for="(item, index) in month.items"
                       :key="item.id"
@@ -55,17 +54,20 @@
                         <v-list-tile-content>
                           <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                           <v-list-tile-sub-title>
-                            <span v-for="(tag, tagIdx) in item.tags" :key="tag">
+                            <v-icon small>mdi mdi-calendar-range</v-icon>{{item.createdDate.getFullYear()}}-{{pad(item.createdDate.getMonth() + 1)}}-{{pad(item.createdDate.getDate())}}
+                            <v-icon small>mdi mdi-tag</v-icon><span v-for="(tag, tagIdx) in item.tags" :key="tag">
                               {{ tag }}
                               <span v-if="tagIdx + 1 < item.tags.length" :key="tagIdx"> | </span>
                             </span>
                           </v-list-tile-sub-title>
                         </v-list-tile-content>
                         <v-list-tile-action>
-                          <v-list-tile-action-text>浏览{{ item.viewCount }}次</v-list-tile-action-text>
+                          <v-list-tile-action-text>
+                            <v-icon small>mdi mdi-eye-outline</v-icon> {{ item.viewCount }}
+                          </v-list-tile-action-text>
                         </v-list-tile-action>
                       </v-list-tile>
-                      <v-divider v-if="index + 1 < month.items.length" :key="index"></v-divider>
+                      <v-divider v-if="index < month.items.length" :key="index"></v-divider>
                     </div>
                   </v-list>
                 </v-flex>
@@ -143,6 +145,9 @@ export default {
     },
     onBlogClicked (blog) {
       this.$router.push(`/blog/${blog.id}`)
+    },
+    pad (n) {
+      return (n < 10) ? ('0' + n) : n
     }
   }
 }
