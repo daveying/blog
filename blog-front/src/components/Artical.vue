@@ -3,7 +3,7 @@
     <v-container class="my-0" fluid style="min-height: 0;" grid-list-md>
       <v-layout row wrap>
         <v-flex xs12>
-          <v-card @contextmenu="show">
+          <v-card @contextmenu="show" v-scroll="onScroll">
             <v-container class="px-3 py-2">
               <v-layout row wrap>
                 <v-flex xs12>
@@ -169,14 +169,17 @@ export default {
         this.showMenu = true
       })
     },
-    hideMenu () {
+    hideMenu (timeout) {
       setTimeout(() => {
         this.showMenu = false
-      }, 10)
+      }, timeout && 10)
     },
     hideHint () {
       this.hintShow = false
       this.$store.dispatch('setHintShow', false)
+    },
+    onScroll () {
+      this.hideMenu(0)
     }
   }
 }
