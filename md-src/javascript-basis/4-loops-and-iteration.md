@@ -1,3 +1,7 @@
+[_metadata_:author]:- "daveying"
+[_metadata_:tags]:- "JavaScript"
+[_metadata_:created-date]:- "2017-04-30 12:15am"
+
 # 循环与迭代
 
 **Reference**

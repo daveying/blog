@@ -1,3 +1,7 @@
+[_metadata_:author]:- "daveying"
+[_metadata_:tags]:- "JavaScript"
+[_metadata_:created-date]:- "2017-05-20 03:26pm"
+
 # 数字和日期
 
 **Reference**

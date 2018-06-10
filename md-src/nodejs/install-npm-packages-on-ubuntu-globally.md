@@ -1,3 +1,7 @@
+[_metadata_:author]:- "daveying"
+[_metadata_:tags]:- "Ubuntu|NodeJS"
+[_metadata_:created-date]:- "2017-07-16 12:46pm"
+
 # 在Ubuntu为特定用户安装全局NodeJS包
 
 在Ubuntu上通过NPM以全局方式安装NodeJS包时经常出现与路径访问权限的问题：

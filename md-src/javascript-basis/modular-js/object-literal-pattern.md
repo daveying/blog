@@ -1,3 +1,7 @@
+[_metadata_:author]:- "daveying"
+[_metadata_:tags]:- "JavaScript|ModularJS|Design Patterns"
+[_metadata_:created-date]:- "2017-07-18 11:53pm"
+
 # JavaScript模块化编程 -- Object literal pattern
 
 **Reference**

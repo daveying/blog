@@ -1,3 +1,7 @@
+[_metadata_:author]:- "daveying"
+[_metadata_:tags]:- "JavaScript"
+[_metadata_:created-date]:- "2017-04-29 11:32pm"
+
 # 流程控制以及异常处理
 
 **Reference**

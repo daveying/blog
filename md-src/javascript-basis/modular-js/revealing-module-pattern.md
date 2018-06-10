@@ -1,3 +1,7 @@
+[_metadata_:author]:- "daveying"
+[_metadata_:tags]:- "JavaScript|ModularJS|Design Patterns"
+[_metadata_:created-date]:- "2017-07-20 11:54pm"
+
 # JavaScript模块化编程 -- Revealing module pattern
 
 **Reference**

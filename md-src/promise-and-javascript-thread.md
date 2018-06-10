@@ -1,3 +1,7 @@
+[_metadata_:author]:- "daveying"
+[_metadata_:tags]:- "JavaScript|Promise|JavaScript Thread"
+[_metadata_:created-date]:- "2017-04-29 11:32pm"
+
 # Promises和JavaScript线程
 
 **Reference**

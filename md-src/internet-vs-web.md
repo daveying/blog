@@ -1,3 +1,7 @@
+[_metadata_:author]:- "daveying"
+[_metadata_:tags]:- "Internet|Web"
+[_metadata_:created-date]:- "2017-04-29 11:32pm"
+
 # Internet VS. Web
 
 **References:**

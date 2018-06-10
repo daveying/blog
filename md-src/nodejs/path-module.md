@@ -1,3 +1,7 @@
+[_metadata_:author]:- "daveying"
+[_metadata_:tags]:- "NodeJS|Path"
+[_metadata_:created-date]:- "2017-07-11 11:49pm"
+
 # Node.js Path 模块
 
 Node.js的Path模块主要用于处理与文件路径相关的问题，你可以通过以下方式直接包含Path模块：
