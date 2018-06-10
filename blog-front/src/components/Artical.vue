@@ -43,9 +43,9 @@
                     <v-btn
                       :class="fav ? 'red--text' : ''"
                       icon
-                      @click="fav = !fav"
+                      @click="onFavClicked()"
                     >
-                      <v-icon>favorite</v-icon>
+                      <v-icon>mdi-thumb-up</v-icon>
                     </v-btn>
                   </v-list-tile-action>
                 </v-list-tile>
@@ -145,6 +145,9 @@ export default {
         this.hintShow = true
       }, 100)
     }
+    if (this.blog.like === true) {
+      this.fav = true
+    }
   },
   methods: {
     onTagClicked (tag) {
@@ -180,6 +183,10 @@ export default {
     },
     onScroll () {
       this.hideMenu(0)
+    },
+    onFavClicked () {
+      this.fav = !this.fav
+      this.$store.dispatch('setLike', {id: this.id, value: this.fav})
     }
   }
 }

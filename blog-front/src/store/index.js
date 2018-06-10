@@ -29,6 +29,9 @@ export const store = new Vuex.Store({
     },
     setHintShow (state, payload) {
       state.hintShow = payload
+    },
+    setLike (state, payload) {
+      state.blogs.find((blog) => blog.id === payload.id).like = payload.value
     }
   },
   actions: {
@@ -49,6 +52,7 @@ export const store = new Vuex.Store({
           title: '第一篇博客',
           createdDate: new Date(2018, 4, 1),
           viewCount: 1231,
+          like: false,
           tags: ['HTML', 'THREE'],
           imageUrl: '',
           abstract: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fugiat blanditiis quo quam. Dolores possimus, mollitia minus, impedit quasi provident commodi alias ab repellat assumenda quia harum placeat nisi corrupti.',
@@ -82,6 +86,7 @@ export const store = new Vuex.Store({
           title: '第二篇博客',
           createdDate: new Date(2018, 5, 1),
           viewCount: 1232,
+          like: false,
           tags: ['HTML', 'WebGL', 'Network programming', 'HTTP/S'],
           imageUrl: '',
           abstract: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fugiat blanditiis quo quam. Dolores possimus, mollitia minus, impedit quasi provident commodi alias ab repellat assumenda quia harum placeat nisi corrupti.',
@@ -92,6 +97,7 @@ export const store = new Vuex.Store({
           title: '第三篇博客',
           createdDate: new Date(2018, 5, 3),
           viewCount: 1232,
+          like: false,
           tags: ['HTML', 'WebGL', 'Network programming'],
           imageUrl: '',
           abstract: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fugiat blanditiis quo quam. Dolores possimus, mollitia minus, impedit quasi provident commodi alias ab repellat assumenda quia harum placeat nisi corrupti.',
@@ -102,6 +108,7 @@ export const store = new Vuex.Store({
           title: '第四篇博客',
           createdDate: new Date(2018, 5, 4),
           viewCount: 122,
+          like: false,
           tags: ['HTML', 'WebGL', 'Network programming', 'HTTP/S'],
           imageUrl: '',
           abstract: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fugiat blanditiis quo quam. Dolores possimus, mollitia minus, impedit quasi provident commodi alias ab repellat assumenda quia harum placeat nisi corrupti.',
@@ -112,6 +119,7 @@ export const store = new Vuex.Store({
           title: '第五篇博客',
           createdDate: new Date(2018, 5, 5),
           viewCount: 122,
+          like: false,
           tags: ['HTML', 'WebGL', 'Network programming', 'HTTP/S'],
           imageUrl: '',
           abstract: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fugiat blanditiis quo quam. Dolores possimus, mollitia minus, impedit quasi provident commodi alias ab repellat assumenda quia harum placeat nisi corrupti.',
@@ -137,6 +145,10 @@ export const store = new Vuex.Store({
     },
     setToc ({commit}, payload) {
       commit('setToc', payload)
+    },
+    setLike ({commit}, payload) {
+      commit('setLike', payload)
+      // update server like number
     }
   },
   getters: {
