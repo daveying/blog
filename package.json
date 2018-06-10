@@ -1,0 +1,30 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "这个主要是在学习[MDN指南](https://developer.mozilla.org/en-US/docs/Learn/JavaScript)时做的笔记。",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "fs-extra": "^4.0.0",
+    "klaw": "^2.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daveying/blog.git"
+  },
+  "author": "daveying@163.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daveying/blog/issues"
+  },
+  "homepage": "https://github.com/daveying/blog#readme"
+}
