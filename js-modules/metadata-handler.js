@@ -9,10 +9,10 @@ var MetadataHandler = {} || MetadataHandler;
     MetadataHandler.extractMetadata = function (mdStr, seperator) {
         seperator = seperator || '|';
         var lines = mdStr.split('\n');
-        var regexp = /\[_metadata_:([\u0000-\uffef]+)\]:-\s+['"]([\u0000-\uffef]+)['"]/u;
+        var regexp = /^\[_metadata_:([\u0000-\uffef]+)\]:-\s+['"]([\u0000-\uffef]+)['"]$/u;
         var metadata = {};
         for (var i = 0, l = lines.length; i < l; i++) {
-            var pair = regexp.exec(lines[i]);
+            var pair = regexp.exec(lines[i].trim());
             if (pair && pair[1] && pair[2]) {
                 if (seperator) {
                     var arr = pair[2].split(seperator);
@@ -23,14 +23,35 @@ var MetadataHandler = {} || MetadataHandler;
             }
         }
         var extractedMd = lines.slice(i, lines.length).join('\n');
-        console.log(extractedMd);
         return { metadata, md: extractedMd};
     };
 
     MetadataHandler.addMetadata = function (metadata, mdStr, seperator) {
         seperator = seperator || '|';
-        var lines = mdStr.split('\n');
-        var regexp = /\[_metadata_:([\u0000-\uffef]+)\]:-\s+['"]([\u0000-\uffef]+)['"]/u;
+        var results = MetadataHandler.extractMetadata(mdStr, seperator);
+        var oldMetadata = results.metadata;
+        var keys = Object.keys(oldMetadata);
+        for (let key of keys) {
+            metadata[key] = oldMetadata[key];
+        }
+        var metadataStr = '';
+        keys = Object.keys(metadata);
+        keys = keys.sort((a, b) => a > b);
+        for (let key of keys) {
+            if (metadata[key] instanceof Array) {
+                metadataStr += `[_metadata_:${key}]:- "`;
+                for (let idx = 0, l = metadata[key].length; idx < l; idx++) {
+                    metadataStr += `${metadata[key][idx]}`;
+                    if (idx + 1 !== l) {
+                        metadataStr += `|`;
+                    }
+                }
+                metadataStr += `"\n`;
+            } else {
+                metadataStr += `[_metadata_:${key}]:- "${metadata[key]}"\n`;
+            }
+        }
+        return metadataStr + results.md;
     };
 })(MetadataHandler);
 
