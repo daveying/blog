@@ -19,7 +19,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app>
+    <v-toolbar app style="z-index:100;">
       <v-toolbar-items>
         <v-layout justify-space-around align-center>
           <v-avatar @click="sideNav = !sideNav" style="cursor: pointer" color="blue" size="35">
@@ -134,6 +134,10 @@ export default {
         this.$store.dispatch('setGoTopBtnShow', false)
       }
     }.bind(this)
+    function isMobileDevice () {
+      return (typeof window.orientation !== 'undefined') || (navigator.userAgent.indexOf('IEMobile') !== -1)
+    }
+    this.$store.dispatch('setMobile', isMobileDevice())
   },
   methods: {
     onClicked () {},

@@ -9,7 +9,8 @@ export const store = new Vuex.Store({
     tags: {},
     goTopBtnShow: false,
     toc: '',
-    hintShow: true
+    hintShow: true,
+    isMobile: false
   },
   mutations: {
     createBlog (state, payload) {
@@ -32,6 +33,9 @@ export const store = new Vuex.Store({
     },
     setLike (state, payload) {
       state.blogs.find((blog) => blog.id === payload.id).like = payload.value
+    },
+    setMobile (state, payload) {
+      state.isMobile = payload
     }
   },
   actions: {
@@ -127,7 +131,7 @@ export const store = new Vuex.Store({
         }
       ]
       let sortedBlogs = blogs.sort((blogA, blogB) => {
-        return blogA.createdDate < blogB.createdDate
+        return blogB.createdDate - blogA.createdDate
       })
       commit('setBlogs', sortedBlogs)
       let tags = {}
@@ -149,6 +153,9 @@ export const store = new Vuex.Store({
     setLike ({commit}, payload) {
       commit('setLike', payload)
       // update server like number
+    },
+    setMobile ({commit}, payload) {
+      commit('setMobile', payload)
     }
   },
   getters: {
@@ -166,6 +173,9 @@ export const store = new Vuex.Store({
     },
     hintShow (state) {
       return state.hintShow
+    },
+    isMobile (state) {
+      return state.isMobile
     }
   }
 })

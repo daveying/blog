@@ -3,7 +3,7 @@
     <v-container class="my-0" fluid style="min-height: 0;" grid-list-md>
       <v-layout row wrap>
         <v-flex xs12>
-          <v-card @contextmenu="show" v-scroll="onScroll" class="no-select">
+          <v-card @dblclick="show" v-scroll="onScroll" class="no-select">
             <v-container class="px-3 py-2">
               <v-layout row wrap>
                 <v-flex xs12>
@@ -83,7 +83,7 @@
         v-model="this.hintShow"
         color="success"
       >
-        在文章阅读页面点击右键可以查看文章目录
+        在文章阅读页面双击可以查看文章目录
         <v-btn flat color="pink" @click.native="hideHint()">Close</v-btn>
       </v-snackbar>
     </v-container>
@@ -137,6 +137,9 @@ export default {
   computed: {
     blog () {
       return this.$store.getters.blogs.find(blog => blog.id === this.id)
+    },
+    isMobile () {
+      return this.$store.getters.isMobile
     }
   },
   created () {
@@ -181,9 +184,6 @@ export default {
       this.hintShow = false
       this.$store.dispatch('setHintShow', false)
     },
-    onScroll () {
-      this.hideMenu(0)
-    },
     onFavClicked () {
       this.fav = !this.fav
       this.$store.dispatch('setLike', {id: this.id, value: this.fav})
@@ -204,8 +204,5 @@ export default {
 .blog-link {
   color: #1f4777;
 }
-.no-select {
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-}
+
 </style>
