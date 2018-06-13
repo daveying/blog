@@ -1,13 +1,14 @@
 {
   "name": "blog",
   "version": "1.0.0",
-  "description": "这个主要是在学习[MDN指南](https://developer.mozilla.org/en-US/docs/Learn/JavaScript)时做的笔记。",
+  "description": "blog",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "express": "^4.16.3",
     "fs-extra": "^4.0.0",
     "klaw": "^2.0.0"
   },
@@ -15,7 +16,8 @@
     "mocha": "^5.2.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "build": "cd blog-front && node build/build.js && cd .."
   },
   "repository": {
     "type": "git",

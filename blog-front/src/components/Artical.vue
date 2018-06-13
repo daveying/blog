@@ -3,7 +3,7 @@
     <v-container class="my-0" fluid style="min-height: 0;" grid-list-md>
       <v-layout row wrap>
         <v-flex xs12>
-          <v-card @contextmenu="show" v-scroll="onScroll">
+          <v-card @contextmenu="show" v-scroll="onScroll" class="no-select">
             <v-container class="px-3 py-2">
               <v-layout row wrap>
                 <v-flex xs12>
@@ -203,5 +203,9 @@ export default {
 .blog-title,
 .blog-link {
   color: #1f4777;
+}
+.no-select {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 </style>
