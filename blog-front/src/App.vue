@@ -4,6 +4,7 @@
       v-model="sideNav"
       fixed
       app
+      style="z-index:101;"
     >
       <v-list>
         <v-list-tile

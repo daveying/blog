@@ -3,7 +3,7 @@
     <v-container class="my-0" fluid style="min-height: 0;" grid-list-md>
       <v-layout row wrap>
         <v-flex xs12>
-          <v-card @dblclick="show" v-scroll="onScroll" class="no-select">
+          <v-card @dblclick="show" @contextmenu="show">
             <v-container class="px-3 py-2">
               <v-layout row wrap>
                 <v-flex xs12>
@@ -83,7 +83,7 @@
         v-model="this.hintShow"
         color="success"
       >
-        在文章阅读页面双击可以查看文章目录
+        在文章阅读页面{{ isMobile ? '双击' : '右击' }}可以查看文章目录
         <v-btn flat color="pink" @click.native="hideHint()">Close</v-btn>
       </v-snackbar>
     </v-container>
@@ -161,19 +161,21 @@ export default {
       if (!this.$store.getters.toc) {
         return
       }
-      e.preventDefault()
-      var tocQuery = document.getElementById('toc-query')
-      tocQuery.innerHTML = this.$store.getters.toc
-      var tocRoot = tocQuery.getElementsByTagName('ul')[0]
-      var tocArr = []
-      readTocObj(tocRoot, tocArr)
-      this.toc = tocArr
-      this.showMenu = false
-      this.x = e.clientX
-      this.y = e.clientY
-      this.$nextTick(() => {
-        this.showMenu = true
-      })
+      if ((e.type === 'dblclick' && this.isMobile) || (e.type === 'contextmenu' && !this.isMobile)) {
+        e.preventDefault()
+        var tocQuery = document.getElementById('toc-query')
+        tocQuery.innerHTML = this.$store.getters.toc
+        var tocRoot = tocQuery.getElementsByTagName('ul')[0]
+        var tocArr = []
+        readTocObj(tocRoot, tocArr)
+        this.toc = tocArr
+        this.showMenu = false
+        this.x = e.clientX
+        this.y = e.clientY
+        this.$nextTick(() => {
+          this.showMenu = true
+        })
+      }
     },
     hideMenu (timeout) {
       setTimeout(() => {
