@@ -78,7 +78,7 @@
         :timeout="timeout"
         left
         bottom
-        v-model="this.hintShow"
+        v-model="hintShow"
         color="success"
       >
         在文章阅读页面{{ isMobile ? '双击' : '右击' }}可以查看文章目录
@@ -181,7 +181,9 @@ export default {
       }, timeout && 10)
     },
     hideHint () {
-      this.hintShow = false
+      setTimeout(() => {
+        this.hintShow = false
+      }, 0)
       this.$store.dispatch('setHintShow', false)
     },
     onFavClicked () {
