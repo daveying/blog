@@ -152,7 +152,7 @@ export default {
   },
   methods: {
     onTagClicked (tag) {
-      let tag64 = encodeURI(tag)
+      let tag64 = encodeURIComponent(tag)
       this.$router.push('/blogs/' + tag64)
     },
     show (e) {

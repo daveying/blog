@@ -97,7 +97,7 @@ export default {
   },
   computed: {
     tag () {
-      return decodeURI(this.tag64)
+      return decodeURIComponent(this.tag64)
     },
     monthArr () {
       let selectedBlogs = this.$store.getters.tags[this.tag].blogs
@@ -140,7 +140,7 @@ export default {
   },
   methods: {
     onTagClicked (tag) {
-      let tag64 = encodeURI(tag)
+      let tag64 = encodeURIComponent(tag)
       this.$router.push('/blogs/' + tag64)
     },
     onBlogClicked (blog) {
