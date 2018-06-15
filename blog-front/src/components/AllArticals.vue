@@ -86,7 +86,7 @@
 </template>
 
 <script>
-var Base64 = require('js-base64').Base64
+// var Base64 = require('js-base64').Base64
 
 export default {
   props: ['tag64'],
@@ -97,7 +97,7 @@ export default {
   },
   computed: {
     tag () {
-      return Base64.decode(this.tag64)
+      return decodeURI(this.tag64)
     },
     monthArr () {
       let selectedBlogs = this.$store.getters.tags[this.tag].blogs
@@ -140,7 +140,7 @@ export default {
   },
   methods: {
     onTagClicked (tag) {
-      let tag64 = Base64.encode(tag)
+      let tag64 = encodeURI(tag)
       this.$router.push('/blogs/' + tag64)
     },
     onBlogClicked (blog) {

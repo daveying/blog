@@ -69,7 +69,7 @@
 </template>
 
 <script>
-var Base64 = require('js-base64').Base64
+// var Base64 = require('js-base64').Base64
 
 export default {
   data () {
@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     onTagClicked (tag) {
-      let tag64 = Base64.encode(tag)
+      let tag64 = encodeURI(tag)
       this.$router.push('/blogs/' + tag64)
     },
     onBlogClicked (blog) {

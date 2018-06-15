@@ -101,7 +101,7 @@
 </template>
 
 <script>
-var Base64 = require('js-base64').Base64
+// var Base64 = require('js-base64').Base64
 
 function readTocObj (tocRoot, tocArr) {
   var children = tocRoot.children
@@ -152,7 +152,7 @@ export default {
   },
   methods: {
     onTagClicked (tag) {
-      let tag64 = Base64.encode(tag)
+      let tag64 = encodeURI(tag)
       this.$router.push('/blogs/' + tag64)
     },
     show (e) {
