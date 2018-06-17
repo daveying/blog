@@ -57,14 +57,14 @@
                   :key="item.hash"
                 >
                   <v-list-tile
-                    @click="$vuetify.goTo(decodeURI(item.hash));hideMenu();"
+                    @click="$vuetify.goTo(decodeURIComponent(item.hash));hideMenu();"
                   >
                     <v-list-tile-title>{{ idx + 1 }}. {{ item.heading }}</v-list-tile-title>
                   </v-list-tile>
                   <v-list-tile
                     v-for="(subItem, subIdx) in item.subHeadings"
                     :key="subItem.hash"
-                    @click="$vuetify.goTo(decodeURI(subItem.hash));hideMenu();"
+                    @click="$vuetify.goTo(decodeURIComponent(subItem.hash));hideMenu();"
                   >
                     <v-list-tile-sub-title>{{ idx + 1}}.{{ subIdx + 1 }}. {{ subItem.heading }}</v-list-tile-sub-title>
                   </v-list-tile>
