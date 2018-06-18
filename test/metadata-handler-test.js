@@ -1,7 +1,7 @@
-var assert = require('assert');
-var MetadataHandler = require('../js-modules/metadata-handler');
 
 (function () {
+    var assert = require('assert');
+    var MetadataHandler = require('../js-modules/metadata-handler');
     // tests for extract metadata
     describe('Single line of metadata:', () => {
         it('should return {"author": "daveying"}', () => {
