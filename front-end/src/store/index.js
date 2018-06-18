@@ -58,8 +58,16 @@ export const store = new Vuex.Store({
         for (let blogId in blogsObj) {
           var blog = blogsObj[blogId]
           var date = blog['createdDate']
-          blog['createdDate'] = new Date(date.substring(0, 10) + 'T00:00:00')
-          blogs.push({...blog})
+          blogs.push({
+            id: blog['id'],
+            title: blog['title'],
+            createdDate: new Date(date.substring(0, 10) + 'T00:00:00'),
+            viewCount: blog['viewCount'],
+            like: blog['like'],
+            tags: blog['tags'] instanceof Array ? blog['tags'] : [blog['tags']],
+            abstract: blog['abstract'],
+            md: blog['md']
+          })
         }
         let sortedBlogs = blogs.sort((blogA, blogB) => {
           return blogB.createdDate - blogA.createdDate
