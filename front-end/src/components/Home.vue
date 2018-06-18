@@ -14,8 +14,11 @@
                         发布时间: {{ blog.createdDate.getFullYear() }}年{{ blog.createdDate.getMonth() + 1 }}月{{ blog.createdDate.getDate() }}日, 浏览量: {{ blog.viewCount }}次
                         <v-chip @click="onTagClicked(tag)" small outline v-for="tag in blog.tags" :key="tag"><a class="tag-link">{{ tag }}</a></v-chip>
                       </p>
-                      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic, non? Ducimus officiis ex velit dignissimos magni aut, et ullam ab voluptatum reprehenderit commodi perferendis quae harum laudantium fuga expedita assumenda.</p>
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius molestias exercitationem dolores, a totam molestiae dolorem eligendi nesciunt pariatur aperiam voluptatum! Quaerat soluta minima, quidem quasi sapiente id vero porro? <a @click="onBlogClicked(blog)" class="blog-link">[继续阅读...]</a></p>
+                    </v-flex>
+                    <v-flex xs12>
+                      <div>
+                        <markdown :md="blog.abstract"></markdown>
+                      </div>
                     </v-flex>
                   </v-layout>
                 </v-container>
@@ -80,6 +83,7 @@ export default {
   },
   computed: {
     blogs () {
+      console.log('Home blogs', this.$store.getters.blogs)
       return this.$store.getters.blogs
     },
     tags () {

@@ -3,7 +3,7 @@ var MdAbstract = MdAbstract || {};
 (function (MdAbstract) {
 
     var md = require('markdown-it')();
-    const linesOfAbstract = 8;
+    const linesOfAbstract = 5;
 
     MdAbstract.extractAbstract = function (mdStr) {
         var lines = mdStr.split('\n');
@@ -28,8 +28,8 @@ var MdAbstract = MdAbstract || {};
                 break;
             }
         }
-        var mdHtml = md.render(result.join('\n'));
-        return mdHtml;
+        // var mdHtml = md.render(result.join('\n'));
+        return result.join('\n');
     }
 
 })(MdAbstract);

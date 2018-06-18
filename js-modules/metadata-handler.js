@@ -11,19 +11,24 @@ var MetadataHandler = {} || MetadataHandler;
         var lines = mdStr.split('\n');
         var regexp = /^\[_metadata_:([\u0000-\uffef]+)\]:-\s+['"]([\u0000-\uffef]+)['"]$/u;
         var metadata = {};
+        var titleRex = /^# /;
+        var title = '';
         for (var i = 0, l = lines.length; i < l; i++) {
-            var pair = regexp.exec(lines[i].trim());
+            var trimedLine = lines[i].trim();
+            var pair = regexp.exec(trimedLine);
             if (pair && pair[1] && pair[2]) {
                 if (seperator) {
                     var arr = pair[2].split(seperator);
                 }
                 metadata[pair[1]] = arr && arr.length > 1 ? arr : pair[2];
-            } else if (lines[i].trim() !== '') {
+            }
+            if (titleRex.test(trimedLine)) {
+                title = trimedLine.split('# ')[1];
                 break;
             }
         }
         var extractedMd = lines.slice(i, lines.length).join('\n');
-        return { metadata, md: extractedMd};
+        return { metadata, md: extractedMd, title: title};
     };
 
     MetadataHandler.addMetadata = function (metadata, mdStr, seperator) {

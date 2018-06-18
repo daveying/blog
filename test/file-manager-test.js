@@ -9,7 +9,6 @@
     describe('Read markdown src directory', () => {
         it('should return markdown src as json', () => {
             fm.updateStructure();
-            fs.writeFile('result.html', fm.mainContent, 'utf8', (err) => { if (err) throw err; });
             fse.writeJson('structure.json', fm.structure, {spaces: '\t'}, err => {
                 if (err) throw err;
             });

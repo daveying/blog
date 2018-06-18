@@ -38,10 +38,10 @@
             assert.strictEqual(results.md, "");
         });
         it('should just extract the metadata at the top', () => {
-            var results = MetadataHandler.extractMetadata(`\n\n[_metadata_:author]:- 'daveying'\n#Tile\n[_metadata_:tags]:- '汉字 chinese'`);
+            var results = MetadataHandler.extractMetadata(`\n\n[_metadata_:author]:- 'daveying'\n# Tile\n[_metadata_:tags]:- '汉字 chinese'`);
             assert.strictEqual(results.metadata.author, 'daveying');
             assert.strictEqual(results.metadata.tags, undefined);
-            assert.strictEqual(results.md, `#Tile\n[_metadata_:tags]:- '汉字 chinese'`);
+            assert.strictEqual(results.md, `# Tile\n[_metadata_:tags]:- '汉字 chinese'`);
         });
     });
     describe('Support metadata value be array', () => {
