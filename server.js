@@ -9,7 +9,9 @@ app.use(history({
     ]
 }));
 
-app.get('/sd', (req, res) => res.send('Hello World!'))
+app.get('/api/all-articals', (req, res) => {
+    
+});
 
 app.use('/', express.static('blog-front/dist'));
 

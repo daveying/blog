@@ -1,7 +1,7 @@
 {
-  "name": "xingpeng-blog",
+  "name": "xp-da.com",
   "version": "1.0.0",
-  "description": "front of personal blog website",
+  "description": "Source code of xp-da.com",
   "author": "daveying <daveying@163.com>",
   "private": true,
   "scripts": {

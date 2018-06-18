@@ -7,18 +7,23 @@ var MdAbstract = MdAbstract || {};
 
     MdAbstract.extractAbstract = function (mdStr) {
         var lines = mdStr.split('\n');
+        var regexp = /^\[_metadata_:([\u0000-\uffef]+)\]:-\s+['"]([\u0000-\uffef]+)['"]$/u;
         var count = 0;
         var result = [];
         var flag = false; // if contains ```
         for (var line of lines) {
             var trimedLine = line.trim();
-            if (trimedLine !== '') {
+            var isMetaData = regexp.test(trimedLine);
+            var isTitle = trimedLine.indexOf('# ') >= 0;
+            if (trimedLine !== '' && !isTitle && !isMetaData) {
                 count++;
             }
             if (trimedLine.indexOf('```') >= 0) {
                 flag = !flag;
             }
-            result.push(line);
+            if (!isMetaData && !isTitle) {
+                result.push(line);
+            }
             if (flag === false && count >= linesOfAbstract) {
                 break;
             }

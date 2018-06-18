@@ -20,7 +20,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "build": "cd blog-front && node build/build.js && cd .."
+    "build": "cd front-end && node build/build.js && cd .."
   },
   "repository": {
     "type": "git",

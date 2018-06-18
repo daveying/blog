@@ -1,6 +1,6 @@
-# blog-front
+# xp-da.com
 
-> front of personal blog website
+> Source code of xp-da.com
 
 ## Build Setup
 
