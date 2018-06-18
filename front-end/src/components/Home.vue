@@ -83,7 +83,6 @@ export default {
   },
   computed: {
     blogs () {
-      console.log('Home blogs', this.$store.getters.blogs)
       return this.$store.getters.blogs
     },
     tags () {

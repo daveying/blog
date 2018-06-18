@@ -62,11 +62,6 @@ export default {
         }
       ]
     }
-  },
-  methods: {
-    achorClicked () {
-      console.log('achorClicked')
-    }
   }
 }
 </script>

@@ -135,11 +135,9 @@ export default {
   computed: {
     blog () {
       var encodedId = encodeURIComponent(this.id)
-      var b = this.$store.getters.blogs.find(blog => {
+      return this.$store.getters.blogs.find(blog => {
         return blog.id === encodedId
       })
-      console.log(b)
-      return b
     },
     isMobile () {
       return this.$store.getters.isMobile
