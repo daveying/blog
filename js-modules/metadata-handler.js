@@ -27,7 +27,7 @@ var MetadataHandler = {} || MetadataHandler;
                 break;
             }
         }
-        var extractedMd = lines.slice(i, lines.length).join('\n');
+        var extractedMd = lines.slice(i + 1, lines.length).join('\n');
         return { metadata, md: extractedMd, title: title};
     };
 

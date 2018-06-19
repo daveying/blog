@@ -100,7 +100,7 @@ export default {
       return decodeURIComponent(this.tag64)
     },
     monthArr () {
-      let selectedBlogs = this.$store.getters.tags[this.tag].blogs
+      let selectedBlogs = this.$store.getters.tags[this.tag].blogs // FIXME
       if (!selectedBlogs[0]) {
         return []
       }

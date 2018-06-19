@@ -18,7 +18,7 @@
             var results = MetaDataHandler.extractMetadata(data);
             var fileId = encodeURIComponent(filePath.split(srcDirName)[1]); // key = encodeURIComponent(filePath)
             this.files[fileId] = {
-                md: data,
+                md: results.md,
                 metadata: results.metadata,
                 createdDate: results.metadata['created-date'],
                 tags: results.metadata['tags'],

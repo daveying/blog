@@ -21,6 +21,9 @@
                       </div>
                     </v-flex>
                   </v-layout>
+                  <v-layout>
+                    <v-spacer></v-spacer><v-btn color="info" flat @click="onBlogClicked(blog)">继续阅读<v-icon right dark>navigate_next</v-icon></v-btn>
+                  </v-layout>
                 </v-container>
               </v-card>
             </v-flex>
