@@ -17,7 +17,7 @@
                     </v-flex>
                     <v-flex xs12>
                       <div>
-                        <markdown :md="blog.abstract"></markdown>
+                        <markdown :abstract="true" :blog="blog"></markdown>
                       </div>
                     </v-flex>
                   </v-layout>
