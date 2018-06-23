@@ -77,9 +77,6 @@ export default {
         this.hintShow = true
       }, 100)
     }
-    if (this.blog.like === true) {
-      this.fav = true
-    }
   },
   methods: {
     onTagClicked (tag) {

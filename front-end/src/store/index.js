@@ -10,7 +10,6 @@ export const store = new Vuex.Store({
     blogs: [],
     tags: {},
     goTopBtnShow: false,
-    toc: '',
     hintShow: true,
     isMobile: false
   },
@@ -26,9 +25,6 @@ export const store = new Vuex.Store({
     },
     setGoTopBtnShow (state, payload) {
       state.goTopBtnShow = payload
-    },
-    setToc (state, payload) {
-      state.toc = payload
     },
     setHintShow (state, payload) {
       state.hintShow = payload
@@ -89,9 +85,6 @@ export const store = new Vuex.Store({
         console.log('error in store')
       })
     },
-    setToc ({commit}, payload) {
-      commit('setToc', payload)
-    },
     setLike ({commit}, payload) {
       commit('setLike', payload)
       // update server like number
@@ -109,9 +102,6 @@ export const store = new Vuex.Store({
     },
     goTopBtnShow (state) {
       return state.goTopBtnShow
-    },
-    toc (state) {
-      return state.toc
     },
     hintShow (state) {
       return state.hintShow

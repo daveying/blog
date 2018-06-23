@@ -95,7 +95,7 @@ export default {
     return {
       x: 0,
       y: 0,
-      fav: false,
+      fav: this.blog.like,
       showMenu: false,
       tocHtml: '',
       toc: null
