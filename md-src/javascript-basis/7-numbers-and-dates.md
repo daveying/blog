@@ -4,9 +4,6 @@
 
 # 数字和日期
 
-**Reference**
-> [1] JavaScript Guide: [Numbers and dates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Numbers_and_dates)  
-
 ## 数字(Numbers)
 
 JavaScript中, 所有的数字都是[双精度浮点型(binary64)](https://en.wikipedia.org/wiki/Double-precision_floating-point_format). 在JavaScript中没有整数类型. JavaScript提供了一些特殊的数值: `+Infinity`, `-Infinity`以及`NaN`. 
@@ -196,17 +193,5 @@ Date(); // => "Thu Jun 01 2017 13:49:13 GMT+0800 (CST)"
 在JavaScript中, 0代表一月, 依次类推, 如果用"get"函数获得的月份为4, 其代表的为5月. 在设置以及创建日期时, 如果要创建4月, 应当输入整数3.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**Reference**
+> [1] JavaScript Guide: [Numbers and dates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Numbers_and_dates)  

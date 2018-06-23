@@ -4,9 +4,6 @@
 
 # 流程控制以及异常处理
 
-**Reference**
-> [1] JavaScript Guide: [Control flow and error handling](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)
-
 ## 语句块(Block statement)
 
 最基本的语句是语句块，其用来将一些列语句组合起来。语句块是通过花括号`{}`来与其他语句分隔的。
@@ -360,6 +357,9 @@ try {
 }
 ```
 
+
+**Reference**
+> [1] JavaScript Guide: [Control flow and error handling](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)
 
 
 

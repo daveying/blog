@@ -4,13 +4,6 @@
 
 # 函数
 
-**Reference**
-> [1] JavaScript Guide: [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)  
-> [2] JavaScript Reference: [Standard build-in objects / Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)  
-> [3] JavaScript Reference: [Functions / Default parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters)  
-> [4] JavaScript Reference: [Functions / Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)  
-> [5] JavaScript Reference: [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
-
 ## 定义函数
 
 定义函数的方式有三种，一种称为声明式定义（Function declaration），一种为表达式式定义（Function
@@ -697,6 +690,13 @@ f() === window; // => true
 更多的关于箭头函数的资料请参考[5].
 
 
+
+**Reference**
+> [1] JavaScript Guide: [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)  
+> [2] JavaScript Reference: [Standard build-in objects / Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function)  
+> [3] JavaScript Reference: [Functions / Default parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters)  
+> [4] JavaScript Reference: [Functions / Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)  
+> [5] JavaScript Reference: [Arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
 
 
 

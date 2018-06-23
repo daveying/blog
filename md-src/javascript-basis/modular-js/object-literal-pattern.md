@@ -4,12 +4,6 @@
 
 # JavaScript模块化编程 -- Object literal pattern
 
-**Reference**
-> [1] Learning JavaScript Design Patterns: [The Module Pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript)  
-> [2] Modular Javascript: [A video by LearnCode.academy](https://www.youtube.com/watch?v=m-NYyst_tiY&index=2&list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f)  
-> [3] 源代码: [github.com/daveying/modular-js](https://github.com/daveying/modular-js)
-
-
 不管是前端还是后端，模块化编程思想对于JavaScript开发来说都是最基本而且也非常重要的。本笔记记录几种典型的模块化编程的Pattern。
 
 对于一个如下图所示的添加人名的模块，在输入框中输入要添加的人的人名,当点击Add Person按钮，底下就会添加一个对应于这个人的方块，实现该模块有各种不同的方式，最为直接的是采用对象字面量来处理。
@@ -82,3 +76,9 @@ people.init();
 对于颜色的修改，只需要对`li`的css属性值进行修改即可。
 
 在对象外，只需要调用`people.init()`则整个模块就能正常工作了。这种方式是直接简单，但是也有非常明显的缺点，对象的数据可以任意地修改，若要将这种模块作为产品发布，由于用户的行为不可预测，不正常的使用这个模块都将产生严重的逻辑混乱。
+
+
+**Reference**
+> [1] Learning JavaScript Design Patterns: [The Module Pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript)  
+> [2] Modular Javascript: [A video by LearnCode.academy](https://www.youtube.com/watch?v=m-NYyst_tiY&index=2&list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f)  
+> [3] 源代码: [github.com/daveying/modular-js](https://github.com/daveying/modular-js)

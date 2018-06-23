@@ -4,12 +4,7 @@
 
 # JavaScript模块化编程 -- Revealing module pattern
 
-**Reference**
-> [1] Learning JavaScript Design Patterns: [The Module Pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript)  
-> [2] Modular Javascript: [A video by LearnCode.academy](https://www.youtube.com/watch?v=pOfwp6VlnlM&index=3&list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f)  
-> [3] 源代码: [github.com/daveying/modular-js](https://github.com/daveying/modular-js)
-
-# Revealing module pattern
+## Revealing module pattern
 
 由于对象字面量中的任何数据都能被外部访问修改，如果这个模块是要让其他用户使用的话，很可能被错误的使用，造成模块逻辑混乱。
 
@@ -140,3 +135,8 @@ __proto__:Object
 
 相比较于对象字面量，该种方式实现了模块的封装，并且能够提供有效接口。这就为面向对象的编程提供了基础。但是面向对象编程的另一个比较重要的方面是继承与多态。而Revealing Module Pattern对于此则毫无办法。
 
+
+**Reference**
+> [1] Learning JavaScript Design Patterns: [The Module Pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript)  
+> [2] Modular Javascript: [A video by LearnCode.academy](https://www.youtube.com/watch?v=pOfwp6VlnlM&index=3&list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f)  
+> [3] 源代码: [github.com/daveying/modular-js](https://github.com/daveying/modular-js)

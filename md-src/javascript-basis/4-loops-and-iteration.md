@@ -4,9 +4,6 @@
 
 # 循环与迭代
 
-**Reference**
-> [1] JavaScript Guide: [Loops and iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)
-
 循环语句使得我们可以很方便地重复执行一段代码一定次数。JavaScript提供了非常多的循环机制，
 不同的循环机制提供了进入或退出循环的不同的方式，不同的循环机制往往在某些场景下用起来比
 其他方式更加高效。
@@ -292,6 +289,9 @@ for (let i of car) {
 // Uncaught TypeError: undefined is not a function
 ```
 
+
+**Reference**
+> [1] JavaScript Guide: [Loops and iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)
 
 
 

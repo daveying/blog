@@ -4,9 +4,6 @@
 
 # Promises和JavaScript线程
 
-**Reference**
-> [1] JavaScript Reference: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-
 ## Promises
 
 `Promise`对象被用来进行异步计算。一个`Promise`代表一个值，这个值有可能现在就能获取，也有可能
@@ -37,14 +34,5 @@ myFirstPromise.then(function (successMessage) {
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
+**Reference**
+> [1] JavaScript Reference: [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)

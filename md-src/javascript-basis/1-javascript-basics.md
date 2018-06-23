@@ -4,8 +4,6 @@
 
 # JavaScript基础
 
-**Reference**
-> [1] JavaScript Guide: [Grammar and types](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Grammar_and_types)
 
 ## 三种声明
 
@@ -179,3 +177,6 @@ MY_OBJECT = {'Key': 'otherValue'}; //TypeError: Assignment to constant variable
 以上可以看出，`MY_OBJECT`更像是一个指针，指针所储存的地址不可改变，即不能重新赋值指向另外一个对象，
 但是`MY_OBJECT`所指向的内存空间的内容是可以改变的。（这点有点像Python）
 
+
+**Reference**
+> [1] JavaScript Guide: [Grammar and types](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Grammar_and_types)

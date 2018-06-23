@@ -4,11 +4,6 @@
 
 # Internet VS. Web
 
-**References:**
-
-- [Mozilla MDN: How does the Internet work?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work)
-- [Mozilla MDN: How the Web works?](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/How_the_Web_works)
-
 ## Internet 是如何工作的?
 
 ### Internet介绍
@@ -83,3 +78,10 @@ IP地址对于计算机来说非常容易处理，但是对于人们来说是比
 ## Internet和Web的区别
 
 从上述的讨论可以看出，Internet和Web其实不是一回事。Internet更多的指互联的计算机硬件设施，其中的一些计算机为web服务器，可以将网站文件发送给其中的客户端计算机。Internet是硬件设施，而Web是一种建立在Internet基础上的服务。同样的服务还包括Email和IRC（Internet relay chat）等。
+
+
+**References:**
+
+- [Mozilla MDN: How does the Internet work?](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/How_does_the_Internet_work)
+- [Mozilla MDN: How the Web works?](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/How_the_Web_works)
+

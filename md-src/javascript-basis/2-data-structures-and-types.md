@@ -4,9 +4,6 @@
 
 # 数据结构与数据类型
 
-**Reference**
-> [1] JavaScript Guide: [Grammar and types](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Grammar_and_types)
-
 ## 数据类型
 
 JavaScript可以识别以下7种不同类型的值：
@@ -310,4 +307,7 @@ Violets are blue.\n\
 Sugar is sweet,\n\
 and so is foo."
 ```
+
+**Reference**
+> [1] JavaScript Guide: [Grammar and types](https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Grammar_and_types)
 

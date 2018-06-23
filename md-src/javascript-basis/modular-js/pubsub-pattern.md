@@ -4,11 +4,6 @@
 
 # JavaScript模块化编程 -- Pubsub pattern
 
-**Reference**
-> [1] Learning JavaScript Design Patterns: [The Module Pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript)  
-> [2] Modular Javascript: [A video by LearnCode.academy](https://www.youtube.com/watch?v=nQRXi1SVOow&list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f&index=4)  
-> [3] 源代码: [github.com/daveying/modular-js](https://github.com/daveying/modular-js)
-
 模块化的编程思路使得应用中的数据被封装隐藏，这中处理方式为我们提供了非常多的优点，但是数据的封装与隐藏实际上对模块之间的通信造成了麻烦。以如下图所示的两个模块作为例子，除了人名模块之外，还有一个状态模块，这个模块显示人名模块中人名的个数，人名模块中人名列表发生更改，状态模块也要随之更改。
 
 ![Add Person Module and Status module](https://github.com/daveying/modular-js/blob/master/pic/add-person-module-and-status-module.png?raw=true)
@@ -64,5 +59,9 @@ var events = (function () {
 在这个简单的`pubsub`或者说`events`模块中，有一个事件列表，该表中存储注册的事件以及对应于该事件的处理函数。调用函数`on`将注册到一个特定的事件上，比如在本例`stats`模块就注册到了`peopleChange`事件，注册时需要提供一个事件处理函数，这个函数会在`peopleChang`被触发时得到执行。调用`off`函数会取消原本注册到特定事件的事件处理函数。而`emit`函数则用来触发特定事件，如`people`模块，一旦人名列表中个数发生改变则触发`peopleChange`事件，使得注册到该事件上的所有事件处理函数得到执行。通过这种方式各个模块可以实现解耦协作。
 
 
+**Reference**
+> [1] Learning JavaScript Design Patterns: [The Module Pattern](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript)  
+> [2] Modular Javascript: [A video by LearnCode.academy](https://www.youtube.com/watch?v=nQRXi1SVOow&list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f&index=4)  
+> [3] 源代码: [github.com/daveying/modular-js](https://github.com/daveying/modular-js)
 
 

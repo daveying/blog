@@ -4,10 +4,6 @@
 
 # 表达式和运算符
 
-**Reference**
-> [1] JavaScript Guide: [Expressions and operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators)  
-> [2] JavaScript Reference: [Expressions and operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators)
-
 ## 运算符
 
 JavaScript包含如下几类运算符:
@@ -592,3 +588,7 @@ var args = [0, 1, 2];
 f(...args);
 ```
 
+
+**Reference**
+> [1] JavaScript Guide: [Expressions and operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators)  
+> [2] JavaScript Reference: [Expressions and operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators)
