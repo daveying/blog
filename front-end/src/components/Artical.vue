@@ -21,6 +21,17 @@
           </v-card>
         </v-flex>
       </v-layout>
+      <v-layout row wrap align-center>
+        <v-btn color="primary" fab dark>
+          <v-icon>keyboard_arrow_left</v-icon>
+        </v-btn>
+        <span>sdafd</span>
+        <v-spacer></v-spacer>
+        <span>sdadfa</span>
+        <v-btn color="primary" fab dark>
+          <v-icon>keyboard_arrow_right</v-icon>
+        </v-btn>
+      </v-layout>
       <v-snackbar
         :timeout="timeout"
         left
