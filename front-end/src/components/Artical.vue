@@ -22,13 +22,13 @@
         </v-flex>
       </v-layout>
       <v-layout row wrap align-center>
-        <v-btn color="primary" fab dark>
+        <v-btn v-if="previousBlog" @click="onBlogClicked(previousBlog)" color="primary" small fab dark>
           <v-icon>keyboard_arrow_left</v-icon>
         </v-btn>
-        <span>sdafd</span>
+        <span v-if="previousBlog">{{ previousBlog ? previousBlog.title : '' }}</span>
         <v-spacer></v-spacer>
-        <span>sdadfa</span>
-        <v-btn color="primary" fab dark>
+        <span v-if="nextBlog">{{ nextBlog ? nextBlog.title : '' }}</span>
+        <v-btn v-if="nextBlog" @click="onBlogClicked(nextBlog)" color="primary" small fab dark>
           <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
       </v-layout>
@@ -67,16 +67,38 @@ export default {
   computed: {
     blog () {
       var encodedId = encodeURIComponent(this.id)
-      var b = this.$store.getters.blogs.find(blog => {
+      var blogs = this.$store.getters.blogs
+      var idx = blogs.findIndex(blog => {
         return blog.id === encodedId
       })
-      var val = b ? {
-        ...b,
-        year: b.createdDate.getFullYear(),
-        month: b.createdDate.getMonth() + 1,
-        day: b.createdDate.getDate()
-      } : {}
-      return val
+      if (idx !== -1) {
+        return {
+          ...blogs[idx],
+          year: blogs[idx].createdDate.getFullYear(),
+          month: blogs[idx].createdDate.getMonth() + 1,
+          day: blogs[idx].createdDate.getDate()
+        }
+      }
+      return {}
+    },
+    previousBlog () {
+      var encodedId = encodeURIComponent(this.id)
+      var blogs = this.$store.getters.blogs
+      var idx = blogs.findIndex(blog => {
+        return blog.id === encodedId
+      })
+      if (idx - 1 >= 0) {
+        return blogs[idx - 1]
+      }
+      return undefined
+    },
+    nextBlog () {
+      var encodedId = encodeURIComponent(this.id)
+      var blogs = this.$store.getters.blogs
+      var idx = blogs.findIndex(blog => {
+        return blog.id === encodedId
+      })
+      return blogs[idx + 1]
     },
     isMobile () {
       return this.$store.getters.isMobile
@@ -93,6 +115,9 @@ export default {
     onTagClicked (tag) {
       let tag64 = encodeURIComponent(tag)
       this.$router.push('/blogs/' + tag64)
+    },
+    onBlogClicked (blog) {
+      this.$router.push(`/blog/${blog.id}`)
     },
     hideMenu (timeout) {
       setTimeout(() => {
