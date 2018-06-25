@@ -7,7 +7,8 @@
         :toc="true"
         :toc-last-level="3"
         @toc-rendered="tocRendered"
-      >{{ this.abstract ? blog.abstract : blog.md }}</vue-markdown>
+        :source="this.abstract ? blog.abstract : blog.md"
+      ></vue-markdown>
     </div>
     <v-menu
       :close-on-content-click="false"
