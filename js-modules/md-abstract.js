@@ -3,7 +3,7 @@ var MdAbstract = MdAbstract || {};
 (function (MdAbstract) {
 
     var md = require('markdown-it')();
-    const linesOfAbstract = 5;
+    const wordOfAbstract = 200;
 
     MdAbstract.extractAbstract = function (mdStr) {
         var lines = mdStr.split('\n');
@@ -16,7 +16,7 @@ var MdAbstract = MdAbstract || {};
             var isMetaData = regexp.test(trimedLine);
             var isTitle = trimedLine.indexOf('# ') >= 0;
             if (trimedLine !== '' && !isTitle && !isMetaData) {
-                count++;
+                count += trimedLine.length;
             }
             if (trimedLine.indexOf('```') >= 0) {
                 flag = !flag;
@@ -24,7 +24,7 @@ var MdAbstract = MdAbstract || {};
             if (!isMetaData && !isTitle) {
                 result.push(line);
             }
-            if (flag === false && count >= linesOfAbstract) {
+            if (flag === false && count >= wordOfAbstract) {
                 break;
             }
         }
