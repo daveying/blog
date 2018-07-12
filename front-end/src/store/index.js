@@ -9,6 +9,7 @@ export const store = new Vuex.Store({
   state: {
     blogs: [],
     tags: {},
+    recentViewed: [],
     hintShow: true,
     isMobile: false
   },
@@ -22,6 +23,13 @@ export const store = new Vuex.Store({
     setTags (state, payload) {
       state.tags = payload
     },
+    pushRecentViewed (state, payload) {
+      let idx = state.recentViewed.indexOf(payload)
+      if (idx > -1) {
+        state.recentViewed.splice(idx, 1)
+      }
+      state.recentViewed.splice(0, 0, payload)
+    },
     setHintShow (state, payload) {
       state.hintShow = payload
     },
@@ -33,8 +41,8 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    setGoTopBtnShow ({commit}, payload) {
-      commit('setGoTopBtnShow', payload)
+    pushRecentViewed ({commit}, payload) {
+      commit('pushRecentViewed', payload)
     },
     setHintShow ({commit}, payload) {
       commit('setHintShow', payload)
@@ -101,6 +109,9 @@ export const store = new Vuex.Store({
     },
     isMobile (state) {
       return state.isMobile
+    },
+    recentViewed (state) {
+      return state.recentViewed
     }
   }
 })

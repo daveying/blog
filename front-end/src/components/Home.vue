@@ -55,6 +55,43 @@
               </v-layout>
             </v-container>
           </v-card>
+          <v-card v-if="recentViewed.length > 0" class="mt-2" tile>
+            <v-container>
+              <h2>最近浏览</h2>
+              <v-divider></v-divider>
+              <v-layout row wrap>
+                <v-flex xs12>
+                  <v-list two-line>
+                    <div
+                      v-for="item in recentViewed"
+                      :key="item.id"
+                    >
+                      <v-list-tile
+                        ripple
+                        @click="onBlogClicked(item)"
+                      >
+                        <v-list-tile-content>
+                          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                          <v-list-tile-sub-title>
+                            <v-icon small>mdi mdi-calendar-range</v-icon>{{item.createdDate.getFullYear()}}-{{pad(item.createdDate.getMonth() + 1)}}-{{pad(item.createdDate.getDate())}}
+                            <v-icon small>mdi mdi-tag</v-icon><span v-for="(tag, tagIdx) in item.tags" :key="tag">
+                              {{ tag }}
+                              <span v-if="tagIdx + 1 < item.tags.length" :key="tagIdx"> | </span>
+                            </span>
+                          </v-list-tile-sub-title>
+                        </v-list-tile-content>
+                        <v-list-tile-action>
+                          <v-list-tile-action-text>
+                            <v-icon small>mdi mdi-eye-outline</v-icon> {{ item.viewCount }}
+                          </v-list-tile-action-text>
+                        </v-list-tile-action>
+                      </v-list-tile>
+                    </div>
+                  </v-list>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card>
           <v-card class="mt-2" tile>
             <v-container>
               <h2>最受欢迎</h2>
@@ -113,7 +150,6 @@
 </template>
 
 <script>
-// var Base64 = require('js-base64').Base64
 
 export default {
   data () {
@@ -125,6 +161,12 @@ export default {
   computed: {
     blogs () {
       return this.$store.getters.blogs
+    },
+    recentViewed () {
+      let recentViewed = [...this.$store.getters.recentViewed]
+      let showCount = 5
+      if (recentViewed.length < showCount) return recentViewed
+      return recentViewed.splice(0, showCount)
     },
     favArray () {
       let blogs = [...this.blogs]
@@ -160,6 +202,7 @@ export default {
       this.$router.push('/blogs/' + tag64)
     },
     onBlogClicked (blog) {
+      this.$store.dispatch('pushRecentViewed', blog)
       this.$router.push(`/blog/${blog.id}`)
     },
     pad (n) {

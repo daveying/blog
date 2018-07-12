@@ -118,6 +118,7 @@ export default {
       this.$router.push('/blogs/' + tag64)
     },
     onBlogClicked (blog) {
+      this.$store.dispatch('pushRecentViewed', blog)
       this.$router.push(`/blog/${blog.id}`)
     },
     hideMenu (timeout) {
