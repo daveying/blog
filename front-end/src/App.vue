@@ -10,7 +10,7 @@
         <v-list-tile
           v-for="item in menuItems"
           :key="item.title"
-          @click="onClicked()"
+          @click="void 0"
           :to="item.link"
         >
           <v-list-tile-action>
@@ -124,24 +124,12 @@ export default {
     }
   },
   created () {
-    let oldCb = window.onscroll
-    window.onscroll = function () {
-      if (oldCb) {
-        oldCb()
-      }
-      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        this.$store.dispatch('setGoTopBtnShow', true)
-      } else {
-        this.$store.dispatch('setGoTopBtnShow', false)
-      }
-    }.bind(this)
     function isMobileDevice () {
       return (typeof window.orientation !== 'undefined') || (navigator.userAgent.indexOf('IEMobile') !== -1)
     }
     this.$store.dispatch('setMobile', isMobileDevice())
   },
   methods: {
-    onClicked () {},
     ongoTopBtnClicked () {
       let itvId = setInterval(moveTop, 5)
       function moveTop () {
@@ -157,9 +145,6 @@ export default {
     }
   },
   computed: {
-    goTopBtn () {
-      return this.$store.getters.goTopBtnShow
-    },
     menuItems () {
       let menuItems = [
         { icon: 'home', title: '首页', link: '/' },

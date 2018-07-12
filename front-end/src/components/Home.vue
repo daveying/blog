@@ -4,7 +4,7 @@
       <v-layout row wrap>
         <v-flex xs12 md8>
           <v-layout row wrap>
-            <v-flex v-for="blog in blogs" :key="blog.id" xs12>
+            <v-flex v-for="blog in showingBlog" :key="blog.id" xs12>
               <v-card hover tile>
                 <v-container @click="onBlogClicked(blog)" class="px-3 py-2">
                   <v-layout row wrap>
@@ -31,14 +31,14 @@
           </v-layout>
           <v-layout row py-4 class="text-xs-center">
             <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
-              <v-pagination :length="15" v-model="pageIdx"></v-pagination>
+              <v-pagination :length="pageLength" v-model="pageIdx"></v-pagination>
             </v-flex>
           </v-layout>
         </v-flex>
         <v-flex xs12 md4>
           <v-card tile>
             <v-container>
-              <h3 class="mb-2">标签列表</h3>
+              <h2 class="mb-2">标签列表</h2>
               <v-divider></v-divider>
               <v-layout wrap class="mt-2">
                 <v-chip
@@ -57,7 +57,7 @@
           </v-card>
           <v-card class="mt-2" tile>
             <v-container>
-              <h3 class="mb-2">关于作者</h3>
+              <h2 class="mb-2">关于作者</h2>
               <v-divider></v-divider>
               <v-layout wrap class="mt-2">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, nostrum! Nam necessitatibus at nobis optio facere qui quaerat quae non dicta eaque, et doloremque voluptatibus eum quod adipisci, praesentium ducimus.</p>
@@ -81,12 +81,21 @@
 export default {
   data () {
     return {
-      pageIdx: 1
+      pageIdx: 1,
+      numPerPage: 5
     }
   },
   computed: {
     blogs () {
       return this.$store.getters.blogs
+    },
+    showingBlog () {
+      if (!this.blogs) return []
+      return this.blogs.slice((this.pageIdx - 1) * this.numPerPage, this.pageIdx * this.numPerPage > this.blogs.length ? this.blogs.length : this.pageIdx * this.numPerPage)
+    },
+    pageLength () {
+      if (!this.blogs) return 0
+      return Math.ceil(this.blogs.length / this.numPerPage)
     },
     tags () {
       let tags = this.$store.getters.tags

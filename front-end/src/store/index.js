@@ -9,7 +9,6 @@ export const store = new Vuex.Store({
   state: {
     blogs: [],
     tags: {},
-    goTopBtnShow: false,
     hintShow: true,
     isMobile: false
   },
@@ -22,9 +21,6 @@ export const store = new Vuex.Store({
     },
     setTags (state, payload) {
       state.tags = payload
-    },
-    setGoTopBtnShow (state, payload) {
-      state.goTopBtnShow = payload
     },
     setHintShow (state, payload) {
       state.hintShow = payload
@@ -99,9 +95,6 @@ export const store = new Vuex.Store({
     },
     tags (state) {
       return state.tags
-    },
-    goTopBtnShow (state) {
-      return state.goTopBtnShow
     },
     hintShow (state) {
       return state.hintShow

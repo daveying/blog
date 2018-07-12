@@ -15,7 +15,6 @@
                   <v-chip
                     small
                     outline
-                    label
                     :color="tag.color"
                     @click="onTagClicked(tag.name)"
                   >
