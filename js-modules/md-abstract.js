@@ -2,7 +2,6 @@ var MdAbstract = MdAbstract || {};
 
 (function (MdAbstract) {
 
-    var md = require('markdown-it')();
     const wordOfAbstract = 200;
 
     MdAbstract.extractAbstract = function (mdStr) {

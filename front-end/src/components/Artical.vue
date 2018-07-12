@@ -9,7 +9,7 @@
                 <v-flex xs12>
                   <h1 class="blog-title">{{ blog.title }}</h1>
                   <p>
-                    发布时间: {{ blog.year }}年{{ blog.month }}月{{ blog.day }}日, 浏览量: {{ blog.viewCount }}次
+                    <span class="grey--text text--darken-1">发布时间: {{ blog.year }}年{{ blog.month }}月{{ blog.day }}日, 浏览量: {{ blog.viewCount }}次</span>
                     <v-chip @click="onTagClicked(tag)" small outline v-for="tag in blog.tags" :key="tag"><a class="tag-link">{{ tag }}</a></v-chip>
                   </p>
                   <div>
