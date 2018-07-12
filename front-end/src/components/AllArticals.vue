@@ -31,7 +31,7 @@
         <v-flex xs12>
           <v-card tile>
             <v-container px-3>
-              <h2 class="text--primary">文章列表 - {{ this.tag === 'all' ? '所有文章' : this.tag }}</h2>
+              <h2 class="text--primary">文章列表 - <span class="blue--text">{{ this.tag === 'all' ? '所有文章' : this.tag }}</span></h2>
               <v-divider></v-divider>
               <v-layout
                 v-for="month in monthArr"

@@ -6,7 +6,7 @@
           <v-layout row wrap>
             <v-flex v-for="blog in showingBlog" :key="blog.id" xs12>
               <v-card hover tile>
-                <v-container @click="onBlogClicked(blog)" class="px-3 py-2">
+                <v-container class="px-3 py-2">
                   <v-layout row wrap>
                     <v-flex xs12>
                       <h1 @click="onBlogClicked(blog)"><a class="blog-link">{{ blog.title }}</a></h1>
@@ -17,7 +17,7 @@
                       </p>
                     </v-flex>
                     <v-flex xs12>
-                      <div>
+                      <div @click="onBlogClicked(blog)" >
                         <markdown :abstract="true" :blog="blog"></markdown>
                       </div>
                     </v-flex>
@@ -57,6 +57,43 @@
           </v-card>
           <v-card class="mt-2" tile>
             <v-container>
+              <h2>最受欢迎</h2>
+              <v-divider></v-divider>
+              <v-layout row wrap>
+                <v-flex xs12>
+                  <v-list two-line>
+                    <div
+                      v-for="item in favArray"
+                      :key="item.id"
+                    >
+                      <v-list-tile
+                        ripple
+                        @click="onBlogClicked(item)"
+                      >
+                        <v-list-tile-content>
+                          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                          <v-list-tile-sub-title>
+                            <v-icon small>mdi mdi-calendar-range</v-icon>{{item.createdDate.getFullYear()}}-{{pad(item.createdDate.getMonth() + 1)}}-{{pad(item.createdDate.getDate())}}
+                            <v-icon small>mdi mdi-tag</v-icon><span v-for="(tag, tagIdx) in item.tags" :key="tag">
+                              {{ tag }}
+                              <span v-if="tagIdx + 1 < item.tags.length" :key="tagIdx"> | </span>
+                            </span>
+                          </v-list-tile-sub-title>
+                        </v-list-tile-content>
+                        <v-list-tile-action>
+                          <v-list-tile-action-text>
+                            <v-icon small>mdi mdi-eye-outline</v-icon> {{ item.viewCount }}
+                          </v-list-tile-action-text>
+                        </v-list-tile-action>
+                      </v-list-tile>
+                    </div>
+                  </v-list>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card>
+          <v-card class="mt-2" tile>
+            <v-container>
               <h2 class="mb-2">关于作者</h2>
               <v-divider></v-divider>
               <v-layout wrap class="mt-2">
@@ -89,6 +126,15 @@ export default {
     blogs () {
       return this.$store.getters.blogs
     },
+    favArray () {
+      let blogs = [...this.blogs]
+      let sortedBlog = blogs.sort((a, b) => {
+        return parseInt(a.viewCount) < parseInt(b.viewCount) ? 1 : -1
+      })
+      let showCount = 8
+      if (sortedBlog.length < showCount) return sortedBlog
+      return sortedBlog.splice(0, showCount)
+    },
     showingBlog () {
       if (!this.blogs) return []
       return this.blogs.slice((this.pageIdx - 1) * this.numPerPage, this.pageIdx * this.numPerPage > this.blogs.length ? this.blogs.length : this.pageIdx * this.numPerPage)
@@ -115,6 +161,9 @@ export default {
     },
     onBlogClicked (blog) {
       this.$router.push(`/blog/${blog.id}`)
+    },
+    pad (n) {
+      return (n < 10) ? ('0' + n) : n
     }
   }
 }
