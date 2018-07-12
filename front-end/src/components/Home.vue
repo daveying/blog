@@ -5,11 +5,12 @@
         <v-flex xs12 md8>
           <v-layout row wrap>
             <v-flex v-for="blog in blogs" :key="blog.id" xs12>
-              <v-card>
-                <v-container class="px-3 py-2">
+              <v-card hover tile>
+                <v-container @click="onBlogClicked(blog)" class="px-3 py-2">
                   <v-layout row wrap>
                     <v-flex xs12>
-                      <h2 @click="onBlogClicked(blog)"><a class="blog-link">{{ blog.title }}</a></h2>
+                      <h1 @click="onBlogClicked(blog)"><a class="blog-link">{{ blog.title }}</a></h1>
+                      <br>
                       <p>
                         <span class="grey--text text--darken-1">发布时间: {{ blog.createdDate.getFullYear() }}年{{ blog.createdDate.getMonth() + 1 }}月{{ blog.createdDate.getDate() }}日, 浏览量: {{ blog.viewCount }}次</span>
                         <v-chip @click="onTagClicked(tag)" small outline v-for="tag in blog.tags" :key="tag"><a class="tag-link">{{ tag }}</a></v-chip>
@@ -35,7 +36,7 @@
           </v-layout>
         </v-flex>
         <v-flex xs12 md4>
-          <v-card>
+          <v-card tile>
             <v-container>
               <h3 class="mb-2">标签列表</h3>
               <v-divider></v-divider>
@@ -54,7 +55,7 @@
               </v-layout>
             </v-container>
           </v-card>
-          <v-card class="mt-2">
+          <v-card class="mt-2" tile>
             <v-container>
               <h3 class="mb-2">关于作者</h3>
               <v-divider></v-divider>
@@ -80,8 +81,7 @@
 export default {
   data () {
     return {
-      pageIdx: 1,
-      pageId: '123'
+      pageIdx: 1
     }
   },
   computed: {

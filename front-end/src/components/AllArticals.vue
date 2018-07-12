@@ -3,7 +3,7 @@
     <v-container class="my-0 px-2" fluid style="min-height: 0;" grid-list-md>
       <v-layout row wrap>
         <v-flex xs12>
-          <v-card>
+          <v-card tile>
             <v-container>
               <h2 class="text--primary">所有标签</h2>
               <v-divider></v-divider>
@@ -30,7 +30,7 @@
       </v-layout>
       <v-layout>
         <v-flex xs12>
-          <v-card>
+          <v-card tile>
             <v-container px-3>
               <h2 class="text--primary">文章列表 - {{ this.tag === 'all' ? '所有文章' : this.tag }}</h2>
               <v-divider></v-divider>
