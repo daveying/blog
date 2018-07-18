@@ -5,7 +5,7 @@
         <v-flex xs12 md8>
           <v-layout row wrap>
             <v-flex v-for="blog in showingBlog" :key="blog.id" xs12>
-              <v-card hover tile>
+              <v-card hover tile style="cursor: default">
                 <v-container class="px-3 py-2">
                   <v-layout row wrap>
                     <v-flex xs12>
@@ -17,7 +17,7 @@
                       </p>
                     </v-flex>
                     <v-flex xs12>
-                      <div @click="onBlogClicked(blog)" >
+                      <div @click="onBlogClicked(blog)" style="cursor: pointer">
                         <markdown :abstract="true" :blog="blog"></markdown>
                       </div>
                     </v-flex>
