@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app light>
     <v-navigation-drawer
       v-model="sideNav"
       fixed

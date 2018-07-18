@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import AllArticals from '@/components/AllArticals'
 import About from '@/components/About'
 import Artical from '@/components/Artical'
+import NewArtical from '@/components/NewArtical'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
       path: '/about',
       name: 'About',
       component: About
+    },
+    {
+      path: '/create',
+      name: 'NewArtical',
+      component: NewArtical
     }
   ],
   mode: 'history',
