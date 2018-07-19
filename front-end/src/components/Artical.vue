@@ -22,16 +22,31 @@
           </v-card>
         </v-flex>
       </v-layout>
-      <v-layout row wrap align-center>
-        <v-btn v-if="previousBlog" @click="onBlogClicked(previousBlog)" color="primary" small fab dark>
-          <v-icon>keyboard_arrow_left</v-icon>
-        </v-btn>
-        <span v-if="previousBlog">{{ previousBlog ? previousBlog.title : '' }}</span>
-        <v-spacer></v-spacer>
-        <span v-if="nextBlog">{{ nextBlog ? nextBlog.title : '' }}</span>
-        <v-btn v-if="nextBlog" @click="onBlogClicked(nextBlog)" color="primary" small fab dark>
-          <v-icon>keyboard_arrow_right</v-icon>
-        </v-btn>
+      <v-layout wrap align-center justify-space-between row fill-height>
+        <v-flex md6 xs12>
+          <v-layout align-center justify-space-between row fill-height>
+            <v-flex xs1 md2>
+              <v-btn v-if="previousBlog" @click="onBlogClicked(previousBlog)" color="primary" small fab dark>
+                <v-icon>keyboard_arrow_left</v-icon>
+              </v-btn>
+            </v-flex>
+            <v-flex xs11 md10>
+              <span v-if="previousBlog">{{ previousBlog ? previousBlog.title : '' }}</span>
+            </v-flex>
+          </v-layout>
+        </v-flex>
+        <v-flex row md6 xs12>
+          <v-layout align-center justify-space-between row fill-height>
+            <v-flex xs11 md10 class="text-xs-right">
+              <span v-if="nextBlog">{{ nextBlog ? nextBlog.title : '' }}</span>
+            </v-flex>
+            <v-flex xs1 md2>
+              <v-btn v-if="nextBlog" @click="onBlogClicked(nextBlog)" color="primary" small fab dark>
+                <v-icon>keyboard_arrow_right</v-icon>
+              </v-btn>
+            </v-flex>
+          </v-layout>
+        </v-flex>
       </v-layout>
       <v-snackbar
         :timeout="timeout"
