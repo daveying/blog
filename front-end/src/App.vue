@@ -45,9 +45,14 @@
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
-      <v-container fluid mx-0 px-0>
-        <v-layout>
+      <v-container :fill-height="fullWidth" fluid mx-0 px-0>
+        <v-layout v-if="!fullWidth">
           <v-flex xs12 md10 lg8 offset-md1 offset-lg2>
+            <router-view></router-view>
+          </v-flex>
+        </v-layout>
+        <v-layout v-if="fullWidth">
+          <v-flex xs12>
             <router-view></router-view>
           </v-flex>
         </v-layout>
@@ -99,7 +104,7 @@
           </v-btn>
         </v-speed-dial>
       </v-container>
-      <v-container fluid class="ml-0">
+      <v-container v-if="!fullWidth" fluid class="ml-0">
         <v-layout>
           <v-flex xs12 class="grey lighten-5 text-xs-center">
             <!-- <v-divider></v-divider> -->
@@ -166,6 +171,9 @@ export default {
     userIsAuthenticated () {
       return true
       // return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+    },
+    fullWidth () {
+      return this.$store.getters.fullWidth === true
     }
   },
   name: 'App'

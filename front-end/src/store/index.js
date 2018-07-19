@@ -11,9 +11,13 @@ export const store = new Vuex.Store({
     tags: {},
     recentViewed: [],
     hintShow: true,
-    isMobile: false
+    isMobile: false,
+    fullWidth: false
   },
   mutations: {
+    setFullWidth (state, payload) {
+      state.fullWidth = payload
+    },
     createBlog (state, payload) {
       state.blogs.push(payload)
     },
@@ -41,6 +45,9 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
+    setFullWidth ({commit}, payload) {
+      commit('setFullWidth', payload)
+    },
     pushRecentViewed ({commit}, payload) {
       commit('pushRecentViewed', payload)
     },
@@ -112,6 +119,9 @@ export const store = new Vuex.Store({
     },
     recentViewed (state) {
       return state.recentViewed
+    },
+    fullWidth (state) {
+      return state.fullWidth
     }
   }
 })

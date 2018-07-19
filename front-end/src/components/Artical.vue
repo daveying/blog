@@ -40,7 +40,7 @@
             <v-flex xs11 md10 class="text-xs-right">
               <span v-if="nextBlog">{{ nextBlog ? nextBlog.title : '' }}</span>
             </v-flex>
-            <v-flex xs1 md2>
+            <v-flex xs1 md2 class="text-xs-right">
               <v-btn v-if="nextBlog" @click="onBlogClicked(nextBlog)" color="primary" small fab dark>
                 <v-icon>keyboard_arrow_right</v-icon>
               </v-btn>
@@ -121,6 +121,7 @@ export default {
     }
   },
   created () {
+    this.$store.dispatch('setFullWidth', false)
     if (this.$store.getters.hintShow === true) {
       setTimeout(() => {
         this.hintShow = true

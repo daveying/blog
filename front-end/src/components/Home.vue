@@ -158,6 +158,9 @@ export default {
       numPerPage: 5
     }
   },
+  created () {
+    this.$store.dispatch('setFullWidth', false)
+  },
   computed: {
     blogs () {
       return this.$store.getters.blogs

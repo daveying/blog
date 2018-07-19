@@ -94,6 +94,9 @@ export default {
       pageIdx: 1
     }
   },
+  created () {
+    this.$store.dispatch('setFullWidth', false)
+  },
   computed: {
     tag () {
       return decodeURIComponent(this.tag64)
