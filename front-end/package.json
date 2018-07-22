@@ -9,7 +9,7 @@
     "start": "npm run dev",
     "test": "ls && echo this is a test",
     "lint": "eslint --ext .js,.vue src",
-    "b": "node build/prebuild.js && node build/build.js"
+    "build": "node build/prebuild.js && node build/build.js"
   },
   "dependencies": {
     "@mdi/font": "^2.3.54",

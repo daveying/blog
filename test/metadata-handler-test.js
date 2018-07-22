@@ -66,7 +66,6 @@
         it('should return \\n[_metadata_:author]:- "daveying"', () => {
             mdStr = '\n';
             var result = MetadataHandler.addMetadata({author: "daveying"}, mdStr);
-            console.log(result)
             assert.strictEqual(result.trim(), `[_metadata_:author]:- "daveying"`);
         });
         it('should return [_metadata_:author]:- "daveying"\\n# title', () => {
