@@ -31,3 +31,15 @@ export default {
   components: {VueSplit}
 }
 </script>
+
+<style>
+.gutter {
+  background-color: #f5f5f5 !important;
+}
+.gutter:hover {
+  background-color: #e5e5e5 !important;
+}
+.gutter-horizontal {
+  width: 7px !important;
+}
+</style>
