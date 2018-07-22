@@ -136,17 +136,7 @@ export default {
   },
   methods: {
     ongoTopBtnClicked () {
-      let itvId = setInterval(moveTop, 5)
-      function moveTop () {
-        let top = document.documentElement.scrollTop || document.body.scrollTop
-        top -= 20
-        if (top < 0) {
-          top = 0
-          clearInterval(itvId)
-        }
-        document.documentElement.scrollTop = top
-        document.body.scrollTop = top
-      }
+      this.$vuetify.goTo(0)
     }
   },
   computed: {
@@ -166,11 +156,18 @@ export default {
           { icon: 'create', title: '写博客', link: '/create' }
         ]
       }
+      if (this.$store.getters.env === 'production') {
+        return menuItems.filter((item) => {
+          return item.title !== '其他应用' && item.title !== '关于'
+        })
+      }
       return menuItems
     },
     userIsAuthenticated () {
-      return true
-      // return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+      if (this.$store.getters.env === 'development') {
+        return true
+      }
+      return this.$store.getters.userIsAuthenticated
     },
     fullWidth () {
       return this.$store.getters.fullWidth === true

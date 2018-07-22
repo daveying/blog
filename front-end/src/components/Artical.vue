@@ -133,11 +133,6 @@ export default {
       this.$store.dispatch('pushRecentViewed', blog)
       this.$router.push(`/blog/${blog.id}`)
     },
-    hideMenu (timeout) {
-      setTimeout(() => {
-        this.showMenu = false
-      }, timeout && 10)
-    },
     hideHint () {
       setTimeout(() => {
         this.hintShow = false

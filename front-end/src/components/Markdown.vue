@@ -131,6 +131,11 @@ export default {
     onFavClicked () {
       this.fav = !this.fav
       this.$store.dispatch('setLike', {id: this.blog.id, value: this.fav})
+    },
+    hideMenu (timeout) {
+      setTimeout(() => {
+        this.showMenu = false
+      }, timeout && 10)
     }
   },
   components: { VueMarkdown, Prism }

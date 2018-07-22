@@ -12,7 +12,8 @@ export const store = new Vuex.Store({
     recentViewed: [],
     hintShow: true,
     isMobile: false,
-    fullWidth: false
+    fullWidth: false,
+    env: 'development'
   },
   mutations: {
     setFullWidth (state, payload) {
@@ -42,9 +43,15 @@ export const store = new Vuex.Store({
     },
     setMobile (state, payload) {
       state.isMobile = payload
+    },
+    setEnv (state, payload) {
+      state.env = payload
     }
   },
   actions: {
+    setEnv ({commit}, payload) {
+      commit('setEnv', payload)
+    },
     setFullWidth ({commit}, payload) {
       commit('setFullWidth', payload)
     },
@@ -122,6 +129,9 @@ export const store = new Vuex.Store({
     },
     fullWidth (state) {
       return state.fullWidth
+    },
+    env (state) {
+      return state.env
     }
   }
 })
