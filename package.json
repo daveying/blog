@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "build": "cd front-end && npm run build && cd .."
+    "b": "cd front-end && npm run b && cd .."
   },
   "repository": {
     "type": "git",

@@ -11,4 +11,4 @@ install:
 
 scritp:
   - cd front-end && npm run test && cd ..
-  - npm run build
+  - npm run b
