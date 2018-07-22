@@ -129,7 +129,7 @@
               </v-layout>
             </v-container>
           </v-card>
-          <v-card class="mt-2" tile>
+          <v-card class="mt-2" tile v-if="$store.getters.env === 'development'">
             <v-container>
               <h2 class="mb-2">关于作者</h2>
               <v-divider></v-divider>

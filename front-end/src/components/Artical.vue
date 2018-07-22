@@ -59,7 +59,7 @@
       <v-flex xs12>
         <social-network-list></social-network-list>
       </v-flex>
-      <v-flex xs12>
+      <v-flex xs12 v-if="$store.getters.env === 'development'">
         <div class="comments">
         <vue-disqus shortname="xingpeng-blog" :identifier="id" url="http://md.xp-da.com"></vue-disqus>
         </div>

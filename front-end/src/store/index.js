@@ -12,8 +12,8 @@ export const store = new Vuex.Store({
     recentViewed: [],
     hintShow: true,
     isMobile: false,
-    fullWidth: false,
-    env: 'development'
+    env: 'production', // 'development' or 'production'
+    fullWidth: false
   },
   mutations: {
     setFullWidth (state, payload) {

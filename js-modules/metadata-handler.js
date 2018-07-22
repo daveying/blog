@@ -1,7 +1,7 @@
 /*
 Format
   [_metadata_:author]:- "daveying"
-  [_metadata_:tags]:- "markdonw metadata"
+  [_metadata_:tags]:- "markdown metadata"
 */
 var MetadataHandler = {} || MetadataHandler;
 
