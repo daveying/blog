@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "iojs"
+  - "7"
+
+env:
+  - __BUILD_ENV_=production
+
+install:
+  - npm install
+  - cd front-end && npm install && cd ..
+
+scritp:
+  - cd front-end && npm run test && cd ..
+  - npm run build
