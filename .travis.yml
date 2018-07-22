@@ -4,4 +4,8 @@ node_js:
   - "8"
 
  script:
-  - cd blog-front && npm run test
+  - npm install
+  - cd front-end && npm install
+  - npm run test
+  - npm run build
+  - cd ..
