@@ -2,8 +2,10 @@ before_script:
   - echo hello world
   - export __BUILD_ENV_=production
 
-build:
+install_:
   - npm install
   - cd front-end && npm install && cd ..
+
+build_:
   - npm test
   - npm run build
