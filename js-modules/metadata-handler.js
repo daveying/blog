@@ -56,7 +56,7 @@ var MetadataHandler = {} || MetadataHandler;
                 metadataStr += `[_metadata_:${key}]:- "${metadata[key]}"\n`;
             }
         }
-        return metadataStr + results.md;
+        return metadataStr + (results.title ? '# ' + results.title : '') + results.md;
     };
 })(MetadataHandler);
 

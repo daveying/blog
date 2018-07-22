@@ -27,7 +27,7 @@
         it('should return {}', () => {
             var results = MetadataHandler.extractMetadata(`# [_metadata_:author]:- '汉字 中国'`);
             assert.deepEqual(results.metadata, {});
-            assert.strictEqual(results.md, `# [_metadata_:author]:- '汉字 中国'`);
+            assert.strictEqual(results.md, ``);
         });
     });
     describe('Multi-line of metadata:', () => {
@@ -35,13 +35,15 @@
             var results = MetadataHandler.extractMetadata(`[_metadata_:author]:- 'daveying'\n[_metadata_:tags]:- '汉字 chinese'`);
             assert.strictEqual(results.metadata.author, 'daveying');
             assert.strictEqual(results.metadata.tags, '汉字 chinese');
-            assert.strictEqual(results.md, "");
+            assert.strictEqual(results.md, '');
+            assert.strictEqual(results.title, '');
         });
         it('should just extract the metadata at the top', () => {
             var results = MetadataHandler.extractMetadata(`\n\n[_metadata_:author]:- 'daveying'\n# Tile\n[_metadata_:tags]:- '汉字 chinese'`);
             assert.strictEqual(results.metadata.author, 'daveying');
             assert.strictEqual(results.metadata.tags, undefined);
-            assert.strictEqual(results.md, `# Tile\n[_metadata_:tags]:- '汉字 chinese'`);
+            assert.strictEqual(results.md, `[_metadata_:tags]:- '汉字 chinese'`);
+            assert.strictEqual(results.title, `Tile`)
         });
     });
     describe('Support metadata value be array', () => {
@@ -64,6 +66,7 @@
         it('should return \\n[_metadata_:author]:- "daveying"', () => {
             mdStr = '\n';
             var result = MetadataHandler.addMetadata({author: "daveying"}, mdStr);
+            console.log(result)
             assert.strictEqual(result.trim(), `[_metadata_:author]:- "daveying"`);
         });
         it('should return [_metadata_:author]:- "daveying"\\n# title', () => {
