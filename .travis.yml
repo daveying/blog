@@ -1,7 +1,6 @@
 language: node_js
 node_js:
-  - "iojs"
-  - "7"
+  - "8"
 
 env:
   - __BUILD_ENV_=production
