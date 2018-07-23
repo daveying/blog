@@ -15,7 +15,7 @@ test:
 
 build:
   stage: build
-  image: erickponce/nodejs-docker
+  image: "travix/docker-gocd-agent-gcloud-nodejs-l10ns:18.7.0"
   services:
     - docker:dind
   script:
