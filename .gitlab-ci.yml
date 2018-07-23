@@ -1,10 +1,18 @@
-image: node:8.11.3
+before_script:
+  - export __BUILD_ENV_=production
+  - npm install
+  - cd front-end && npm install && cd ..
+
+test:
+  stage: test
+  image: node:8.11.3
+  script:
+    - npm test
 
 build:
+  stage: build
+  image: node:8.11.3
+  service: docker
   script:
-    - echo Hello world
-    - export __BUILD_ENV_=production
-    - npm install
-    - cd front-end && npm install && cd ..
-    - npm test
     - npm run build
+    - docker --version
