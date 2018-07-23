@@ -12,7 +12,8 @@ test:
 build:
   stage: build
   image: node:8.11.3
-  service: docker
+  services:
+    - docker:stable-dind
   script:
     - npm run build
     - docker --version
