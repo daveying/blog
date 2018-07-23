@@ -1,3 +1,7 @@
+stages:
+  - test
+  - build
+
 before_script:
   - export __BUILD_ENV_=production
   - npm install
@@ -11,9 +15,9 @@ test:
 
 build:
   stage: build
-  image: node:8.11.3
+  image: erickponce/nodejs-docker
   services:
-    - docker:stable-dind
+    - docker:dind
   script:
     - npm run build
     - docker --version
