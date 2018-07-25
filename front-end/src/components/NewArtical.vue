@@ -2,7 +2,7 @@
   <v-container fluid fill-height px-0 py-0>
     <vue-split style="width:100%"
       :elements="[
-        '#fileDir',
+        '#fileNav',
         '#editor'
       ]"
       direction="horizontal"
@@ -11,8 +11,8 @@
       :snap-offset="50"
       :sizes="[25, 75]"
     >
-      <div id="fileDir">
-        <h2>foo</h2>
+      <div id="fileNav">
+        <file-navigator></file-navigator>
       </div>
       <div id="editor">
         <h2>bar</h2>
