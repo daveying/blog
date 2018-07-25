@@ -1,20 +1,20 @@
 <template>
-  <v-container fluid fill-height>
+  <v-container fluid fill-height px-0 py-0>
     <vue-split style="width:100%"
       :elements="[
-        '#slotOne',
-        '#slotTwo'
+        '#fileDir',
+        '#editor'
       ]"
       direction="horizontal"
       :min-size="100"
-      :gutter-size="10"
+      :gutter-size="7"
       :snap-offset="50"
       :sizes="[25, 75]"
     >
-      <div id="slotOne">
+      <div id="fileDir">
         <h2>foo</h2>
       </div>
-      <div id="slotTwo">
+      <div id="editor">
         <h2>bar</h2>
       </div>
     </vue-split>
@@ -38,8 +38,5 @@ export default {
 }
 .gutter:hover {
   background-color: #e5e5e5 !important;
-}
-.gutter-horizontal {
-  width: 7px !important;
 }
 </style>

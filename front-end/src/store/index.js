@@ -12,7 +12,7 @@ export const store = new Vuex.Store({
     recentViewed: [],
     hintShow: true,
     isMobile: false,
-    env: 'production', // 'development' or 'production'
+    env: 'development', // 'development' or 'production'
     fullWidth: false
   },
   mutations: {
