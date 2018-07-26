@@ -1,10 +1,10 @@
 <template>
   <v-card flat class="grey lighten-5">
-    <v-container class="my-0" fluid style="min-height: 0;" grid-list-md>
+    <v-container py-0 px-0 my-0 fluid style="min-height: 0;" grid-list-md>
       <v-layout row wrap>
         <v-flex xs12>
           <v-card tile>
-            <v-container class="px-3 py-2">
+            <v-container px-3 py-2>
               <v-layout row wrap>
                 <v-flex xs12>
                   <h1 class="blog-title">{{ blog.title }}</h1>
