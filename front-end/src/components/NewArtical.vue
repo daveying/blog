@@ -1,9 +1,9 @@
 <template>
-  <v-container fluid fill-height px-0 py-0>
+  <v-container fluid style="height:100%" px-0 py-0>
     <vue-split style="width:100%"
       :elements="[
         '#fileNav',
-        '#editor'
+        '#mainWin'
       ]"
       direction="horizontal"
       :min-size="100"
@@ -14,8 +14,22 @@
       <div id="fileNav">
         <file-navigator></file-navigator>
       </div>
-      <div id="editor">
-        <h2>bar</h2>
+      <div id="mainWin">
+        <vue-split style="width:100%"
+          :elements="['#editor', '#preview']"
+          direction="horizontal"
+          :min-size="10"
+          :gutter-size="7"
+          :snap-offset="50"
+          :sizes="[50, 50]"
+        >
+          <div id="editor">
+            <h1>Editor</h1>
+          </div>
+          <div id="preview">
+            <h1>Preview</h1>
+          </div>
+        </vue-split>
       </div>
     </vue-split>
   </v-container>
