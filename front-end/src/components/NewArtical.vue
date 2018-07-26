@@ -15,6 +15,15 @@
         <file-navigator></file-navigator>
       </div>
       <div id="mainWin">
+        <v-container fluid px-0 py-0>
+          <v-layout align-content-start>
+            <span class="editing-item selected"
+              v-for="(item,i) in 5"
+              :key="i">
+              sdfaowejknaldkda.md
+            </span>
+          </v-layout>
+        </v-container>
         <vue-split style="width:100%"
           :elements="['#editor', '#preview']"
           direction="horizontal"
@@ -48,9 +57,14 @@ export default {
 
 <style>
 .gutter {
-  background-color: #f5f5f5 !important;
+  background-color: #fafafa !important;
 }
-.gutter:hover {
+/* .gutter:hover {
   background-color: #e5e5e5 !important;
+} */
+
+.editing-item {
+  padding: 5px 10px;
 }
+
 </style>

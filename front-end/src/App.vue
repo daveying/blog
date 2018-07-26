@@ -178,11 +178,11 @@ export default {
 </script>
 
 <style>
-:target:before {
+/* :target:before {
   display: block;
   content: " ";
-  margin-top: -75px;
-  height: 75px;
+  margin-top: -10px;
+  height: 10px;
   visibility: hidden;
-}
+} */
 </style>

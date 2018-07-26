@@ -1,12 +1,12 @@
 <template>
   <v-card flat class="grey lighten-5">
-    <v-container class="my-0" fluid style="min-height: 0;" grid-list-md>
+    <v-container py-0 px-0 my-0 fluid style="min-height: 0;">
       <v-layout row wrap>
-        <v-flex xs12 md8>
+        <v-flex xs12 md8 px-1>
           <v-layout row wrap>
             <v-flex v-for="blog in showingBlog" :key="blog.id" xs12>
               <v-card hover tile style="cursor: default">
-                <v-container class="px-3 py-2">
+                <v-container px-3 py-2 my-1>
                   <v-layout row wrap>
                     <v-flex xs12>
                       <h1 @click="onBlogClicked(blog)"><a class="blog-link">{{ blog.title }}</a></h1>
@@ -35,9 +35,9 @@
             </v-flex>
           </v-layout>
         </v-flex>
-        <v-flex xs12 md4>
+        <v-flex xs12 md4 px-1>
           <v-card tile>
-            <v-container>
+            <v-container my-1>
               <h2 class="mb-2">标签列表</h2>
               <v-divider></v-divider>
               <v-layout wrap class="mt-2">
