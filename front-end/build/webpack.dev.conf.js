@@ -63,10 +63,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         from: path.resolve(__dirname, '../static'),
         to: config.dev.assetsSubDirectory,
         ignore: ['.*']
-      },
-      {
-        from: 'node_modules/monaco-editor/min/vs',
-        to: 'vs',
       }
     ])
   ]

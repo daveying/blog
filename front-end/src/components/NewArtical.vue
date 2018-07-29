@@ -38,6 +38,7 @@
               language="typescript"
               :code="code"
               :editorOptions="options"
+              :theme="`vs`"
               @mounted="onMounted"
               @codeChange="onCodeChange"
               >
@@ -64,8 +65,7 @@ export default {
     return {
       code: '// Type away! \n',
       options: {
-        selectOnLineNumbers: false,
-        theme: 'vs'
+        selectOnLineNumbers: false
       }
     }
   },
