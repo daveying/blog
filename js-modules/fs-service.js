@@ -5,7 +5,7 @@
     const path = require('path');
     const fs = require('fs');
     const FM = require('./file-manager');
-    const srcDirName = 'md-src/';
+    const srcDirName = 'md-src' + path.sep;
 
     var fm = new FM({
         baseDir: path.join(__dirname, `../${srcDirName}`)
