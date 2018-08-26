@@ -66,13 +66,113 @@ void swap() {
 要想将其编译为一个可执行目标文件需要首先预处理器、编译器以及汇编器生成可重定位目标文件`main.o`以及`swap.o`，然后再通过链接器进行符号解析以及符号重定位将`main.o`以及`swap.o`合并为一个完全链接的、可以加载和运行的可执行目标文件。下图显示了该过程：
 
 ![Static Linking](/pictures/static-linking.png)
+
 (_Image source: Computer Systems - A Programmer's Perspective_)
 
 为了阐述链接过程，对于目标文件的格式需要有一个大概的了解，下面这一节就来介绍各种目标文件的格式。
 
 ## 可重定位目标文件
 
+下图展示了一个典型ELF可重定位目标文件的格式：
 
+![ELF relocatable object file](/pictures/ELF-relocatable-object-file.png)
+
+(_Image source: Computer Systems - A Programmer's Perspective_)
+
+ELF header以一个16字节的序列开始，这个序列描述了生成该文件的系统的字的大小和字节顺序。ELF header剩下的部分包含帮助链接器语法分析和解释目标文件的信息，其中包含ELF header的大小、目标文件类型、机器类型、节头部表(section header table)的偏移，以及节头部表中条目的大小和数量。夹在ELF header和section header table之间的都是节(section)。
+
+通过以下命令可以生成`main.c`的可重定位目标文件`main.o`：
+```bash
+gcc -c main.c
+```
+然后通过`readelf`工具可以查看`main.o`中的内容：
+```bash
+user@user-ubuntu:~/learn$ readelf main.o -a
+ELF Header:
+  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00
+  Class:                             ELF64
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              REL (Relocatable file)
+  Machine:                           Advanced Micro Devices X86-64
+  Version:                           0x1
+  Entry point address:               0x0
+  Start of program headers:          0 (bytes into file)
+  Start of section headers:          640 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               64 (bytes)
+  Size of program headers:           0 (bytes)
+  Number of program headers:         0
+  Size of section headers:           64 (bytes)
+  Number of section headers:         12
+  Section header string table index: 9
+
+Section Headers:
+  [Nr] Name              Type             Address           Offset
+       Size              EntSize          Flags  Link  Info  Align
+  [ 0]                   NULL             0000000000000000  00000000
+       0000000000000000  0000000000000000           0     0     0
+  [ 1] .text             PROGBITS         0000000000000000  00000040
+       0000000000000015  0000000000000000  AX       0     0     1
+  [ 2] .rela.text        RELA             0000000000000000  000001f0
+       0000000000000018  0000000000000018   I      10     1     8
+  [ 3] .data             PROGBITS         0000000000000000  00000058
+       0000000000000008  0000000000000000  WA       0     0     8
+  [ 4] .bss              NOBITS           0000000000000000  00000060
+       0000000000000000  0000000000000000  WA       0     0     1
+  [ 5] .comment          PROGBITS         0000000000000000  00000060
+       0000000000000036  0000000000000001  MS       0     0     1
+  [ 6] .note.GNU-stack   PROGBITS         0000000000000000  00000096
+       0000000000000000  0000000000000000           0     0     1
+  [ 7] .eh_frame         PROGBITS         0000000000000000  00000098
+       0000000000000038  0000000000000000   A       0     0     8
+  [ 8] .rela.eh_frame    RELA             0000000000000000  00000208
+       0000000000000018  0000000000000018   I      10     7     8
+  [ 9] .shstrtab         STRTAB           0000000000000000  00000220
+       0000000000000059  0000000000000000           0     0     1
+  [10] .symtab           SYMTAB           0000000000000000  000000d0
+       0000000000000108  0000000000000018          11     8     8
+  [11] .strtab           STRTAB           0000000000000000  000001d8
+       0000000000000016  0000000000000000           0     0     1
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), l (large)
+  I (info), L (link order), G (group), T (TLS), E (exclude), x (unknown)
+  O (extra OS processing required) o (OS specific), p (processor specific)
+
+There are no section groups in this file.
+
+There are no program headers in this file.
+
+Relocation section '.rela.text' at offset 0x1f0 contains 1 entries:
+  Offset          Info           Type           Sym. Value    Sym. Name + Addend
+00000000000a  000a00000002 R_X86_64_PC32     0000000000000000 swap - 4
+
+Relocation section '.rela.eh_frame' at offset 0x208 contains 1 entries:
+  Offset          Info           Type           Sym. Value    Sym. Name + Addend
+000000000020  000200000002 R_X86_64_PC32     0000000000000000 .text + 0
+
+The decoding of unwind sections for machine type Advanced Micro Devices X86-64 is not currently supported.
+
+Symbol table '.symtab' contains 11 entries:
+   Num:    Value          Size Type    Bind   Vis      Ndx Name
+     0: 0000000000000000     0 NOTYPE  LOCAL  DEFAULT  UND
+     1: 0000000000000000     0 FILE    LOCAL  DEFAULT  ABS main.c
+     2: 0000000000000000     0 SECTION LOCAL  DEFAULT    1
+     3: 0000000000000000     0 SECTION LOCAL  DEFAULT    3
+     4: 0000000000000000     0 SECTION LOCAL  DEFAULT    4
+     5: 0000000000000000     0 SECTION LOCAL  DEFAULT    6
+     6: 0000000000000000     0 SECTION LOCAL  DEFAULT    7
+     7: 0000000000000000     0 SECTION LOCAL  DEFAULT    5
+     8: 0000000000000000     8 OBJECT  GLOBAL DEFAULT    3 buf
+     9: 0000000000000000    21 FUNC    GLOBAL DEFAULT    1 main
+    10: 0000000000000000     0 NOTYPE  GLOBAL DEFAULT  UND swap
+
+No version information found in this file.
+```
+
+通过`readelf`可以方便地查看ELF header信息，Section header table信息以及Symbol table。
 
 **References:**
 
