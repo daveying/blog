@@ -19,5 +19,6 @@ app.get('/api/all-articals', (req, res) => {
 });
 
 app.use('/', express.static('front-end/dist'));
+app.use('/pictures', express.static('pictures'));
 
 app.listen(port, () => console.log(`Server listening on port ${port}`));
