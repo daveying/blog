@@ -16,7 +16,7 @@
       </div>
       <div id="mainWin" class="editor">
         <v-container fluid px-0 py-0>
-          <v-layout align-content-start>
+          <v-layout align-content-start class="item-container">
             <span :class="`editing-item ${i === 1 ? 'selected' : ''}`"
               v-for="(item,i) in 5"
               :key="i">
@@ -31,11 +31,12 @@
           :gutter-size="7"
           :snap-offset="50"
           :sizes="[50, 50]"
+          @onDrag="onDrag()"
         >
           <div id="editor">
             <MonacoEditor
               height="100%"
-              language="typescript"
+              language="markdown"
               :code="code"
               :editorOptions="options"
               :theme="`vs`"
@@ -63,9 +64,14 @@ export default {
   },
   data () {
     return {
-      code: '// Type away! \n',
+      code: '# Type away! \n',
       options: {
-        selectOnLineNumbers: false
+        selectOnLineNumbers: true,
+        roundedSelection: true,
+        readOnly: false,
+        cursorStyle: 'line',
+        automaticLayout: false,
+        glyphMargin: false
       }
     }
   },
@@ -75,6 +81,9 @@ export default {
     },
     onCodeChange (editor) {
       console.log(editor.getValue())
+    },
+    onDrag () {
+      this.editor.layout()
     }
   },
   components: {VueSplit, MonacoEditor}
@@ -90,15 +99,18 @@ export default {
 } */
 
 .selected.editing-item {
-  padding: 10px 10px;
-  background-color: #fafafa;
-  border: solid 1px #fafafa;
+  background-color: #fffffe;
+  border: solid 1px #fffffe;
 }
 
 .editing-item {
   padding: 10px 10px;
   background-color: #eaeaea;
   border: solid 1px #eaeaea;
+}
+
+.item-container {
+  background-color: #f0f0f0;
 }
 
 .file-navigator {
