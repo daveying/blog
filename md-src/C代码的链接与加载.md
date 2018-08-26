@@ -66,8 +66,13 @@ void swap() {
 要想将其编译为一个可执行目标文件需要首先预处理器、编译器以及汇编器生成可重定位目标文件`main.o`以及`swap.o`，然后再通过链接器进行符号解析以及符号重定位将`main.o`以及`swap.o`合并为一个完全链接的、可以加载和运行的可执行目标文件。下图显示了该过程：
 
 ![Static Linking](/pictures/static-linking.png)
+(_Image source: Computer Systems - A Programmer's Perspective_)
 
 为了阐述链接过程，对于目标文件的格式需要有一个大概的了解，下面这一节就来介绍各种目标文件的格式。
+
+## 可重定位目标文件
+
+
 
 **References:**
 
